@@ -229,7 +229,7 @@ jobs:
                 title: The project ((project)) on ((env)) environment deployed successfully
 
 
-  # Destroy the demo infrastructure after its creation (after a timer and every hour)
+  # Destroy the demo infrastructure
   - name: terraform-destroy
     max_in_flight: 1
     build_logs_to_retain: 10
