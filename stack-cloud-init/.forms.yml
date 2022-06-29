@@ -1,0 +1,119 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Infrastructure
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Instance type"
+        description: "Instance type."
+        key: vm_instance_type
+        widget: slider_list
+        type: string
+        default: "t3a.medium"
+        values:
+            - "t3a.small"
+            - "t3a.medium"
+            - "t3a.large"
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the instance."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 10
+            - 250
+        required: true
+    - name: SSH Keypair to access new instances
+      technologies: [pipeline]
+      vars:
+      - name: "Keypair public"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        required: true
+        default: "((custom_keypair.ssh_pub))"
+        required: true
+
+  - name: Teleport
+    groups:
+    - name: Teleport agent
+      technologies: [terraform]
+      vars:
+      - name: "App service name"
+        description: "Teleport app service name."
+        key: app_service_name
+        widget: simple_text
+        type: string
+        default: "grafana"
+        required: true
+      - name: "Token"
+        description: "Teleport token."
+        key: token
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Target hostname"
+        description: "Teleport target hostname."
+        key: target
+        widget: simple_text
+        type: string
+        default: "localhost"
+        required: true
+      - name: "Target port"
+        description: "Teleport target port."
+        key: targetport
+        widget: simple_text
+        type: string
+        default: "8000"
+        required: true
+      - name: "Server hostname"
+        description: "Teleport server hostname."
+        key: teleportserver
+        widget: simple_text
+        type: string
+        default: "e98nco.teleport.sh"
+        required: true
+      - name: "Server port"
+        description: "Teleport server port."
+        key: teleportport
+        widget: simple_text
+        type: string
+        default: "443"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true

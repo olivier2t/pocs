@@ -1,0 +1,33 @@
+version: "2"
+name: EC2 with Cloud Init
+canonical: stack-cloud-init
+status: private
+author: Cycloid
+description: |
+  Deploy an EC2 instance with an HTTP server via Cloud Init.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/cloud-init.png
+keywords:
+  - cloud-init
+  - user data
+technologies:
+  - technology: cloud-init
+    version: "n/a"
+
+config:
+  default:
+    name: 'AWS'
+    description: 'Deploy an EC2 instance with an HTTP server via Cloud Init'
+    cloud_provider: aws
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf.sample'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
