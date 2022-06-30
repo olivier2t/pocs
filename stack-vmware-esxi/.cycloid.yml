@@ -1,0 +1,35 @@
+---
+# Configuration of the Cycloid stack
+version: '2'
+name: 'VMware Virtual Machine'
+canonical: 'stack-vmware'
+description: This stack deploys a VMware virtual machine from an ISO using ESXi.
+author: 'Olivier de Turckheim'
+image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/vmware.png'
+status: 'private'
+keywords:
+- VMware
+- ESXi
+- provider:vmware
+technologies:
+- technology: VMware
+- technology: ESXi
+  version: "7"
+
+config:
+  esxi-iso:
+    name: 'Bootstrap a VM from an ISO using ESXi'
+    description: 'Bootstraps a VMware virtual machine using an OS file using ESXi'
+    cloud_provider: vmware
+    # Pipeline and variable configuration for the esxi-iso pipeline use case
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf.sample'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

@@ -1,0 +1,146 @@
+#
+# Cloud Providers
+#
+
+#. esxi_user (required): ((esxi.username))
+#+ ESXi admin username for Terraform
+esxi_user: ((esxi.username))
+
+#. esxi_password (required): ((esxi.password))
+#+ ESXi admin password for Terraform
+esxi_password: ((esxi.password))
+
+#. esxi_server (required): ""
+#+ ESXi server for Terraform
+esxi_server: "212.83.169.2"
+
+# Amazon access for s3 terraform backend.
+
+#. aws_access_key (required): ((aws_cycloid-demo.access_key))
+#+ Amazon AWS access key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+aws_access_key: ((aws_cycloid-demo.access_key))
+
+#. aws_secret_key (required): ((aws_cycloid-demo.secret_key))
+#+ Amazon AWS secret key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+aws_secret_key: ((aws_cycloid-demo.secret_key))
+
+#. aws_default_region (required): eu-west-1
+#+ Amazon AWS region to use for Terraform.
+aws_region: eu-west-1
+
+
+#
+# Terraform remote state file
+#
+
+#. terraform_storage_bucket_name (required): ($ organization_canonical $)-terraform-remote-state
+#+ AWS S3 bucket name to store terraform remote state file.
+terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-state
+
+
+#
+# Access to newly created instances
+#
+
+#. vm_os_user (required): "admin"
+#+ The user to use to connect through SSH
+vm_os_user: "admin"
+
+#. keypair_public (required): ((custom_keypair.ssh_pub))
+#+ The public SSH key to provision to bastion for external access through SSH
+keypair_public: ((custom_keypair.ssh_pub))
+
+#. keypair_private (required): ((custom_keypair.ssh_prv))
+#+ The private SSH key allowing ansible to run playbooks in the new VM
+keypair_private: ((custom_keypair.ssh_prv))
+
+
+#
+# Applications to deploy via ansible on newly created VM
+#
+
+#. vm_nginx (required): false
+#+ Whether to deploy a NGINX web server on newly created VM
+vm_nginx: false
+
+#. vm_redis (required): false
+#+ Whether to deploy a REDIS in-memory database on newly created VM
+vm_redis: false
+
+
+#
+# Stack Configuration
+#
+
+#. config_git_repository (required): git@github.com:cycloidio/cycloid-stacks-test.git
+#+ Git repository URL containing the config of the stack.
+config_git_repository: git@github.com:cycloidio/cycloid-stacks-test.git
+
+#. config_git_branch (required): config
+#+ Branch to use on the config Git repository.
+config_git_branch: config
+
+#. config_git_private_key (required): ((git_github.ssh_key))
+#+ SSH key pair to fetch the config Git repository.
+config_git_private_key: ((git_github.ssh_key))
+
+#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
+#+ Path of Terraform files in the config git repository
+config_terraform_path: ($ project $)/terraform/($ environment $)
+
+#. config_ansible_path (required): ($ project $)/ansible/environments
+#+ Path of Ansible files in the config git repository
+config_ansible_path: ($ project $)/ansible/environments
+
+#. stack_git_repository (required): git@github.com:cycloidio/cycloid-demo-stacks.git
+#+ Git repository URL containing the stack.
+stack_git_repository: git@github.com:cycloidio/cycloid-demo-stacks.git
+
+#. stack_git_branch (required): master
+#+ Branch to use on the stack Git repository.
+stack_git_branch: master
+
+#. stack_terraform_path (required): stack-vmware/terraform
+#+ Path of Terraform files in the stack git repository
+stack_terraform_path: stack-vmware/terraform
+
+#. stack_ansible_path (required): stack-vmware/ansible
+#+ Path of Ansible files in the stack git repository
+stack_ansible_path: stack-vmware/ansible
+
+
+#
+# Default variables that shouldn't be changed except if needed
+#
+
+#. env (required): ($ environment $)
+#+ Name of the project's environment.
+env: ($ environment $)
+
+#. project (required): ($ project $)
+#+ Name of the project.
+project: ($ project $)
+
+#. customer (required): ($ organization_canonical $)
+#+ Name of the Cycloid Organization, used as customer variable name.
+customer: ($ organization_canonical $)
+
+#. cycloid_api_url (required): https://http-api.cycloid.io
+#+ Cycloid API URL.
+cycloid_api_url: 'https://http-api.cycloid.io'
+
+#. cycloid_api_key (required): ((custom_api-key-admin.key))
+#+ API key to grant admin acess to Cycloid API.
+cycloid_api_key: ((custom_api-key-admin.key))
+
+#. slack_hook (required): ((raw_slack-hooks.demo_channel))
+#+ URL to send notifications to cycloid-demo channel.
+slack_hook: ((raw_slack-hooks.demo_channel))
+
+#. terraform_version (required): '1.0.11'
+#+ terraform version used to execute your code.
+terraform_version: '1.0.11'
+
+#. cycloid-toolkit ansible version (required): 'v2.9'
+#+ cycloid-toolkit docker image tag to use (https://hub.docker.com/r/cycloid/cycloid-toolkit/tags).
+ansible_version: 'v2.9'

@@ -1,0 +1,311 @@
+---
+version: "2"
+use_cases:
+- name: esxi-iso
+  sections:
+  - name: Service Catalog
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Name"
+        description: "Name of the virtual machine."
+        key: vm_name
+        widget: simple_text
+        default: ""
+        type: string
+        required: true
+      - name: "vCPU"
+        unit: vCPU
+        description: "Number of vCPU allocated to the virtual machine."
+        key: vm_cpu
+        widget: slider_range
+        type: integer
+        default: 2
+        values:
+            - 1
+            - 4
+        required: true
+      - name: "Memory"
+        unit: Mo
+        description: "Memory allocated to the virtual machine."
+        key: vm_memory
+        widget: slider_list
+        type: integer
+        default: 2048
+        values:
+            - 1024
+            - 2048
+            - 4096
+        required: true
+      - name: "Disk"
+        unit: Go
+        description: "Disk size allocated to the virtual machine."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 10
+            - 200
+        required: true
+      - name: "IP Address"
+        description: "IP address to assign to the virtual machine network interface. You can also integrate Cycloid with an IP Address Management tool."
+        key: vm_ip
+        widget: simple_text
+        default: ""
+        type: string
+        required: true
+      - name: "MAC Address"
+        description: "MAC address to assign to the virtual machine network interface. You can also integrate Cycloid with a MAC Address Management tool."
+        key: vm_mac
+        widget: simple_text
+        default: ""
+        type: string
+        required: true
+      - name: "Network"
+        description: "Network where the virtual machine will be located."
+        key: esxi_network
+        widget: simple_text
+        default: "VM Network"
+        type: string
+        required: true
+      - name: "Path to ISO file"
+        description: "Path to ISO file needed to bootstrap the virtual machine. Ex: ISOs/debian.iso"
+        key: vm_iso
+        widget: simple_text
+        default: ""
+        type: string
+        required: true
+    - name: SSH connection to new instances
+      technologies: [pipeline]
+      vars:
+      - name: "User"
+        description: "The user to use to connect through SSH."
+        key: vm_os_user
+        widget: simple_text
+        type: string
+        default: "admin"
+        required: true
+      - name: "Keypair public"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        required: true
+        default: "((custom_keypair.ssh_pub))"
+        required: true
+
+  - name: VMware Cloud Provider
+    groups:
+    - name: ESXi Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "ESXi admin username"
+        description: "ESXi admin username for Terraform."
+        key: esxi_user
+        widget: cy_cred
+        type: string
+        default: "((esxi.username))"
+        required: true
+      - name: "ESXi admin password"
+        description: "ESXi admin password for Terraform."
+        key: esxi_password
+        widget: cy_cred
+        type: string
+        default: "((esxi.password))"
+        required: true
+      - name: "ESXi server"
+        description: "ESXi server (IP or FQDN) for Terraform. Ex: 192.168.0.1"
+        key: esxi_server
+        widget: simple_text
+        type: string
+        default: "((esxi.server))"
+        required: true
+
+    - name: Deployment Configuration
+      technologies: [terraform]
+      vars:
+      - name: "ESXi hostname"
+        description: "Needed to find the default resource pool for ESXi connection."
+        key: esxi_hostname
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Datacenter"
+        description: "Datacenter where the virtual machine will be located."
+        key: esxi_datacenter
+        widget: auto_complete
+        type: string
+        values: ["dc1","dc2"]
+        default: "dc1"
+        required: true
+      - name: "Datastore VM"
+        description: "Datastore where the virtual machine will be located."
+        key: esxi_datastore
+        widget: auto_complete
+        type: string
+        values: ["datastore1","datastore2"]
+        default: "datastore1"
+        required: true
+      - name: "Datastore ISO"
+        description: "Datastore where the ISO file will be located."
+        key: esxi_datastore_iso
+        widget: auto_complete
+        type: string
+        values: ["datastore1","datastore2"]
+        default: "datastore1"
+        required: true
+
+  - name: Terraform remote state file
+    groups:
+    - name: Storage Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform Remote State File S3 bucket name"
+        description: "AWS S3 bucket name to store terraform remote state file. The S3 bucket shall exist or be created beforehand."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
+
+  - name: Git Repositories
+    groups:
+    - name: Stack Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: stack_git_repository
+        type: string
+        widget: cy_scs
+        description: "Git repository URI containing the stack service catalog automation."
+        default: ""
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the stack Git repository."
+        key: stack_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the stack Git repository."
+        key: stack_git_branch
+        widget: cy_branch
+        type: string
+        source: stack_git_repository
+        default: "stacks"
+        required: true
+    - name: Config Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: config_git_repository
+        type: string
+        widget: cy_crs
+        description: "Git repository URI containing the config of the stack for each project environment."
+        default: ""
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the config Git repository."
+        key: config_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the config Git repository."
+        key: config_git_branch
+        widget: cy_branch
+        type: string
+        source: config_git_repository
+        default: "config"
+        required: true
+  
+  - name: Cycloid Platform
+    groups:
+    - name: Cycloid API
+      technologies: [pipeline]
+      vars:
+      - name: "Cycloid API URL"
+        description: "Cycloid API URL. Leave the default value unless your are running an on premises Cycloid platform."
+        key: cycloid_api_url
+        widget: simple_text
+        type: string
+        default: "https://http-api.cycloid.io"
+        required: true
+      - name: "Cycloid API key"
+        description: "API key to grant access to Cycloid API."
+        key: cycloid_api_key
+        widget: cy_cred
+        type: string
+        default: "((cycloid-api-key.key))"
+        required: true
+
+
+
+
+
+
+
+esxi-iso:
+  pipeline:
+
+
+
+  terraform:
+    VM:
+      - name: "Number of CPU"
+        unit: vCPU
+        description: "Number of vCPU allocated to the virtual machine."
+        key: vm_cpu
+        widget: slider_range
+        type: integer
+        default: 2
+        values:
+            - 1
+            - 4
+        required: true
+      - name: "Memory allocated"
+        unit: Mo
+        description: "Memory allocated to the virtual machine."
+        key: vm_memory
+        widget: number
+        type: integer
+        default: 2048
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size allocated to the virtual machine."
+        key: vm_disk_size
+        widget: number
+        type: integer
+        default: 100
+        required: true
