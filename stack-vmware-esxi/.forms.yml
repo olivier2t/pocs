@@ -118,7 +118,7 @@ use_cases:
       - name: "ESXi server"
         description: "ESXi server (IP or FQDN) for Terraform. Ex: 192.168.0.1"
         key: esxi_server
-        widget: simple_text
+        widget: cy_cred
         type: string
         default: "((esxi.server))"
         required: true
