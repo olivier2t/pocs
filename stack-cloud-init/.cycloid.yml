@@ -29,5 +29,5 @@ config:
     # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
     terraform:
       main:
-        path: 'terraform/main.tf.sample'
+        path: 'terraform/main.tf'
         destination: '($ project $)/terraform/($ environment $)/main.tf'
