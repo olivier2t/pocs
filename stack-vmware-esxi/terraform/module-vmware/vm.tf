@@ -4,28 +4,28 @@ data "vsphere_datacenter" "dc" {
 
 data "vsphere_datastore" "datastore" {
   name          = var.esxi_datastore
-  datacenter_id = data.esxi_datacenter.dc.id
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_datastore" "iso_datastore" {
   name          = var.esxi_datastore_iso
-  datacenter_id = data.esxi_datacenter.dc.id
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_resource_pool" "pool" {
   name          = "${var.esxi_hostname}/Resources"
-  datacenter_id = data.esxi_datacenter.dc.id
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_network" "network" {
   name          = var.esxi_network
-  datacenter_id = data.esxi_datacenter.dc.id
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vm_name
-  resource_pool_id = data.esxi_resource_pool.pool.id
-  datastore_id     = data.esxi_datastore.datastore.id
+  resource_pool_id = data.vsphere_resource_pool.pool.id
+  datastore_id     = data.vsphere_datastore.datastore.id
 
   num_cpus = var.vm_cpu
   memory   = var.vm_memory
@@ -34,7 +34,7 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_net_routable = false
 
   network_interface {
-    network_id = data.esxi_network.network.id
+    network_id = data.vsphere_network.network.id
   }
 
   disk {
@@ -43,7 +43,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   cdrom {
-    datastore_id = data.esxi_datastore.iso_datastore.id
+    datastore_id = data.vsphere_datastore.iso_datastore.id
     path         = var.vm_iso
   }
   
