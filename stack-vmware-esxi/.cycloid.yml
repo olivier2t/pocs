@@ -2,7 +2,7 @@
 # Configuration of the Cycloid stack
 version: '2'
 name: 'VMware Virtual Machine'
-canonical: 'stack-vmware'
+canonical: 'stack-vmware-esxi'
 description: This stack deploys a VMware virtual machine from an ISO using ESXi.
 author: 'Olivier de Turckheim'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/vmware.png'
