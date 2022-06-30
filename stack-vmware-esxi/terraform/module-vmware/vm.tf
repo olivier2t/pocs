@@ -38,8 +38,9 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    label = "disk0" # Increase the number for each new disk
-    size  = var.vm_disk_size
+    label     = "disk0" # Increase the number for each new disk
+    size      = var.vm_disk_size
+    disk_mode = "independent_nonpersistent"
   }
 
   cdrom {
