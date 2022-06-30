@@ -3,7 +3,7 @@
 #
 output "vm_id" {
   description = "The UUID of the virtual machine"
-  value       = esxi_virtual_machine.vm.id
+  value       = vsphere_virtual_machine.vm.id
 }
 
 output "vm_name" {
