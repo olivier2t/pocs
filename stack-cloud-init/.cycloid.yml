@@ -1,10 +1,10 @@
 version: "2"
-name: EC2 with Cloud Init
-canonical: stack-cloud-init
+name: Teleport agent deployment with Cloud Init
+canonical: stack-cloud-init-teleport
 status: private
 author: Cycloid
 description: |
-  Deploy an EC2 instance with an HTTP server via Cloud Init.
+  Deploy an EC2 instance with an HTTP server and Teleport agent via Cloud Init.
 image: |
   https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/cloud-init.png
 keywords:
