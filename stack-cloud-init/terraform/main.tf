@@ -10,7 +10,7 @@ module "cloud-init" {
   #. extra_tags (optional): {}
   #+ Dict of extra tags to add on resources. format { "foo" = "bar" }.
   extra_tags = {
-    demo = true
+    demo                 = true
     monitoring_discovery = false
   }
 
