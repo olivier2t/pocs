@@ -183,7 +183,8 @@ jobs:
             - put: cycloid-event
               params:
                 severity: info
-                title: The project ((project)) on ((env)) environment deployed successfully
+                title: Deployment successful
+                message: The project ((project)) on ((env)) environment deployed successfully
 
 
   # Destroy the demo infrastructure
