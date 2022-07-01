@@ -3,7 +3,7 @@
 #
 output "vm_ip" {
   description = "The IP address the EC2 instance"
-  value       = aws_instance.worker.public_ip
+  value       = aws_instance.cycloid-worker.public_ip
 }
 
 output "vm_os_user" {

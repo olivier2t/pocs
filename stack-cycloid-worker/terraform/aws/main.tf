@@ -1,7 +1,7 @@
-module "worker" {
+module "cycloid-worker" {
   #####################################
   # Do not modify the following lines #
-  source = "./module-worker"
+  source = "./module-cycloid-worker"
 
   project  = var.project
   env      = var.env

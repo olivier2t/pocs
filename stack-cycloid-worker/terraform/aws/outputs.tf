@@ -3,7 +3,7 @@
 #
 output "vpc_id" {
   description = "The ID for the VPC"
-  value       = module.worker.vpc_id
+  value       = module.cycloid-worker.vpc_id
 }
 
 #
@@ -11,5 +11,5 @@ output "vpc_id" {
 #
 output "vm_ip" {
   description = "The IP address the worker"
-  value       = module.worker.vm_ip
+  value       = module.cycloid-worker.vm_ip
 }
