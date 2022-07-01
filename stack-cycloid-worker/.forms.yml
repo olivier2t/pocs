@@ -1,7 +1,7 @@
 ---
 version: "2"
 use_cases:
-- name: default
+- name: aws
   sections:
   - name: Cycloid Worker
     groups:
