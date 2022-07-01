@@ -33,5 +33,5 @@ config:
     # Configuration of terraform to setup the infrastructure
     terraform:
       external-worker:
-        path: 'terraform/aws/main.tf.sample'
-        destination: '($ project $)/terraform/($ environment $)/main.tf'
+        path: 'terraform/aws/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/aws/main.tf'

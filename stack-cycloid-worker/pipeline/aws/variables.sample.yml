@@ -72,9 +72,9 @@ stack_git_branch: master
 #+ SSH key pair to fetch the stack Git repository.
 stack_git_private_key: ((git_github.ssh_key))
 
-#. stack_terraform_path (required): stack-cycloid-worker/terraform
+#. stack_terraform_path (required): stack-cycloid-worker/terraform/aws
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-cycloid-worker/terraform
+stack_terraform_path: stack-cycloid-worker/terraform/aws
 
 
 #
