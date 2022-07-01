@@ -34,4 +34,4 @@ config:
     terraform:
       external-worker:
         path: 'terraform/aws/main.tf'
-        destination: '($ project $)/terraform/($ environment $)/aws/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
