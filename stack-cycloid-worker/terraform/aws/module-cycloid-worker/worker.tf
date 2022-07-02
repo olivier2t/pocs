@@ -48,7 +48,7 @@ resource "aws_instance" "cycloid-worker" {
       project = var.project
       env = var.env
       TEAM_ID = var.team_id
-      WORKER_KEY = var.worker_key
+      WORKER_KEY = base64encode(var.worker_key)
     }
   ))
 

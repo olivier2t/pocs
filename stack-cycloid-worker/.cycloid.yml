@@ -35,3 +35,35 @@ config:
       external-worker:
         path: 'terraform/aws/main.tf'
         destination: '($ project $)/terraform/($ environment $)/main.tf'
+
+  azure:
+    name: 'Azure'
+    description: 'Deployment on Azure.'
+    # Configuration of the CI pipeline
+    pipeline:
+      pipeline:
+        path: 'pipeline/azure/pipeline.yml'
+      variables:
+        path: 'pipeline/azure/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform to setup the infrastructure
+    terraform:
+      external-worker:
+        path: 'terraform/azure/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
+
+  gcp:
+    name: 'GCP'
+    description: 'Deployment on Google Cloud Platform.'
+    # Configuration of the CI pipeline
+    pipeline:
+      pipeline:
+        path: 'pipeline/gcp/pipeline.yml'
+      variables:
+        path: 'pipeline/gcp/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform to setup the infrastructure
+    terraform:
+      external-worker:
+        path: 'terraform/gcp/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

@@ -21,11 +21,11 @@ module "cycloid-worker" {
 
   #. vm_instance_type: 't3.micro'
   #+ Instance type for the Cycloid worker
-  vm_instance_type = "Value injected by StackForms"
+  vm_instance_type = "t3.micro"
 
   #. vm_disk_size: 20
   #+ Disk size for the Cycloid worker (Go)
-  vm_disk_size = "Value injected by StackForms"
+  vm_disk_size = "20"
 
   #. keypair_public: ""
   #+ The public SSH key, for SSH access to newly-created instances
@@ -37,10 +37,10 @@ module "cycloid-worker" {
   #
 
   #. team_id: ""
-  #+ Cycloid team ID
-  team_id = "Value injected by StackForms"
+  #+ This parameter can be obtained in Cycloid console, by clicking on your profile picture at the top right corner, then organization settings, then use the value of the ci_team_member field.
+  team_id = "<YOUR_TEAM_ID>"
 
   #. worker_key: ""
-  #+ Cycloid worker key
-  worker_key = "Value injected by StackForms"
+  #+ This parameter can be obtained in Cycloid console, by clicking on security/credentials section on the left menu, then look for of a credential named Cycloid-worker-keys, then use the value of the ssh_prv field.
+  worker_key = "<YOUR_WORKER_KEY>"
 }

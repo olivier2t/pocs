@@ -43,7 +43,7 @@ variable "team_id" {
 }
 
 variable "worker_key" {
-  description = "Cycloid worker key"
+  description = "Cycloid worker private key"
   default = ""
 }
 
