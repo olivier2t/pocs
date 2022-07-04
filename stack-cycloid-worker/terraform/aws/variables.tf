@@ -10,4 +10,8 @@ variable "aws_region" {
   description = "AWS region where to create servers."
   default     = "eu-west-1"
 }
+variable "vm_instance_type" {}
+variable "vm_disk_size" {}
 variable "keypair_public" {}
+variable "team_id" {}
+variable "worker_key" {}
