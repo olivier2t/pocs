@@ -26,7 +26,7 @@ output "subnet_name" {
 #
 output "vm_ip" {
   description = "The IP address the worker"
-  value       = google_compute_instance.nexus.network_interface.0.access_config.0.nat_ip
+  value       = google_compute_instance.cycloid-worker.network_interface.0.access_config.0.nat_ip
 }
 
 output "vm_os_user" {
