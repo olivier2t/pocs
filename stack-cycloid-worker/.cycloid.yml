@@ -23,6 +23,7 @@ config:
   aws:
     name: 'AWS'
     description: 'Deployment on Amazon Web Services.'
+    cloud_provider: aws
     # Configuration of the CI pipeline
     pipeline:
       pipeline:
@@ -39,6 +40,7 @@ config:
   azure:
     name: 'Azure'
     description: 'Deployment on Azure.'
+    cloud_provider: azurerm
     # Configuration of the CI pipeline
     pipeline:
       pipeline:
@@ -55,6 +57,7 @@ config:
   gcp:
     name: 'GCP'
     description: 'Deployment on Google Cloud Platform.'
+    cloud_provider: google
     # Configuration of the CI pipeline
     pipeline:
       pipeline:
