@@ -49,6 +49,72 @@ use_cases:
         default: "((Cycloid-worker-keys.ssh_prv))"
         required: true
 
+  - name: Git Repositories
+    groups:
+    - name: Stack Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: stack_git_repository
+        type: string
+        widget: cy_scs
+        description: "Git repository URI containing the stack service catalog automation."
+        default: "($ scs_url $)"
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the stack Git repository."
+        key: stack_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the stack Git repository."
+        key: stack_git_branch
+        widget: cy_branch
+        type: string
+        source: stack_git_repository
+        default: "($ scs_branch $)"
+        required: true
+    - name: Config Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: config_git_repository
+        type: string
+        widget: cy_crs
+        description: "Git repository URI containing the config of the stack for each project environment."
+        default: "($ cr_url $)"
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the config Git repository."
+        key: config_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the config Git repository."
+        key: config_git_branch
+        widget: cy_branch
+        type: string
+        source: config_git_repository
+        default: "($ cr_branch $)"
+        required: true
+
+  - name: Cycloid Configuration
+    groups:
+    - name: Cycloid API
+      technologies: [pipeline]
+      vars:
+      - name: "API Key"
+        description: "API key to grant access to Cycloid API."
+        key: cycloid_api_key
+        type: string
+        widget: cy_cred
+        default: "((cycloid-api-key.key))"
+        required: true
+
 
 - name: aws
   sections:
