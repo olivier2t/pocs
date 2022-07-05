@@ -4,12 +4,11 @@ variable "project" {}
 variable "customer" {}
 
 
-# AWS variables
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_region" {
-  description = "AWS region where to create servers."
-  default     = "eu-west-1"
+# GCP variables
+variable "gcp_project" {}
+variable "gcp_region" {
+  description = "GCP region where to create servers."
+  default     = "europe-west1"
 }
 
 
@@ -24,6 +23,11 @@ variable "vm_instance_type" {
 variable "vm_disk_size" {
   description = "Disk size for the Cycloid worker (Go)"
   default = "20"
+}
+
+variable "vm_os_user" {
+  description = "The default admin user for the instance"
+  default = "cycloid"
 }
 
 variable "keypair_public" {

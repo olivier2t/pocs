@@ -2,27 +2,26 @@
 # Cloud Provider
 #
 
-# Amazon access to use to run terraform with priviledges to be able to create Amazon services.
+# Google access to use to run terraform. Usually admin service account to be able to create Google services.
 
-#. aws_access_key (required): ((aws_cycloid-demo.access_key))
-#+ Amazon AWS access key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_access_key: ((aws_cycloid-demo.access_key))
+#. gcp_project (required): ($ organization_canonical $)
+#+ Google Cloud Platform project to use for Terraform.
+gcp_project: ($ organization_canonical $)
 
-#. aws_secret_key (required): ((aws_cycloid-demo.secret_key))
-#+ Amazon AWS secret key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_secret_key: ((aws_cycloid-demo.secret_key))
+#. gcp_region (required): europe-west1
+#+ Google Cloud Platform region to use for Terraform.
+gcp_region: europe-west1
 
-#. aws_default_region (required): eu-west-1
-#+ Amazon AWS region to use for Terraform.
-aws_region: eu-west-1
-
+#. gcp_credentials_json (required): ((gcp.json_key))
+#+ Google Cloud Platform credentials JSON for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+gcp_credentials_json: ((gcp.json_key))
 
 #
 # Terraform remote state file
 #
 
 #. terraform_storage_bucket_name (required): ($ organization_canonical $)-terraform-remote-state
-#+ AWS S3 bucket name to store terraform remote state file.
+#+ Google Cloud Storage bucket name to store terraform remote state file.
 terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-state
 
 
@@ -33,6 +32,15 @@ terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-sta
 #. keypair_public (required): ((custom_keypair.ssh_pub))
 #+ The public SSH key to provision to bastion for external access through SSH
 keypair_public: ((custom_keypair.ssh_pub))
+
+
+#
+# Admin username for newly created instances
+#
+
+#. vm_os_user (required): admin
+#+ Admin username for newly created instances
+vm_os_user: admin
 
 
 #

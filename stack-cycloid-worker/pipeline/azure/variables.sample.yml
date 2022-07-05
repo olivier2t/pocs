@@ -2,28 +2,56 @@
 # Cloud Provider
 #
 
-# Amazon access to use to run terraform with priviledges to be able to create Amazon services.
+# Azure access to use to run terraform.
 
-#. aws_access_key (required): ((aws_cycloid-demo.access_key))
-#+ Amazon AWS access key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_access_key: ((aws_cycloid-demo.access_key))
+#. azure_subscription_id (required): ((azure.subscription_id))
+#+ Azure subscription ID to use for Terraform.
+azure_subscription_id: ((azure.subscription_id))
 
-#. aws_secret_key (required): ((aws_cycloid-demo.secret_key))
-#+ Amazon AWS secret key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_secret_key: ((aws_cycloid-demo.secret_key))
+#. azure_tenant_id (required): ((azure.tenant_id))
+#+ Azure tenant ID to use for Terraform.
+azure_tenant_id: ((azure.tenant_id))
 
-#. aws_default_region (required): eu-west-1
-#+ Amazon AWS region to use for Terraform.
-aws_region: eu-west-1
+#. azure_client_id (required): ((azure.client_id))
+#+ Azure client ID to use for Terraform.
+azure_client_id: ((azure.client_id))
+
+#. azure_client_secret (required): ((azure.client_secret))
+#+ Azure client secret to use for Terraform.
+azure_client_secret: ((azure.client_secret))
+
+#. azure_env (required): public
+#+ Azure environment to use for Terraform. Can be either `public`, `usgovernment`, `german` or `china`.
+azure_env: "public"
+
+#. azure_location (required): West Europe
+#+ Azure location to use for terraform. 
+azure_location: "West Europe"
 
 
 #
 # Terraform remote state file
 #
 
-#. terraform_storage_bucket_name (required): ($ organization_canonical $)-terraform-remote-state
-#+ AWS S3 bucket name to store terraform remote state file.
-terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-state
+#. terraform_resource_group_name (required): ($ organization_canonical $)-terraform
+#+ Azure Resource Group of the Storage Account to use to store terraform remote state file.
+terraform_resource_group_name: ($ organization_canonical $)-terraform
+
+#. terraform_storage_account_name (required): ((azure_storage.account_name))
+#+ Azure Storage Account name to use to store terraform remote state file.
+terraform_storage_account_name: ((azure_storage.account_name))
+
+#. terraform_storage_account_key (required): ((azure_storage.access_key))
+#+ Azure Storage Account key to use to store terraform remote state file.
+terraform_storage_access_key: ((azure_storage.access_key))
+
+#. terraform_storage_container_name (required): ($ organization_canonical $)
+#+ Azure Storage container name to store terraform remote state file.
+terraform_storage_container_name: ($ organization_canonical $)
+
+#. terraform_storage_container_path (required): ($ project $)/($ environment $)
+#+ Azure Storage container path to store terraform remote state file.
+terraform_storage_container_path: ($ project $)/($ environment $)
 
 
 #
@@ -33,6 +61,15 @@ terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-sta
 #. keypair_public (required): ((custom_keypair.ssh_pub))
 #+ The public SSH key to provision to bastion for external access through SSH
 keypair_public: ((custom_keypair.ssh_pub))
+
+
+#
+# Admin username for newly created instances
+#
+
+#. vm_os_user (required): nexus
+#+ Admin username for newly created instances
+vm_os_user: nexus
 
 
 #

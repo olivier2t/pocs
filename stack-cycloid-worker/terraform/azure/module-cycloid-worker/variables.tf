@@ -5,6 +5,16 @@ variable "project" {}
 
 
 #
+# Cloud provider
+#
+
+variable "azure_location" {
+  description = "Azure location"
+  default = "West Europe"
+}
+
+
+#
 # Instance
 #
 variable "vm_instance_type" {

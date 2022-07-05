@@ -3,14 +3,18 @@ env = "trial"
 project = "cycloid-worker"
 customer = "YOUR_ORG_NAME"
 
-# AWS variables
-aws_access_key = "YOUR_ACCESS_KEY"
-aws_secret_key = "YOUR_SECRET_KEY"
-aws_region = "YOUR_REGION"
+# Azure variables
+azure_client_id = "YOUR_CLIENT_ID"
+azure_client_secret = "YOUR_CLIENT_SECRET"
+azure_subscription_id = "YOUR_SUB_ID"
+azure_tenant_id = "YOUR_TENANT_ID"
+azure_env = "public"
+azure_location = "YOUR_LOCATION"
 
 # Worker instance
 vm_instance_type = "t3.small"
 vm_disk_size = "20"
+vm_os_user = "cycloid"
 keypair_public = "YOUR_PUBLIC_KEY"
 
 # Worker config
