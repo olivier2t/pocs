@@ -6,6 +6,5 @@ export CLOUD_PROVIDER="baremetal"
 
 exec &> >(tee -a /var/log/user-data.log)
 echo "WORKER_KEY is"
-echo $WORKER_KEY
 
 curl -sSL "https://raw.githubusercontent.com/cycloid-community-catalog/stack-external-worker/master/extra/startup.sh?$RANDOM" | bash
