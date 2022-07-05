@@ -51,6 +51,8 @@ resources:
       aws_secret_key: ((aws_secret_key))
       aws_region: ((aws_region))
       keypair_public: ((keypair_public))
+      team_id: ((team_id))
+      worker_key: ((worker_key))
       env: ((env))
       project: ((project))
       customer: ((customer))

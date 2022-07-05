@@ -43,6 +43,8 @@ resources:
       gcp_region: ((gcp_region))
       keypair_public: ((keypair_public))
       vm_os_user: ((vm_os_user))
+      team_id: ((team_id))
+      worker_key: ((worker_key))
       env: ((env))
       project: ((project))
       customer: ((customer))

@@ -31,7 +31,7 @@ use_cases:
         required: true
 
     - name: Concourse integration
-      technologies: [terraform]
+      technologies: [pipeline]
       vars:
       - name: "Team ID"
         description: "This parameter can be obtained in Cycloid console, by clicking on your profile picture at the top right corner, then organization settings, then use the value of the ci_team_member field."

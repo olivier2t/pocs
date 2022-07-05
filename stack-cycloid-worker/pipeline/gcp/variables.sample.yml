@@ -44,6 +44,19 @@ vm_os_user: admin
 
 
 #
+# Worker instance configuration
+#
+
+#. team_id (required): ""
+#+ This parameter can be obtained in Cycloid console, by clicking on your profile picture at the top right corner, then organization settings, then use the value of the ci_team_member field
+team_id: ""
+
+#. worker_key (required): ((cycloid-worker-keys.ssh_prv))
+#+ Leave default value if the worker is intended to run for the current organization. Otherwise, add Cycloid-worker-keys.ssh_prv credentials of the target organization
+worker_key: ((cycloid-worker-keys.ssh_prv))
+
+
+#
 # Stack Git repository
 #
 
