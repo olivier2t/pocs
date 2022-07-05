@@ -46,7 +46,7 @@ use_cases:
         key: worker_key
         widget: cy_cred
         type: string
-        default: "((Cycloid-worker-keys.ssh_prv))"
+        default: "((cycloid-worker-keys/ssh_prv))"
         required: true
 
   - name: Git Repositories
