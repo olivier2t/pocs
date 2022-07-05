@@ -58,7 +58,7 @@ resource "azurerm_network_interface_security_group_association" "cycloid-worker"
 }
 
 resource "azurerm_virtual_network" "cycloid-worker" {
-  name                = var.vnet_name
+  name                = "${var.customer}-${var.project}-${var.env}-cycloid-worker"
   resource_group_name = azurerm_resource_group.cycloid-worker.name
   location            = azurerm_resource_group.cycloid-worker.location
   address_space       = ["10.0.0.0/16"]
@@ -68,8 +68,8 @@ resource "azurerm_virtual_network" "cycloid-worker" {
   })
 }
 
-data "azurerm_subnet" "cycloid-worker" {
-  name                 = "${var.vnet_name}-subnet"
+resource "azurerm_subnet" "cycloid-worker" {
+  name                 = "${var.customer}-${var.project}-${var.env}-cycloid-worker-subnet"
   virtual_network_name = azurerm_virtual_network.cycloid-worker.name
   resource_group_name  = azurerm_resource_group.cycloid-worker.name
 
