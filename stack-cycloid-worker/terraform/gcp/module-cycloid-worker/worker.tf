@@ -37,7 +37,7 @@ resource "google_compute_instance" "cycloid-worker" {
     }
   }
 
-  metadata {
+  metadata = {
     sshKeys = "${var.vm_os_user}:${var.keypair_public}"
 
     user-data = base64encode(templatefile(
