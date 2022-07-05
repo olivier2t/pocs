@@ -1,5 +1,0 @@
-vm_instance_type = "t3.micro"
-vm_disk_size = "20"
-keypair_public = "<YOUR_SSH_PUBLIC_KEY>"
-team_id = "<YOUR_TEAM_ID>"
-worker_key = "<YOUR_WORKER_KEY>"
