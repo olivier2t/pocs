@@ -163,6 +163,16 @@ use_cases:
         default: eu-west-1
         required: true
 
+    - name: Terraform Backend Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform storage bucket"
+        description: "AWS S3 bucket name to store terraform remote state file."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
 
 - name: azure
   sections:
@@ -225,6 +235,34 @@ use_cases:
         default: "West Europe"
         required: true
 
+    - name: Terraform Backend Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform resource group name"
+        description: "Azure Resource Group of the Storage Account to use to store terraform remote state file."
+        key: terraform_resource_group_name
+        widget: simple_text
+        type: string
+        default: "($ organization_canonical $)-terraform"
+      - name: "Terraform storage account name"
+        description: "Azure Storage Account name to use to store terraform remote state file."
+        key: terraform_storage_account_name
+        widget: cy_cred
+        type: string
+        default: "((azure_storage.account_name))"
+      - name: "Terraform storage access key"
+        description: "Azure Storage Account key to use to store terraform remote state file."
+        key: terraform_storage_access_key
+        widget: cy_cred
+        type: string
+        default: "((azure_storage.access_key))"
+      - name: "Terraform storage container name"
+        description: "Azure Storage container name to store terraform remote state file."
+        key: terraform_storage_container_name
+        widget: simple_text
+        type: string
+        default: "($ organization_canonical $)"
+
 - name: gcp
   sections:
   - name: Cycloid Worker
@@ -273,7 +311,8 @@ use_cases:
         type: string
         default: "((gcp.json_key))"
         required: true
-    - name: Terraform remote state file
+
+    - name: Terraform Backend Configuration
       technologies: [pipeline]
       vars:
       - name: "Terraform Remote State File bucket name"
