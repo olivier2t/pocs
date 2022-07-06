@@ -23,6 +23,10 @@ module "cycloid-worker" {
   #+ Azure location
   azure_location = var.azure_location
 
+  #. rg_name: "cycloid-worker"
+  #+ Resource Group name
+  rg_name = var.rg_name
+
   #
   # Instance
   #

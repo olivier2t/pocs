@@ -13,6 +13,11 @@ variable "azure_location" {
   default = "West Europe"
 }
 
+variable "rg_name" {
+  description = "Resource group name"
+  default = "cycloid-worker"
+}
+
 
 #
 # Instance

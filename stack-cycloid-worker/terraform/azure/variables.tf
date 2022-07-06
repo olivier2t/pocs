@@ -15,6 +15,10 @@ variable "azure_env" {
 variable "azure_location" {
     default = "West Europe"
 }
+variable "rg_name" {
+    description = "Existing Resource Group where to create the resources."
+    default = "cycloid-worker"
+}
 
 
 #

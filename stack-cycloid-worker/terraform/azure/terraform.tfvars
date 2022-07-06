@@ -10,6 +10,7 @@ azure_subscription_id = "YOUR_SUB_ID"
 azure_tenant_id = "YOUR_TENANT_ID"
 azure_env = "public"
 azure_location = "YOUR_LOCATION"
+rg_name = "YOUR_EXISTING_RESOURCE_GROUP"
 
 # Worker instance
 vm_instance_type = "t3.small"

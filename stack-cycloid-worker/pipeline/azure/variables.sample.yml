@@ -28,6 +28,10 @@ azure_env: "public"
 #+ Azure location to use for terraform. 
 azure_location: "West Europe"
 
+#. rg_name (required): "cycloid-worker"
+#+ Azure Resource Group to use for terraform. 
+rg_name: "cycloid-worker"
+
 
 #
 # Terraform remote state file
