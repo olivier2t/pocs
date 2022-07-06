@@ -3,12 +3,12 @@
 #
 output "vnet_name" {
   description = "The name for the virtual network"
-  value       = azurerm_resource_group.cycloid-worker.name
+  value       = data.azurerm_resource_group.cycloid-worker.name
 }
 
 output "rg_name" {
   description = "The name for the resource group"
-  value       = azurerm_resource_group.cycloid-worker.name
+  value       = data.azurerm_resource_group.cycloid-worker.name
 }
 
 #
