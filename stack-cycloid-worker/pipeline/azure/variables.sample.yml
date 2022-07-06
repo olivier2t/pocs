@@ -67,9 +67,9 @@ keypair_public: ((custom_keypair.ssh_pub))
 # Admin username for newly created instances
 #
 
-#. vm_os_user (required): nexus
+#. vm_os_user (required): cycloid
 #+ Admin username for newly created instances
-vm_os_user: nexus
+vm_os_user: cycloid
 
 
 #

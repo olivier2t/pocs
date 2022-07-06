@@ -35,7 +35,7 @@ module "cycloid-worker" {
   #+ Disk size for the Cycloid worker (Go)
   vm_disk_size = var.vm_disk_size
 
-  #. vm_os_user: nexus
+  #. vm_os_user: cycloid
   #+ Admin username for newly created instances
   vm_os_user = var.vm_os_user
 

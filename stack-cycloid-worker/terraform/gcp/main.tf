@@ -19,7 +19,7 @@ module "cycloid-worker" {
   #
 
   #. vm_machine_type: 'n2-standard-2'
-  #+ Machine type for the Nexus Repository
+  #+ Machine type for the instance
   vm_machine_type = var.vm_machine_type
 
   #. vm_disk_size: 20
