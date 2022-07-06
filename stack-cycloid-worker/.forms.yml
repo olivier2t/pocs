@@ -233,7 +233,7 @@ use_cases:
         values: ["West Europe","North Europe","France Central","France South","East US","West US","East Asia","Southeast Asia","South Africa North","South Africa West","Australia Central","China East","China North"]
         default: "West Europe"
         required: true
-      - name: "Azure location"
+      - name: "Azure Resource Group"
         description: "Azure Resource Group for Terraform."
         key: rg_name
         widget: simple_text
