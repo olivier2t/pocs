@@ -16,7 +16,7 @@ use_cases:
         type: integer
         default: 20
         values:
-            - 10
+            - 20
             - 250
         required: true
     - name: SSH Keypair to access new instances
