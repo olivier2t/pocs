@@ -26,7 +26,7 @@ variable "rg_name" {
 #
 variable "vm_instance_type" {
   description = "Instance type for the Cycloid worker"
-  default     = "t3.micro"
+  default     = "Standard_DS2_v2"
 }
 
 variable "vm_disk_size" {

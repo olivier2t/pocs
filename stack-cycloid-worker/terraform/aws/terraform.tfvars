@@ -1,7 +1,7 @@
 # Cycloid variables
 env = "trial"
 project = "cycloid-worker"
-customer = "YOUR_ORG_NAME"
+customer = "bootstrap"
 
 # AWS variables
 aws_access_key = "YOUR_ACCESS_KEY"

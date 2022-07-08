@@ -1,7 +1,7 @@
 # Cycloid variables
 env = "trial"
 project = "cycloid-worker"
-customer = "YOUR_ORG_NAME"
+customer = "bootstrap"
 
 # Azure variables
 azure_client_id = "YOUR_CLIENT_ID"

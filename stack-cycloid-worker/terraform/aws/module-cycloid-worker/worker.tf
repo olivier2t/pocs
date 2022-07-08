@@ -44,9 +44,6 @@ resource "aws_instance" "cycloid-worker" {
   user_data_base64 = base64encode(templatefile(
     "${path.module}/userdata.sh.tpl",
     {
-      organisation = var.customer
-      project = var.project
-      env = var.env
       TEAM_ID = var.team_id
       WORKER_KEY = base64encode(var.worker_key)
     }

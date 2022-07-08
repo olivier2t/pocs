@@ -18,7 +18,7 @@ resource "google_compute_instance" "cycloid-worker" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "debian-cloud/debian-10"
       size  = var.vm_disk_size
     }
   }
@@ -39,18 +39,15 @@ resource "google_compute_instance" "cycloid-worker" {
 
   metadata = {
     sshKeys = "${var.vm_os_user}:${var.keypair_public}"
-
-    user-data = base64encode(templatefile(
-      "${path.module}/userdata.sh.tpl",
-      {
-        organisation = var.customer
-        project = var.project
-        env = var.env
-        TEAM_ID = var.team_id
-        WORKER_KEY = base64encode(var.worker_key)
-      }
-    ))
   }
+  
+  metadata_startup_script = templatefile(
+    "${path.module}/userdata.sh.tpl",
+    {
+      TEAM_ID = var.team_id
+      WORKER_KEY = base64encode(var.worker_key)
+    }
+  )
 
   labels = merge(local.merged_tags, {
     role = "cycloid-worker"

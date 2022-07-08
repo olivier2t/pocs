@@ -1,14 +1,14 @@
 # Cycloid variables
 env = "trial"
 project = "cycloid-worker"
-customer = "YOUR_ORG_NAME"
+customer = "bootstrap"
 
 # GCP variables
 gcp_project = "YOUR_PROJECT"
 gcp_region = "YOUR_REGION"
 
 # Worker instance
-vm_instance_type = "t3.small"
+vm_machine_type = "n2-standard-2"
 vm_disk_size = "20"
 vm_os_user = "cycloid"
 keypair_public = "YOUR_PUBLIC_KEY"

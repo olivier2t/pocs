@@ -15,9 +15,9 @@ variable "gcp_region" {
 #
 # Instance
 #
-variable "vm_instance_type" {
-  description = "Instance type for the Cycloid worker"
-  default     = "t3.micro"
+variable "vm_machine_type" {
+  description = "Machine type for the Cycloid worker"
+  default     = "n2-standard-2"
 }
 
 variable "vm_disk_size" {

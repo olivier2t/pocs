@@ -13,9 +13,9 @@ resource "azurerm_linux_virtual_machine" "cycloid-worker" {
   }
 
   source_image_reference {
-      publisher = "credativ"
-      offer     = "Debian"
-      sku       = "9"
+      publisher = "Debian"
+      offer     = "debian-10"
+      sku       = "10"
       version   = "latest"
   }
 
@@ -26,12 +26,9 @@ resource "azurerm_linux_virtual_machine" "cycloid-worker" {
       public_key = var.keypair_public
   }
 
-  user_data = base64encode(templatefile(
+  custom_data = base64encode(templatefile(
     "${path.module}/userdata.sh.tpl",
     {
-      organisation = var.customer
-      project = var.project
-      env = var.env
       TEAM_ID = var.team_id
       WORKER_KEY = base64encode(var.worker_key)
     }

@@ -31,7 +31,7 @@ module "cycloid-worker" {
   # Instance
   #
 
-  #. vm_instance_type: 't3.micro'
+  #. vm_instance_type: 'Standard_DS2_v2'
   #+ Instance type for the Cycloid worker
   vm_instance_type = var.vm_instance_type
 

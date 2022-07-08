@@ -1,8 +1,9 @@
-# stack-external-worker
+# stack-cycloid-worker
 
-Deploy external workers pool for Cycloid.io
+Deploy exactly one Cycloid worker on an instance for Cycloid.io
 
-Create an Amazon Auto Scaling Group with Cycloid workers installed in EC2 servers.
+Create an AWS, Azure or GCP instance
+ Auto Scaling Group with Cycloid workers installed in EC2 servers.
 
 The worker EC2 server will also contain Fluentd agent to send logs to Amazon CloudWatch logs.
 And also expose metrics in Prometheus format using Telegraf on port `9100`.
