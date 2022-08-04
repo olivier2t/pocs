@@ -1,0 +1,38 @@
+---
+version: '2'
+# Configuration of the Cycloid stack
+name: 'Cycloid worker for AWS'
+canonical: 'stack-aws-worker'
+status: 'private'
+description: |
+  This stack will deploy a single Cycloid worker on a AWS EC2 instance in a new VPC.
+keywords:
+  - 'workers'
+  - 'worker'
+  - 'concourse'
+  - 'cycloid'
+  - 'provider:aws'
+author: 'Cycloid'
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/concourse.png
+technologies:
+  - technology: concourse
+    version: n/a
+
+config:
+  default:
+    name: 'default'
+    description: 'Deployment on Amazon Web Services.'
+    cloud_provider: aws
+    # Configuration of the CI pipeline
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform to setup the infrastructure
+    terraform:
+      external-worker:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

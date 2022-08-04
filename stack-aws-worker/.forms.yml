@@ -1,0 +1,100 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Cycloid Worker
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Instance type"
+        description: "Instance type for the worker."
+        key: vm_instance_type
+        widget: slider_list
+        type: string
+        default: "t3a.small"
+        values:
+            - "t3a.small"
+            - "t3a.medium"
+            - "t3a.large"
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the instance."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 20
+            - 250
+        required: true
+
+    - name: SSH Keypair to access new instances
+      technologies: [pipeline]
+      vars:
+      - name: "Keypair public"
+        description: "The public SSH key to provision to the instance. Allow you SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        default: "((custom_keypair.ssh_pub))"
+        required: false
+
+    - name: Cycloid core integration
+      technologies: [pipeline]
+      vars:
+      - name: "Team ID"
+        description: "This parameter can be obtained in Cycloid console, by clicking on your profile picture at the top right corner, then organization settings, then use the value of the ci_team_member field."
+        key: team_id
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Worker Private Key"
+        description: "Leave default value if the worker is intended to run for the current organization. Otherwise, add Cycloid-worker-keys.ssh_prv credentials of the target organization."
+        key: worker_key
+        widget: cy_cred
+        type: string
+        default: "((cycloid-worker-keys.ssh_prv))"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+
+    - name: Terraform Backend Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform storage bucket"
+        description: "AWS S3 bucket name to store terraform remote state file."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
