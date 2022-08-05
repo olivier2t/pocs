@@ -1,20 +1,11 @@
-#
-# Instance outputs
-#
-output "vm_ip" {
-  description = "The IP address the EC2 instance"
-  value       = aws_instance.cycloid-worker.public_ip
-}
 
-output "vm_os_user" {
-  description = "Admin username to connect to instance via SSH"
-  value       = var.vm_os_user
-}
+output "bucket_names" {
+  value       = [for bucket in aws_s3_bucket.bucket : bucket.id]
+  description = "Name of s3 Buckets created"
+  }
 
-#
-# VPC outputs
-#
-output "vpc_id" {
-  description = "The ID for the VPC"
-  value       = module.vpc.vpc_id
-}
+
+output "bucket_arns" {
+  value       = [for bucket in aws_s3_bucket.bucket : bucket.arn]
+  description = "ARNs of s3 Buckets created"
+  }
