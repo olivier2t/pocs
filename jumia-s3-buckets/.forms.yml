@@ -14,50 +14,50 @@ use_cases:
         widget: text_area
         type: raw
         default: |+
-        [
-          {
-            "acl" = "private"
-            "attach_user_policy" = true
-            "attach_vpc_policy" = true
-            "block_public_access" = true
-            "create_s3_user" = true
-            "create_website" = false
-            "name" = "bucket-name-1"
-            "principal_account_ids" = [
-              "Account ID 1",
-            ]
-            "s3_user_name" = "bucket-user-1"
-            "versioning" = "Enabled"
-            "vpc_ids" = [
-              "vpc-sample-1",
-              "vpc-sample-2",
-            ]
-          },
-          {
-            "acl" = "private"
-            "attach_user_policy" = true
-            "attach_vpc_policy" = true
-            "block_public_access" = true
-            "create_s3_user" = true
-            "create_website" = false
-            "name" = "bucket-name-2"
-            "principal_account_ids" = [
-              "Account ID 2",
-            ]
-            "s3_user_name" = "bucket-user-2"
-            "versioning" = "Enabled"
-            "vpc_ids" = [
-              "vpc-sample-3",
-            ]
-          }
-        ]
+          [
+            {
+              "acl" = "private"
+              "attach_user_policy" = true
+              "attach_vpc_policy" = true
+              "block_public_access" = true
+              "create_s3_user" = true
+              "create_website" = false
+              "name" = "bucket-name-1"
+              "principal_account_ids" = [
+                "Account ID 1",
+              ]
+              "s3_user_name" = "bucket-user-1"
+              "versioning" = "Enabled"
+              "vpc_ids" = [
+                "vpc-sample-1",
+                "vpc-sample-2",
+              ]
+            },
+            {
+              "acl" = "private"
+              "attach_user_policy" = true
+              "attach_vpc_policy" = true
+              "block_public_access" = true
+              "create_s3_user" = true
+              "create_website" = false
+              "name" = "bucket-name-2"
+              "principal_account_ids" = [
+                "Account ID 2",
+              ]
+              "s3_user_name" = "bucket-user-2"
+              "versioning" = "Enabled"
+              "vpc_ids" = [
+                "vpc-sample-3",
+              ]
+            }
+          ]
       - name: "S3 bucket objects"
         description: "S3 bucket objects specs"
         key: s3_bucket_objects
         widget: text_area
         type: raw
         default: |+
-        []
+          []
 
     - name: Where to deploy the S3 buckets
       technologies: [pipeline]
