@@ -24,13 +24,18 @@ use_cases:
               "create_website" = false
               "name" = "bucket-name-1"
               "principal_account_ids" = [
-                "Account ID 1",
+                "Account ID 1"
               ]
               "s3_user_name" = "bucket-user-1"
               "versioning" = "Enabled"
+              "tags" = {
+                customer = ($ organization_canonical $)
+                project  = ($ project $)
+                env      = ($ environment $)
+              }
               "vpc_ids" = [
                 "vpc-sample-1",
-                "vpc-sample-2",
+                "vpc-sample-2"
               ]
             },
             {
@@ -42,12 +47,17 @@ use_cases:
               "create_website" = false
               "name" = "bucket-name-2"
               "principal_account_ids" = [
-                "Account ID 2",
+                "Account ID 2"
               ]
               "s3_user_name" = "bucket-user-2"
               "versioning" = "Enabled"
+              "tags" = {
+                customer = ($ organization_canonical $)
+                project  = ($ project $)
+                env      = ($ environment $)
+              }
               "vpc_ids" = [
-                "vpc-sample-3",
+                "vpc-sample-3"
               ]
             }
           ]
