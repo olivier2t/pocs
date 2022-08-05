@@ -1,0 +1,162 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Azure Infrastructure
+    groups:
+    - name: Virtual Machine
+      technologies: [pipeline]
+      vars:
+      - name: "IP"
+        description: "The IP address of the Windows virtual machine."
+        key: vm_ip
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+
+  - name: Azure Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((azure.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((azure.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((azure.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((azure.client_secret))"
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform Azure Resource Group"
+        description: "Azure Resource Group of the Storage Account to use to store terraform remote state file."
+        key: terraform_resource_group_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform
+        required: true
+      - name: "Terraform Azure Storage Account name"
+        description: "Azure Storage Account name to use to store terraform remote state file."
+        key: terraform_storage_account_name
+        widget: cy_cred
+        type: string
+        default: ((azure_storage.account_name))
+        required: true
+      - name: "Terraform Azure Storage Account key"
+        description: "Azure Storage Account key to use to store terraform remote state file."
+        key: terraform_storage_access_key
+        widget: cy_cred
+        type: string
+        default: ((azure_storage.access_key))
+        required: true
+      - name: "Terraform Azure Storage container name"
+        description: "Azure Storage container name to store terraform remote state file."
+        key: terraform_storage_container_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)
+        required: true
+      - name: "Terraform Azure Storage container path"
+        description: "Azure Storage container path to store terraform remote state file."
+        key: terraform_storage_container_path
+        widget: simple_text
+        type: string
+        default: ($ project $)/($ environment $)
+        required: true
+
+  - name: Git Repositories
+    groups:
+    - name: Stack Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: stack_git_repository
+        type: string
+        widget: cy_scs
+        description: "Git repository URI containing the stack service catalog automation."
+        default: ""
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the stack Git repository."
+        key: stack_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the stack Git repository."
+        key: stack_git_branch
+        widget: cy_branch
+        type: string
+        source: stack_git_repository
+        default: "stacks"
+        required: true
+    - name: Config Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "URI"
+        key: config_git_repository
+        type: string
+        widget: cy_crs
+        description: "Git repository URI containing the config of the stack for each project environment."
+        default: ""
+        required: true
+      - name: "SSH key"
+        description: "SSH key pair to fetch the config Git repository."
+        key: config_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Branch"
+        description: "Branch of the config Git repository."
+        key: config_git_branch
+        widget: cy_branch
+        type: string
+        source: config_git_repository
+        default: "config"
+        required: true
+
+  - name: Cycloid Platform
+    groups:
+    - name: Cycloid API
+      technologies: [pipeline]
+      vars:
+      - name: "Cycloid API URL"
+        description: "Cycloid API URL. Leave the default value unless your are running an on premises Cycloid platform."
+        key: cycloid_api_url
+        widget: simple_text
+        type: string
+        default: "https://http-api.cycloid.io"
+        required: true
+      - name: "Cycloid API key"
+        description: "API key to grant access to Cycloid API."
+        key: cycloid_api_key
+        widget: cy_cred
+        type: string
+        default: "((cycloid-api-key.key))"
+        required: true

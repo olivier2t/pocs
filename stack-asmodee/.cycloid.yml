@@ -1,0 +1,39 @@
+version: "2"
+name: First stack for Asmodee
+canonical: stack-asmodee
+status: private
+author: Asmodee
+description: |
+  Copy a powershell script on a target Windows VM and deploy a SQL script
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/AzureVirtualDesktop.png
+keywords:
+  - Azure
+  - Windows
+  - MSSQL
+technologies:
+  - technology: MSSQL
+    version: "n/a"
+
+config:
+  default:
+    name: 'default'
+    description: 'Copy a powershell script on a target Windows VM and deploy a SQL script'
+    cloud_provider: azurerm
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yml
+      variables:
+        path: pipeline/variables.sample.yml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yml
+    # Configuration of ansible for provisionning
+    ansible:
+      default:
+        path: 'ansible/environments/asmodee.yml.sample'
+        destination: '($ project $)/ansible/environments/($ environment $)-asmodee.yml'
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    # terraform:
+    #   main:
+    #     path: 'terraform/main.tf'
+    #     destination: '($ project $)/terraform/($ environment $)/main.tf'

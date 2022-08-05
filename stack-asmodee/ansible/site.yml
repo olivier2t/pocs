@@ -1,0 +1,20 @@
+---
+- name: install Asmodee scripts
+  hosts: tag_role_asmodee:&tag_project_{{ project }}:&tag_env_{{ env }}
+  become: yes
+
+  vars_files:
+  - "environments/default_asmodee.yml"
+  - ["environments/{{ env }}-asmodee.yml", "environments/empty.yml"]
+
+
+  tasks:
+  # Copy Asmodee powershell script
+  - name: Copy Asmodee powershell script
+    ansible.windows.win_copy:
+      src: files/script_powershell.ps1
+      dest: C:\Temp\script_powershell.ps1
+
+  # Execute a MSSQL script
+  - name: Run remote PowerShell script
+    win_shell: C:\Temp\script_powershell.ps1 >> C:\Temp\script_powershell.txt
