@@ -1,0 +1,36 @@
+---
+version: '2'
+# Configuration of the Cycloid stack
+name: 'S3 buckets for Jumia teams'
+canonical: 'stack-jumia-poc'
+status: 'private'
+description: |
+  This stack will manage S3 buckets for Jumia teams.
+keywords:
+  - 'jumia'
+  - 'S3'
+  - 'bucket'
+  - 'provider:aws'
+author: 'Olivier de Turckheim'
+image: |
+  https://developer.orange.com/od-uploads/Jumia-logo-square-e1475170556833.png
+technologies:
+  - technology: S3
+    version: n/a
+
+config:
+  default:
+    name: 'default'
+    cloud_provider: aws
+    # Configuration of the CI pipeline
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform to setup the infrastructure
+    terraform:
+      external-worker:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

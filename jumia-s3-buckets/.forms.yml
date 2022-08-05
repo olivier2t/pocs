@@ -1,0 +1,86 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: S3 bucket for Jumia teams
+    groups:
+    - name: S3 bucket specifications
+      technologies: [terraform]
+      vars:
+      - name: "S3 buckets"
+        description: "S3 bucket specs"
+        key: s3_buckets
+        widget: text_area
+        type: raw
+        default: |+
+        [
+          {
+            "acl" = "private"
+            "attach_user_policy" = true
+            "attach_vpc_policy" = true
+            "block_public_access" = true
+            "create_s3_user" = true
+            "create_website" = false
+            "name" = "bucket-name-1"
+            "principal_account_ids" = [
+              "Account ID 1",
+            ]
+            "s3_user_name" = "bucket-user-1"
+            "versioning" = "Enabled"
+            "vpc_ids" = [
+              "vpc-sample-1",
+              "vpc-sample-2",
+            ]
+          },
+          {
+            "acl" = "private"
+            "attach_user_policy" = true
+            "attach_vpc_policy" = true
+            "block_public_access" = true
+            "create_s3_user" = true
+            "create_website" = false
+            "name" = "bucket-name-2"
+            "principal_account_ids" = [
+              "Account ID 2",
+            ]
+            "s3_user_name" = "bucket-user-2"
+            "versioning" = "Enabled"
+            "vpc_ids" = [
+              "vpc-sample-3",
+            ]
+          }
+        ]
+      - name: "S3 bucket objects"
+        description: "S3 bucket objects specs"
+        key: s3_bucket_objects
+        widget: text_area
+        type: raw
+        default: |+
+        []
+
+    - name: Where to deploy the S3 buckets
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
