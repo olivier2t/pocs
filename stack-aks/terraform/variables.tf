@@ -33,6 +33,11 @@ variable "azure_env" {
   default     = "public"
 }
 
+variable "azure_location" {
+  description = "Azure location to use."
+  default     = "West Europe"
+}
+
 variable "aks_service_principal_client_id" {
   description = "The Client ID for the Service Principal used by the AKS cluster."
 }
