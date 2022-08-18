@@ -64,12 +64,9 @@ module "vpc" {
   # Required (should probably not be touched)
   ###
 
-  resource_group_name = module.config.azurerm_resource_group_name
-  location            = module.config.azurerm_resource_group_location
+  resource_group_name = "${var.customer}-${var.project}-${var.env}-aks"
+  location            = var.azure_location
 
-  # depends_on = [
-  #   module.config,
-  # ]
 }
 
 module "aks" {
@@ -210,15 +207,12 @@ module "aks" {
   # Required (should probably not be touched)
   ###
 
-  resource_group_name             = module.config.azurerm_resource_group_name
-  location                        = module.config.azurerm_resource_group_location
-  cluster_name                    = module.config.cluster_name
+  resource_group_name             = "${var.customer}-${var.project}-${var.env}-aks"
+  location                        = var.azure_location
+  cluster_name                    = "${var.customer}-${var.project}-${var.env}-aks"
   service_principal_client_id     = var.aks_service_principal_client_id
   service_principal_client_secret = var.aks_service_principal_client_secret
 
-  # depends_on = [
-  #   module.config,
-  # ]
 }
 
 # You can duplicate this module to create mutiple AKS node groups.

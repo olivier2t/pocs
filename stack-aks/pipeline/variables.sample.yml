@@ -69,17 +69,46 @@ terraform_storage_container_path: ($ project $)/($ environment $)
 # Repos
 #
 
-#. config_git_repository (required): git@github.com:MyUser/config-aks.git
+#
+# Stack Git repository
+#
+
+#. stack_git_repository (required): ($ scs_url $)
+#+ Git repository URL containing the stack.
+stack_git_repository: ($ scs_url $)
+
+#. stack_git_branch (required): ($ scs_branch $)
+#+ Branch to use on the stack Git repository.
+stack_git_branch: ($ scs_branch $)
+
+#. stack_git_private_key (required): ((git.ssh_key))
+#+ SSH key pair to fetch the stack Git repository.
+stack_git_private_key: ((git.ssh_key))
+
+#. stack_terraform_path (required): stack-aks/terraform
+#+ Path of Terraform files in the stack git repository
+stack_terraform_path: stack-aks/terraform
+
+
+#
+# Config Git repository
+#
+
+#. config_git_repository (required): ($ cr_url $)
 #+ Git repository URL containing the config of the stack.
-config_git_repository: git@github.com:MyUser/config-aks.git
+config_git_repository: ($ cr_url $)
 
-#. config_git_branch (required): master
-#+ Branch of the config Git repository.
-config_git_branch: master
+#. config_git_branch (required): ($ cr_branch $)
+#+ Branch to use on the config Git repository.
+config_git_branch: ($ cr_branch $)
 
-#. config_git_private_key (required): ((ssh_config.ssh_key))
+#. config_git_private_key (required): ((git.ssh_key))
 #+ SSH key pair to fetch the config Git repository.
-config_git_private_key: ((ssh_config.ssh_key))
+config_git_private_key: ((git.ssh_key))
+
+#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
+#+ Path of Terraform files in the config git repository
+config_terraform_path: ($ project $)/terraform/($ environment $)
 
 
 #
@@ -98,14 +127,6 @@ project: ($ project $)
 #+ Name of the Cycloid Organization, used as customer variable name.
 customer: ($ organization_canonical $)
 organization: ($ organization_canonical $)
-
-#. stack_git_branch (required): master
-#+ Branch to use on the public stack Git repository
-stack_git_branch: master
-
-#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
-#+ Path of Terraform files in the config git repository
-config_terraform_path: ($ project $)/terraform/($ environment $)
 
 #. terraform_version (required): '1.0.4'
 #+ terraform version used to execute your code.

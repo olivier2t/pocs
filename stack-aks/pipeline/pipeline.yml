@@ -66,10 +66,11 @@ resources:
   type: git
   icon: git
   source:
-    uri: https://github.com/cycloid-community-catalog/stack-kubernetes.git
+    uri: ((stack_git_repository))
     branch: ((stack_git_branch))
+    private_key: ((stack_git_private_key))
     paths:
-      - terraform/azure-aks/*
+      - ((stack_terraform_path))/*
 
 # The Terraform config (will be merged with the stack)
 - name: git_config-terraform
@@ -81,6 +82,7 @@ resources:
     private_key: ((config_git_private_key))
     paths:
       - ((config_terraform_path))/*
+
 
 jobs:
 
@@ -106,7 +108,7 @@ jobs:
             path: "stack"
         params:
           CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: terraform/azure-aks
+          STACK_PATH: ((stack_terraform_path))
 
       - put: tfstate
         params:
@@ -143,7 +145,7 @@ jobs:
             path: "stack"
         params:
           CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: terraform/azure-aks
+          STACK_PATH: ((stack_terraform_path))
 
       - put: tfstate
         params:
@@ -169,7 +171,7 @@ jobs:
             path: "stack"
         params:
           CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: terraform/azure-aks
+          STACK_PATH: ((stack_terraform_path))
 
       - put: tfstate
         params:

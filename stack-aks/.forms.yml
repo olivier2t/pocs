@@ -103,20 +103,6 @@ default:
         required: true
 
   terraform:
-    config:
-      - name: "Resource Group Name"
-        description: "Resource Group Name to use for the AKS Cluster"
-        key: module.config.resource_group_name
-        widget: simple_text
-        type: string
-        default: "($ project $)-($ environment $)-aks"
-      - name: "Cluster name"
-        description: "AKS Cluster name"
-        key: module.config.cluster_name
-        widget: simple_text
-        type: string
-        default: "($ project $)-($ environment $)"
-
     vpc:
       - name: "Address Space"
         description: "The virtual network address space."

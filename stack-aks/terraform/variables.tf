@@ -59,3 +59,9 @@ variable "resource_group_name" {
   description = "AKS Resource Group Name."
   default     = ""
 }
+
+# AKS
+locals {
+  aks_cluster_name = length(var.cluster_name) > 0 ? var.cluster_name : "${var.project}-${var.env}"
+  aks_resource_group_name = length(var.resource_group_name) > 0 ? var.resource_group_name : "${var.project}-${var.env}-aks"
+}
