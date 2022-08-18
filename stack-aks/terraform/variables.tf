@@ -48,4 +48,5 @@ variable "aks_service_principal_client_secret" {
 
 variable "resource_group_name" {
   description = "The Azure resource group to deploy resources."
+  default     = "cycloid-aks"
 }

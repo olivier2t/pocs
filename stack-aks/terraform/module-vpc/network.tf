@@ -5,7 +5,7 @@
 module "azure-network" {
   source  = "Azure/network/azurerm"
 
-  resource_group_name = var.resource_group_name
+  resource_group_name = data.azurerm_resource_group.rg_aks.name
 
   vnet_name           = "${var.project}-${var.env}-vnet"
   address_space       = var.address_space
@@ -22,7 +22,7 @@ resource "azurerm_subnet" "aks" {
 
   name                      = each.key
   address_prefixes          = [ each.value ]
-  resource_group_name       = var.resource_group_name
+  resource_group_name       = data.azurerm_resource_group.rg_aks.name
   virtual_network_name      = module.azure-network.vnet_name
 }
 

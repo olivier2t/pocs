@@ -75,12 +75,13 @@ default:
         widget: cy_cred
         type: string
         default: ((custom_($ project $)-($ environment $)-sp.client_secret))
-      - name: "Resource Group Name"
-        description: "Resource Group Name to use for the AKS Cluster"
+      - name: "Azure Resource Group"
+        description: "Existing Azure Resource Group where to deploy the new infrastructure."
         key: resource_group_name
         widget: simple_text
         type: string
-        default: "($ project $)-($ environment $)-aks"
+        default: "cycloid-aks"
+        required: true
 
 
 
