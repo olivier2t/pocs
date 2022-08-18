@@ -12,7 +12,7 @@ keywords:
   - 'aks'
   - 'provider:azure'
 author: 'Olivier de Turckheim'
-image: 'https://raw.githubusercontent.com/cycloid-community-catalog/stack-kubernetes/master/docs/k8s-logo.png'
+image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/kubernetes.png'
 technologies:
    - technology: Azure
      version: n/a
