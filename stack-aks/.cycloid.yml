@@ -1,0 +1,36 @@
+# Configuration of Cycloid stack
+---
+version: '2'
+name: 'Azure Kubernetes Service (AKS)'
+canonical: 'stack-aks'
+status: 'private'
+description: |
+  This stack allows to deploy an Azure Kubernetes Service (AKS).
+keywords:
+  - 'kubernetes'
+  - 'k8s'
+  - 'aks'
+  - 'provider:azure'
+author: 'Olivier de Turckheim'
+image: 'https://raw.githubusercontent.com/cycloid-community-catalog/stack-kubernetes/master/docs/k8s-logo.png'
+technologies:
+   - technology: Azure
+     version: n/a
+
+config:
+  default:
+    name: 'default'
+    description: 'Creates Azure K8s Service (AKS) in dedicated VPC with 1+ node pools'
+    cloud_provider: azurerm
+    # Configuration of the CI pipeline
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform to setup the infrastructure
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
