@@ -33,7 +33,4 @@ resource "azurerm_network_security_group" "aks-nodes" {
     name = "${var.project}-${var.env}-nodes"
   })
 
-  depends_on = [
-    module.azure-network
-  ]
 }
