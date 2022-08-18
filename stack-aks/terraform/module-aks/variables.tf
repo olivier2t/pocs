@@ -144,10 +144,10 @@ variable "rbac_client_app_secret" {
   default     = ""
 }
 
-# variable "enable_oms_agent" {
-#   description = "Should be `true` to enable OMS agent for log analytics."
-#   default     = true
-# }
+variable "enable_oms_agent" {
+  description = "Should be `true` to enable OMS agent for log analytics."
+  default     = true
+}
 
 variable "log_analytics_workspace_sku" {
   description = "The Log Analytics workspace SKU to use if `enable_oms_agent = true`."
