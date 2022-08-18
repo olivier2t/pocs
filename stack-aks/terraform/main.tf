@@ -1,20 +1,4 @@
 
-# Config module is used to generate special datas shared with other modules like cluster_name
-module "config" {
-  #####################################
-  # Do not modify the following lines #
-  source = "./module-config"
-
-  project  = var.project
-  env      = var.env
-  customer = var.customer
-
-  #####################################
-  azure_location = var.azure_location
-  cluster_name = var.cluster_name
-  resource_group_name = var.resource_group_name
-}
-
 # By default this stack will create a dedicated network for the AKS Cluster
 # as the default pod networking will be using this VPC.
 #

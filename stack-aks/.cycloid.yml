@@ -1,7 +1,7 @@
 # Configuration of Cycloid stack
 ---
 version: '2'
-name: 'Azure Kubernetes Service (AKS)'
+name: 'Azure Kubernetes Service'
 canonical: 'stack-aks'
 status: 'private'
 description: |
