@@ -18,6 +18,10 @@ variable "resource_group_name" {
   description = "Azure Resource Group to use."
 }
 
+variable "location" {
+  description = "Specific Azure Location to use."
+}
+
 variable "extra_tags" {
   description = "Extra tags to add to all resources."
   default     = {}
