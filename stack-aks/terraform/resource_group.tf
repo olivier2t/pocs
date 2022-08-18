@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg_aks" {
-  name     = local.aks_resource_group_name
+  name     = var.resource_group_name
   location = var.azure_location
   tags     = {
     "project"    = var.project,

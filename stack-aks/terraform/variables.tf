@@ -47,21 +47,13 @@ variable "aks_service_principal_client_secret" {
 }
 
 # Put here a custom name for the AKS Cluster
-# Otherwise `${var.project}-${var.env}` will be used
 variable "cluster_name" {
   description = "AKS Cluster given name."
-  default     = ""
+  default     = "${var.customer}-${var.project}-${var.env}-aks"
 }
 
 # Put here a custom name for the AKS Cluster
-# Otherwise `${var.project}-${var.env}-aks` will be used
 variable "resource_group_name" {
   description = "AKS Resource Group Name."
-  default     = ""
-}
-
-# AKS
-locals {
-  aks_cluster_name = length(var.cluster_name) > 0 ? var.cluster_name : "${var.project}-${var.env}"
-  aks_resource_group_name = length(var.resource_group_name) > 0 ? var.resource_group_name : "${var.project}-${var.env}-aks"
+  default     = "${var.customer}-${var.project}-${var.env}-aks"
 }
