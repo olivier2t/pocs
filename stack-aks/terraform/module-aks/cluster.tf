@@ -20,7 +20,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     min_count           = var.node_min_count
     max_count           = var.node_max_count
 
-    availability_zones    = length(var.node_availability_zones) > 0 ? var.node_availability_zones : null
+    zones                 = length(var.node_availability_zones) > 0 ? var.node_availability_zones : null
     enable_node_public_ip = var.node_enable_public_ip
     max_pods              = var.node_max_pods
     node_taints           = var.node_taints
@@ -77,31 +77,13 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
   enable_pod_security_policy = var.enable_pod_security_policy
 
-  role_based_access_control {
-    enabled               = var.enable_rbac
+  azure_active_directory_role_based_access_control {
+    azure_rbac_enabled      = var.enable_rbac
 
-    dynamic "azure_active_directory" {
-      for_each = var.rbac_use_active_directory ? [1] : []
-
-      content {
-        client_app_id       = var.rbac_client_app_id
-        server_app_id       = var.rbac_server_app_id
-        server_app_secret   = var.rbac_client_app_secret
-      }
-    }
+    client_app_id       = var.rbac_client_app_id
+    server_app_id       = var.rbac_server_app_id
+    server_app_secret   = var.rbac_client_app_secret
   }
-
-  addon_profile {
-    oms_agent {
-      enabled                    = var.enable_oms_agent
-      log_analytics_workspace_id = var.enable_oms_agent ? azurerm_log_analytics_workspace.aks-cluster[0].id : null
-    }
-
-    kube_dashboard {
-      enabled = var.enable_kube_dashboard
-    }
-  }
-  
 
   tags = merge(local.merged_tags, {
     name = var.cluster_name

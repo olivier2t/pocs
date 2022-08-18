@@ -144,10 +144,10 @@ variable "rbac_client_app_secret" {
   default     = ""
 }
 
-variable "enable_oms_agent" {
-  description = "Should be `true` to enable OMS agent for log analytics."
-  default     = true
-}
+# variable "enable_oms_agent" {
+#   description = "Should be `true` to enable OMS agent for log analytics."
+#   default     = true
+# }
 
 variable "log_analytics_workspace_sku" {
   description = "The Log Analytics workspace SKU to use if `enable_oms_agent = true`."
@@ -159,10 +159,10 @@ variable "log_retention_in_days" {
   default     = "30"
 }
 
-variable "enable_kube_dashboard" {
-  description = "Should be `true` to enable the Kubernetes Dashboard."
-  default     = false
-}
+# variable "enable_kube_dashboard" {
+#   description = "Should be `true` to enable the Kubernetes Dashboard."
+#   default     = false
+# }
 
 #
 # Default Node Pool
