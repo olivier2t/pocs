@@ -193,7 +193,7 @@ module "aks" {
 
   resource_group_name             = var.resource_group_name
   location                        = var.azure_location
-  cluster_name                    = var.cluster_name
+  cluster_name                    = "${var.customer}-${var.project}-${var.env}-aks"
   service_principal_client_id     = var.aks_service_principal_client_id
   service_principal_client_secret = var.aks_service_principal_client_secret
 

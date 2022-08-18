@@ -28,6 +28,14 @@ azure_env: "public"
 #+ Azure location to use for terraform. 
 azure_location: "West Europe"
 
+
+# Azure resource group for resource deployment.
+
+#. resource_group_name (required): "cycloid-aks"
+#+ Azure resource group for resource deployment. 
+resource_group_name: "cycloid-aks"
+
+
 # AKS
 # The cluster needs a Service Principal that you can create with the following Azure CLI command:
 # `az ad sp create-for-rbac --name ($ project $)-($ environment $)`

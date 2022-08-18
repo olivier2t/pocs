@@ -75,6 +75,12 @@ default:
         widget: cy_cred
         type: string
         default: ((custom_($ project $)-($ environment $)-sp.client_secret))
+      - name: "Resource Group Name"
+        description: "Resource Group Name to use for the AKS Cluster"
+        key: resource_group_name
+        widget: simple_text
+        type: string
+        default: "($ project $)-($ environment $)-aks"
 
 
 
@@ -124,6 +130,12 @@ default:
         #   "{ "nodes" = "10.8.0.0/16", "pods"  = "10.9.0.0/16", "loadbalancers" = "10.11.0.0/16",}"
 
     aks:
+      - name: "Cluster name"
+        description: "AKS Cluster name"
+        key: module.aks.cluster_name
+        widget: simple_text
+        type: string
+        default: "($ project $)-($ environment $)"
       - name: "AKS cluster network plugin"
         description: "AKS cluster network plugin to use, can be either `azure` or `kubenet`."
         key: module.aks.network_plugin

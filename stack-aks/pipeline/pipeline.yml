@@ -57,6 +57,7 @@ resources:
       azure_client_secret: ((azure_client_secret))
       azure_subscription_id: ((azure_subscription_id))
       azure_tenant_id: ((azure_tenant_id))
+      resource_group_name: ((resource_group_name))
       env: ((env))
       project: ((project))
       customer: ((customer))

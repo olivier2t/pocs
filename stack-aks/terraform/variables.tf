@@ -46,14 +46,6 @@ variable "aks_service_principal_client_secret" {
   description = "The Client Secret for the Service Principal used by the AKS cluster."
 }
 
-# Put here a custom name for the AKS Cluster
-variable "cluster_name" {
-  description = "AKS Cluster given name."
-  default     = "${var.customer}-${var.project}-${var.env}-aks"
-}
-
-# Put here a custom name for the AKS Cluster
 variable "resource_group_name" {
-  description = "AKS Resource Group Name."
-  default     = "${var.customer}-${var.project}-${var.env}-aks"
+  description = "The Azure resource group to deploy resources."
 }
