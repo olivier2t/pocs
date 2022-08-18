@@ -51,7 +51,6 @@ resources:
     vars:
       aks_service_principal_client_id: ((aks_service_principal_client_id))
       aks_service_principal_client_secret: ((aks_service_principal_client_secret))
-      azure_location: ((azure_location))
       azure_env: ((azure_env))
       azure_client_id: ((azure_client_id))
       azure_client_secret: ((azure_client_secret))

@@ -32,7 +32,6 @@ In order to run this task, couple elements are required within the infrastructur
 |`azure_client_id`|Azure client ID to use for Terraform.|`-`|`((azure_admin.client_id))`|`True`|
 |`azure_client_secret`|Azure client secret to use for Terraform.|`-`|`((azure_admin.client_secret))`|`True`|
 |`azure_env`|Azure environment to use for Terraform. Can be either `public`, `usgovernment`, `german` or `china`.|`-`|`public`|`True`|
-|`azure_location`|Azure location to use for terraform. |`-`|`West Europe`|`True`|
 |`azure_subscription_id`|Azure subscription ID to use for Terraform.|`-`|`((azure_admin.subscription_id))`|`True`|
 |`azure_tenant_id`|Azure tenant ID to use for Terraform.|`-`|`((azure_admin.tenant_id))`|`True`|
 |`config_git_branch`|Branch of the config Git repository.|`-`|`master`|`True`|

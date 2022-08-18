@@ -26,13 +26,6 @@ default:
         widget: cy_cred
         type: string
         default: "((azure_admin.client_secret))"
-      - name: "Azure Location"
-        description: "Azure location to use for Terraform."
-        key: azure_location
-        widget: auto_complete
-        type: string
-        values: ["North Europe","West Europe","France Central","France South"]
-        default: "West Europe"
       - name: "Azure Resource Group of the Storage Account"
         description: "Azure Resource Group of the Storage Account to use to store terraform remote state file."
         key: terraform_resource_group_name

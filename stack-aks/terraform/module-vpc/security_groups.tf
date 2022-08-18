@@ -1,6 +1,6 @@
 resource "azurerm_network_security_group" "aks-nodes" {
   name                = "${var.project}-${var.env}-nodes"
-  location            = var.location
+  location            = data.azurerm_resource_group.rg_aks.location
   resource_group_name = data.azurerm_resource_group.rg_aks.name
 
   security_rule {

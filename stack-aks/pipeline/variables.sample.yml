@@ -24,9 +24,6 @@ azure_client_secret: ((azure_admin.client_secret))
 #+ Azure environment to use for Terraform. Can be either `public`, `usgovernment`, `german` or `china`.
 azure_env: "public"
 
-#. azure_location (required): West Europe
-#+ Azure location to use for terraform. 
-azure_location: "West Europe"
 
 
 # Azure resource group for resource deployment.
