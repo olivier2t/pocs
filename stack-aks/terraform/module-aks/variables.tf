@@ -37,10 +37,6 @@ locals {
 # Networking
 #
 
-# variable "vnet_subnet_id" {
-#   description = "Network subnet ID that should for the default node pool."
-# }
-
 variable "network_plugin" {
   description = "AKS cluster network plugin to use, can be either `azure` or `kubenet`."
   default     = "azure"
@@ -155,10 +151,6 @@ variable "log_retention_in_days" {
   default     = "30"
 }
 
-# variable "enable_kube_dashboard" {
-#   description = "Should be `true` to enable the Kubernetes Dashboard."
-#   default     = false
-# }
 
 #
 # Default Node Pool

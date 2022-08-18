@@ -77,14 +77,6 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
   enable_pod_security_policy = var.enable_pod_security_policy
 
-  # azure_active_directory_role_based_access_control {
-  #   azure_rbac_enabled      = var.enable_rbac
-
-  #   client_app_id       = var.rbac_client_app_id
-  #   server_app_id       = var.rbac_server_app_id
-  #   server_app_secret   = var.rbac_client_app_secret
-  # }
-
   tags = merge(local.merged_tags, {
     name = var.cluster_name
   })
