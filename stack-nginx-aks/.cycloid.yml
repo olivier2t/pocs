@@ -1,0 +1,32 @@
+---
+# Configuration of the Cycloid stack
+version: '2'
+name: 'Scalable NGINX on AKS'
+canonical: 'stack-nginx-aks'
+description: This stack deploys a scalable NGINX on an Azure Kubernetes Service (AKS) cluster.
+author: 'Olivier de Turckheim'
+image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/nginx.png'
+status: 'private'
+keywords:
+- nginx
+- provider:azure
+technologies:
+- technology: nginx
+  version: "1.7.8"
+
+config:
+  default:
+    name: 'Deploys NGINX on AKS'
+    description: 'Deploys a scalable NGINX in a Azure AKS Kubernetes cluster via Terraform'
+    # Pipeline and variable configuration for the Kubernetes pipeline use case
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

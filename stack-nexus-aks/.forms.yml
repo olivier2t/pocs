@@ -1,0 +1,82 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Pod specifications
+      technologies: [terraform]
+      vars:
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 10
+            - 250
+        required: true
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+
+  - name: Azure
+    groups:
+    - name: Azure Credentials
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.client_secret))"
+        required: true
+    - name: Azure Kubernetes Service (AKS)
+      technologies: [pipeline]
+      vars:
+      - name: "AKS cluster name"
+        description: "The name of the existing AKS cluster where to deploy the workload."
+        key: aks_cluster_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Resource group name"
+        description: "The name of the existing resource group where the AKS cluster resides."
+        key: aks_resource_group_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true

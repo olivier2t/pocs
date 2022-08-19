@@ -1,0 +1,106 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: NGINX
+    groups:
+    - name: NGINX Configuration
+      technologies: [terraform]
+      vars:
+      - name: "NGINX Version"
+        description: "Version of NGINX to deploy."
+        key: nginx_version
+        widget: simple_text
+        type: string
+        default: "1.7.8"
+        required: true
+      - name: "Port"
+        description: "Port where NGINX service is exposed."
+        key: nginx_port
+        widget: simple_text
+        type: string
+        default: "80"
+        required: true
+    - name: AKS Resource Management
+      technologies: [terraform]
+      vars:
+      - name: "CPU Resource Limit"
+        description: "CPU resource limit for the deployment."
+        key: nginx_cpu_limit
+        widget: simple_text
+        type: string
+        default: "0.5"
+        required: true
+      - name: "Memory Resource Limit"
+        description: "Memory resource limit for the deployment."
+        key: nginx_mem_limit
+        widget: simple_text
+        type: string
+        default: "512Mi"
+        required: true
+      - name: "CPU Resource Request"
+        description: "CPU resource request for the deployment."
+        key: nginx_cpu_request
+        widget: simple_text
+        type: string
+        default: "250m"
+        required: true
+      - name: "Memory Resource Limit"
+        description: "Memory resource limit for the deployment."
+        key: nginx_mem_request
+        widget: simple_text
+        type: string
+        default: "50Mi"
+        required: true
+
+  - name: Azure
+    groups:
+    - name: Azure Credentials
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((azure_step-by-step.client_secret))"
+        required: true
+    - name: Azure Kubernetes Service (AKS)
+      technologies: [pipeline]
+      vars:
+      - name: "AKS cluster name"
+        description: "The name of the existing AKS cluster where to deploy the workload."
+        key: aks_cluster_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Resource group name"
+        description: "The name of the existing resource group where the AKS cluster resides."
+        key: aks_resource_group_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
