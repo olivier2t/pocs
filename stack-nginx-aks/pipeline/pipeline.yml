@@ -39,6 +39,8 @@ resources:
       azure_client_secret: ((azure_client_secret))
       azure_subscription_id: ((azure_subscription_id))
       azure_tenant_id: ((azure_tenant_id))
+      aks_cluster_name: ((aks_cluster_name))
+      aks_resource_group_name: ((aks_resource_group_name))
       env: ((env))
       project: ((project))
       customer: ((customer))
