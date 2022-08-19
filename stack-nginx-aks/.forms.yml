@@ -64,28 +64,28 @@ use_cases:
         key: azure_subscription_id
         widget: cy_cred
         type: string
-        default: "((azure_step-by-step.subscription_id))"
+        default: "((azure.subscription_id))"
         required: true
       - name: "Azure tenant ID"
         description: "Azure tenant ID for Terraform."
         key: azure_tenant_id
         widget: cy_cred
         type: string
-        default: "((azure_step-by-step.tenant_id))"
+        default: "((azure.tenant_id))"
         required: true
       - name: "Azure client ID"
         description: "Azure client ID for Terraform."
         key: azure_client_id
         widget: cy_cred
         type: string
-        default: "((azure_step-by-step.client_id))"
+        default: "((azure.client_id))"
         required: true
       - name: "Azure client secret"
         description: "Azure client secret for Terraform."
         key: azure_client_secret
         widget: cy_cred
         type: string
-        default: "((azure_step-by-step.client_secret))"
+        default: "((azure.client_secret))"
         required: true
     - name: Azure Kubernetes Service (AKS)
       technologies: [pipeline]

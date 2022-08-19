@@ -24,14 +24,6 @@ azure_client_secret: ((azure.client_secret))
 #+ Azure environment to use for Terraform. Can be either `public`, `usgovernment`, `german` or `china`.
 azure_env: "public"
 
-#. azure_location (required): West Europe
-#+ Azure location to use for terraform. 
-azure_location: "West Europe"
-
-#. rg_name (required): "cycloid-worker"
-#+ Azure Resource Group to use for terraform. 
-rg_name: "cycloid-worker"
-
 
 #
 # Terraform remote state file
@@ -59,37 +51,6 @@ terraform_storage_container_path: ($ project $)/($ environment $)
 
 
 #
-# Keypair to use for newly created instances
-#
-
-#. keypair_public (required): <Your_SSH_Public_key>
-#+ The public SSH key to provision to instance for external access through SSH
-keypair_public: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCx0xZvC63PN69c8zaNXz48w1LpRkC6YD5qfR1EXh9WtGgYSQ2I8BwaTtPYbcaqWmNT2NY5QpvsICBvJKJKz8qMPp5p12ePwzh/JYQJ92KaMVB8EAof6g9/MlmGVYnaPvZ38Z03wiEWCZh+FP3t9jT8ze8Ed8xNIuRqT1HRNkO6s/mm+LlJnTb0vWAVYkf8qbc1MIsHzn5Sj3bvVaaVnsVjdlVwGjXMZIJfK4jLQ7/Gbu5+O32zoq9xI8wRsb+2ilvv68oin+KONcb0wj4xMVh/3pyO/1Mva/VwftNxaOH0GS+BFngHspOQiYpxyKY/hkVPEpTDMebCLD34dHJULU8DOX1CMjR7cAr3dTx60FWVfm4gKePV0gneRXVE27PCwhyibcETpWQ0nlvwqtT4mnsIB1DqhlQiioBnB/3R62RjmRW24v1bj05HI6cQvEagKu9CsoO6cw9dMvEH4SwN3jW8GVnEFPcCMVMTFE2HVHsaOrX/fkanvA3zW3JCAST63pwqEnAzEzIOp3wyMs+uGh3+5iDFGDjdyMgNUaXDHNNnf3A7gHhEpok0naBJdm0KRY9MD4hKIr4WifW+12YHL04P9hAvzmOI4HC63Yg53KQ+lYZ2Grc9/wHVl3VCCVSngoqWkj5kBcp50gFk5NGE7/DjOj1kotYfZldDEhxFkNQu5w== olivier@oliviers-macbook-pro.home"
-
-
-#
-# Admin username for newly created instances
-#
-
-#. vm_os_user (required): cycloid
-#+ Admin username for newly created instances
-vm_os_user: cycloid
-
-
-#
-# Worker instance configuration
-#
-
-#. team_id (required): ""
-#+ This parameter can be obtained in Cycloid console, by clicking on your profile picture at the top right corner, then organization settings, then use the value of the ci_team_member field
-team_id: ""
-
-#. worker_key (required): ((cycloid-worker-keys.ssh_prv))
-#+ Leave default value if the worker is intended to run for the current organization. Otherwise, add Cycloid-worker-keys.ssh_prv credentials of the target organization
-worker_key: ((cycloid-worker-keys.ssh_prv))
-
-
-#
 # Stack Git repository
 #
 
@@ -105,9 +66,9 @@ stack_git_branch: ($ scs_branch $)
 #+ SSH key pair to fetch the stack Git repository.
 stack_git_private_key: ((git.ssh_key))
 
-#. stack_terraform_path (required): stack-azure-worker/terraform
+#. stack_terraform_path (required): stack-nexus-aks/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-azure-worker/terraform
+stack_terraform_path: stack-nexus-aks/terraform
 
 
 #
