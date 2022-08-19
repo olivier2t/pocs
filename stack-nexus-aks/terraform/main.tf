@@ -7,11 +7,6 @@ module "nexus" {
   customer = var.customer
   #####################################
 
-  #. extra_tags (optional): {}
-  #+ Dict of extra tags to add on resources. format { "foo" = "bar" }.
-  extra_tags = {
-  }
-
   #. vm_disk_size: 20
   #+ Disk size for the Nexus Repository (Go)
   vm_disk_size = "20"

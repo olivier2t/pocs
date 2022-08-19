@@ -7,11 +7,6 @@ module "nginx" {
   customer = var.customer
   #####################################
 
-  #. extra_tags (optional): {}
-  #+ Dict of extra tags to add on resources. format { "foo" = "bar" }.
-  extra_tags = {
-  }
-
   #. nginx_version: "1.7.8"
   #+ Version of NGINX to deploy
   nginx_version = "1.7.8"
