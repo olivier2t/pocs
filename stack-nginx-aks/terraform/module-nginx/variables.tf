@@ -40,8 +40,3 @@ variable "resource_group_name" {
   description = "Resource group name to use to deploy the network security group"
   default = "cycloid-aks"
 }
-
-variable "resource_group_location" {
-  description = "Resource group location to use to deploy the network security group"
-  default = ""
-}

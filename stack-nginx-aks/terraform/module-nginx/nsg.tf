@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "nginx" {
   name                = "${var.customer}-${var.project}-${var.env}-scalable-nginx"
-  resource_group_name = var.resource_group_name
-  location            = var.resource_group_location
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = data.azurerm_resource_group.rg.location
 
   security_rule {
     name                       = "inbound-nginx"

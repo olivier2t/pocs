@@ -33,9 +33,5 @@ module "nginx" {
 
   #. resource_group_name: "cycloid-aks"
   #+ Resource group name to use to deploy the network security group
-  resource_group_name = data.azurerm_kubernetes_cluster.cluster.name
-
-  #. resource_group_location: ""
-  #+ Location to use to deploy the network security group
-  resource_group_location = data.azurerm_kubernetes_cluster.cluster.location
+  resource_group_name = var.aks_resource_group_name
 }
