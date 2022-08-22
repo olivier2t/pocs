@@ -30,4 +30,12 @@ module "nginx" {
   #. nginx_mem_request: "50Mi"
   #+ Memory resource request for the deployment
   nginx_mem_request = "50Mi"
+
+  #. resource_group_name: "cycloid-aks"
+  #+ Resource group name to use to deploy the network security group
+  resource_group_name = data.azurerm_kubernetes_cluster.cluster.name
+
+  #. resource_group_location: ""
+  #+ Location to use to deploy the network security group
+  resource_group_location = data.azurerm_kubernetes_cluster.cluster.location
 }
