@@ -36,6 +36,11 @@ variable "nginx_mem_request" {
   default = "50Mi"
 }
 
+variable "aks_cluster_name" {
+  description = "AKS cluster name"
+  default = ""
+}
+
 variable "resource_group_name" {
   description = "Resource group name to use to deploy the network security group"
   default = "cycloid-aks"

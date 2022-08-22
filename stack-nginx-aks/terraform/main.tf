@@ -31,6 +31,10 @@ module "nginx" {
   #+ Memory resource request for the deployment
   nginx_mem_request = "50Mi"
 
+  #. aks_cluster_name: ""
+  #+ AKS cluster name
+  aks_cluster_name = var.aks_cluster_name
+
   #. resource_group_name: "cycloid-aks"
   #+ Resource group name to use to deploy the network security group
   resource_group_name = var.aks_resource_group_name
