@@ -18,6 +18,10 @@ module "rg" {
   #. environment: "test"
   #+ Type of environment. Must be either 'prod', 'test', or 'dev' and lower case.
   environment = "test"
+
+  #. createdby: ""
+  #+ Name of who created the resource.
+  createdby = ""
 }
 
 module "sa" {
@@ -43,7 +47,7 @@ module "sa" {
 
   #. createdby: ""
   #+ Name of who created the resource.
-  createdby = ""
+  createdby = module.rg.createdby
 
   #. account_kind: "StorageV2"
   #+ Type of storage account. Must be either 'FileStorage', 'Storage', or 'StorageV2'.

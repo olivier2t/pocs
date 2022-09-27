@@ -39,7 +39,7 @@ use_cases:
         required: true
       - name: "Created By"
         description: "Name of who created the resource."
-        key: module.sa.createdby
+        key: module.rg.createdby
         widget: simple_text
         type: string
         default: ""

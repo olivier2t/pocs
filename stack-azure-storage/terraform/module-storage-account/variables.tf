@@ -101,6 +101,19 @@ variable "access_tier" {
     }
 }
 
+# Cycloid vars
+variable "project" {
+  description = "Cycloid project name."
+}
+
+variable "env" {
+  description = "Cycloid environment name."
+}
+
+variable "customer" {
+  description = "Cycloid customer name."
+}
+
 # Adding local tags to reflect usual ways of working in Cycloid stacks
 variable "extra_tags" {
   description = "Extra tags to add to all resources in this module."
@@ -110,7 +123,7 @@ variable "extra_tags" {
 locals {
   standard_tags = {
     "cycloid"    = "true"
-    env  = var.env
+    env          = var.env
     project      = var.project
     customer     = var.customer
   }
