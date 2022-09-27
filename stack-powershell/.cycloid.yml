@@ -1,10 +1,10 @@
 version: "2"
-name: First stack for Asmodee
-canonical: stack-asmodee
+name: Copy and execute a powershell script
+canonical: stack-powershell
 status: private
-author: Asmodee
+author: Olivier de Turckheim
 description: |
-  Copy a powershell script on a target Windows VM and deploy a SQL script
+  Copy a powershell script on a target Windows VM
 image: |
   https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/AzureVirtualDesktop.png
 keywords:
