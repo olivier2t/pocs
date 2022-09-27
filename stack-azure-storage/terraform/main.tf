@@ -1,7 +1,7 @@
 module "rg" {
   #####################################
   # Do not modify the following lines #
-  source   = "./ResourceGroup"
+  source   = "./module-resource-group"
   project  = var.project
   env      = var.env
   customer = var.customer
@@ -23,7 +23,7 @@ module "rg" {
 module "sa" {
   #####################################
   # Do not modify the following lines #
-  source   = "./StorageAccount"
+  source   = "./module-storage-account"
   project  = var.project
   env      = var.env
   customer = var.customer
