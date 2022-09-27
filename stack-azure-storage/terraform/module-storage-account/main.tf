@@ -24,7 +24,7 @@ resource "azurerm_storage_account" "this" {
     min_tls_version                   = "TLS1_2" //minimum tls 1.2 is (mandatory)
   
     depends_on = [
-        module.rg.azurerm_resource_group.this
+        module.rg.azurerm_resource_group
     ]
 
 }
