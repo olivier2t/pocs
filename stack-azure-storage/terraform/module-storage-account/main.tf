@@ -23,6 +23,10 @@ resource "azurerm_storage_account" "this" {
     enable_https_traffic_only         = true //secure transfer enabled (mandatory)
     min_tls_version                   = "TLS1_2" //minimum tls 1.2 is (mandatory)
   
+    depends_on = [
+        module.rg.azurerm_resource_group.this
+    ]
+
 }
 
 #this generates a random string of letters and numbers that is used to build the storage account name
