@@ -10,14 +10,14 @@ use_cases:
       vars:
       - name: "Application Name"
         description: "Name of the application. Must be between 3 and 24 characters, be lower case and only contain characters or numbers."
-        key: module.rg.appName
+        key: appName
         widget: simple_text
         type: string
         default: ""
         required: true
       - name: "Location"
         description: "Azure location of the resource group."
-        key: module.rg.location
+        key: location
         widget: radios
         type: string
         default: "west europe"
@@ -28,7 +28,7 @@ use_cases:
         required: true
       - name: "Environment"
         description: "Type of environment."
-        key: module.rg.environment
+        key: environment
         widget: auto_complete
         type: string
         default: "test"
@@ -39,14 +39,14 @@ use_cases:
         required: true
       - name: "Created By"
         description: "Name of who created the resource."
-        key: module.rg.createdby
+        key: createdby
         widget: simple_text
         type: string
         default: ""
         required: true
       - name: "Storage Account Type"
         description: "Type of storage account."
-        key: module.sa.account_kind
+        key: account_kind
         widget: dropdown
         type: string
         default: "StorageV2"
@@ -57,7 +57,7 @@ use_cases:
         required: true
       - name: "Performance tier"
         description: "Performance tier."
-        key: module.sa.account_tier
+        key: account_tier
         widget: dropdown
         type: string
         default: "Standard"
@@ -67,7 +67,7 @@ use_cases:
         required: true
       - name: "Data redundancy"
         description: "Data redundancy."
-        key: module.sa.account_replication_type
+        key: account_replication_type
         widget: dropdown
         type: string
         default: "LRS"
@@ -77,7 +77,7 @@ use_cases:
         required: true
       - name: "Access Tier"
         description: "Default data access tier."
-        key: module.sa.access_tier
+        key: access_tier
         widget: dropdown
         type: string
         default: "Hot"
