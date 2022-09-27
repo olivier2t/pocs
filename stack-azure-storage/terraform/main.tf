@@ -60,8 +60,4 @@ module "sa" {
   #. access_tier: "Hot"
   #+ Default data access tier. Must be either 'Hot', or 'Cool'.
   access_tier = "Hot"
-
-  depends_on = [
-    module.rg,
-  ]
 }
