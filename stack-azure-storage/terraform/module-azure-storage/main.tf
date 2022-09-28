@@ -55,7 +55,7 @@ module "storage-account" {
 
   #. account_tier: "Standard"
   #+ Performance tier. Must be either 'Standard', or 'Premium'.
-  account_tier = var.access_tier
+  account_tier = var.account_tier
 
   #. account_replication_type: "LRS"
   #+ Data redundancy. Must be either 'LRS', or 'GRS'."
