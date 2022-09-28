@@ -47,7 +47,7 @@ use_cases:
       - name: "Storage Account Type"
         description: "Type of storage account."
         key: account_kind
-        widget: dropdown
+        widget: radios
         type: string
         default: "StorageV2"
         values:
@@ -58,7 +58,7 @@ use_cases:
       - name: "Performance tier"
         description: "Performance tier."
         key: account_tier
-        widget: dropdown
+        widget: radios
         type: string
         default: "Standard"
         values:
@@ -68,7 +68,7 @@ use_cases:
       - name: "Data redundancy"
         description: "Data redundancy."
         key: account_replication_type
-        widget: dropdown
+        widget: radios
         type: string
         default: "LRS"
         values:
@@ -78,7 +78,7 @@ use_cases:
       - name: "Access Tier"
         description: "Default data access tier."
         key: access_tier
-        widget: dropdown
+        widget: radios
         type: string
         default: "Hot"
         values:
