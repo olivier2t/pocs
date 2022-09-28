@@ -19,7 +19,7 @@ resource "azurerm_storage_account" "this" {
         
     #this section defines what settings are set in code and not changeable
     name                              = "st${lower(var.appName)}${random_string.random.result}" //must be unique across all existing storage account names in Azure. It must be 3 to 24 characters long, and can contain only lowercase letters and numbers. (required)
-    resource_group_name               = module.rg.azurerm_resource_group.name //the name of the resource group where the resource will exist (required)
+    resource_group_name               = "rg-${var.appName}" //the name of the resource group where the resource will exist (required)
     enable_https_traffic_only         = true //secure transfer enabled (mandatory)
     min_tls_version                   = "TLS1_2" //minimum tls 1.2 is (mandatory)
   

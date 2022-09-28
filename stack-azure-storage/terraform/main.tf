@@ -1,7 +1,7 @@
-module "sa" {
+module "azure-storage" {
   #####################################
   # Do not modify the following lines #
-  source   = "./module-storage-account"
+  source   = "./module-azure-storage"
   project  = var.project
   env      = var.env
   customer = var.customer
