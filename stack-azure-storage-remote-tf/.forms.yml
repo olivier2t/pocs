@@ -1,0 +1,121 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Storage Account
+    groups:
+    - name: Storage Account
+      technologies: [terraform]
+      vars:
+      - name: "Application Name"
+        description: "Name of the application. Must be between 3 and 24 characters, be lower case and only contain characters or numbers."
+        key: appName
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Location"
+        description: "Azure location of the resource group."
+        key: location
+        widget: radios
+        type: string
+        default: "west europe"
+        values:
+            - "west europe"
+            - "north europe"
+            - "east us"
+        required: true
+      - name: "Environment"
+        description: "Type of environment."
+        key: environment
+        widget: auto_complete
+        type: string
+        default: "test"
+        values:
+            - "prod"
+            - "test"
+            - "dev"
+        required: true
+      - name: "Created By"
+        description: "Name of who created the resource."
+        key: createdby
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Storage Account Type"
+        description: "Type of storage account."
+        key: account_kind
+        widget: radios
+        type: string
+        default: "StorageV2"
+        values:
+            - "FileStorage"
+            - "Storage"
+            - "StorageV2"
+        required: true
+      - name: "Performance tier"
+        description: "Performance tier."
+        key: account_tier
+        widget: radios
+        type: string
+        default: "Standard"
+        values:
+            - "Standard"
+            - "Premium"
+        required: true
+      - name: "Data redundancy"
+        description: "Data redundancy."
+        key: account_replication_type
+        widget: radios
+        type: string
+        default: "LRS"
+        values:
+            - "LRS"
+            - "GRS"
+        required: true
+      - name: "Access Tier"
+        description: "Default data access tier."
+        key: access_tier
+        widget: radios
+        type: string
+        default: "Hot"
+        values:
+            - "Hot"
+            - "Cool"
+        required: true
+
+  - name: Azure
+    groups:
+    - name: Azure Credentials
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((grinntec-playground-cycloid.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((grinntec-playground-cycloid.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((grinntec-playground-cycloid.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((grinntec-playground-cycloid.client_secret))"
+        required: true
