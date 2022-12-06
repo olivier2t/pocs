@@ -72,7 +72,7 @@ use_cases:
         required: true
         default: "((keypair.ssh_pub))"
         required: true
-    - name: Node.js Application
+    - name: NodeJS Application
       technologies: [terraform]
       vars:
       - name: "Webapp Public Git URL"
