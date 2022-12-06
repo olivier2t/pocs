@@ -20,18 +20,29 @@ variable "region" {
 }
 
 # Infra
+variable "vm_instance_type" {
+  description = "Instance type to deploy."
+  default     = "t3a.small"
+}
+
 variable "vm_os_user" {
   description = "Admin username to connect to instance via SSH. Set to 'admin' because we use debian OS."
   default     = "admin"
 }
 
 variable "vm_disk_size" {
-  description = "Disk size for the Nexus Repository (Go)"
+  description = "Disk size for the instance (Go)"
   default = "20"
 }
 
 variable "keypair_public" {
   description = "Public key to provision to the instance"
+  default = ""
+}
+
+# NodeJS App
+variable "git_app_url" {
+  description = "Public git URL of the web application to build and deploy"
   default = ""
 }
 
