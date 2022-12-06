@@ -64,13 +64,16 @@ use_cases:
             - 20
             - 250
         required: true
+    - name: Security
+      technologies: [pipeline]
+      condition: "vm_custom==true"
+      vars:
       - name: "Keypair public"
         description: "The public SSH key, for SSH access to newly-created instances."
         key: keypair_public
         widget: cy_cred
         type: string
-        required: true
-        default: "((keypair.ssh_pub))"
+        default: "((custom_keypair.ssh_pub))"
         required: true
     - name: NodeJS Application
       technologies: [terraform]

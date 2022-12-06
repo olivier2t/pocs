@@ -44,6 +44,7 @@ resources:
       aws_access_key: ((aws_access_key))
       aws_secret_key: ((aws_secret_key))
       aws_region: ((aws_region))
+      keypair_public: ((keypair_public))
       env: ((env))
       project: ((project))
       customer: ((customer))
