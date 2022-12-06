@@ -54,8 +54,6 @@ resource "aws_instance" "webapp" {
   user_data_base64 = base64encode(templatefile(
     "${path.module}/userdata.sh.tpl",
     {
-      project = var.project
-      env = var.env
       git_app_url = var.git_app_url
     }
   ))
