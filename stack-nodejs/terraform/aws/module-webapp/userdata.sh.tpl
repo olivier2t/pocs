@@ -1,13 +1,13 @@
 #!/bin/bash
 sudo apt update
 sudo apt install git nodejs npm -y
-cd $(mktemp -d)
+cd /tmp
 git clone ${git_app_url} webapp
 cd webapp
 sudo npm install
 sudo npm run build
 sudo mkdir /var/www/
-sudo scp -r ./build/* /var/www/build/
+sudo mv build/ /var/www/
 sudo apt install nginx -y
 sudo cat << EOF >/etc/nginx/sites-enabled/default
 server {
@@ -16,10 +16,6 @@ server {
     access_log /var/log/nginx/app.log;
     root /var/www/build;
     index index.html index.htm;
-    try_files $$uri /index.html;
-    location / {
-        try_files $$uri $$uri/ = 404;
-    }
 }
 EOF
 sudo service nginx stop
