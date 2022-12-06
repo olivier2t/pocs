@@ -26,7 +26,7 @@ use_cases:
 
 - name: aws
   sections:
-  - name: Node.js Server
+  - name: NodeJS Server
     groups:
     - name: Custom Infrastructure
       technologies: [terraform]
@@ -114,7 +114,7 @@ use_cases:
 
 - name: azure
   sections:
-  - name: instance
+  - name: NodeJS Server
     groups:
     - name: Custom Infrastructure
       technologies: [terraform]
@@ -251,7 +251,7 @@ use_cases:
 
 - name: gcp
   sections:
-  - name: instance
+  - name: NodeJS Server
     groups:
     - name: Custom Infrastructure
       technologies: [terraform]
@@ -357,7 +357,7 @@ use_cases:
 
 - name: vmware
   sections:
-  - name: instance
+  - name: NodeJS Server
     groups:
     - name: Custom Infrastructure
       technologies: [terraform]
