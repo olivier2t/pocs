@@ -1,40 +1,4 @@
 #
-# Cloud Provider
-#
-
-# Amazon access to use to run terraform. Usually admin account to be able to create Amazon services.
-
-#. aws_access_key (required): ((aws.access_key))
-#+ Amazon AWS access key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_access_key: ((aws.access_key))
-
-#. aws_secret_key (required): ((aws.secret_key))
-#+ Amazon AWS secret key for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-aws_secret_key: ((aws.secret_key))
-
-#. aws_default_region (required): eu-west-1
-#+ Amazon AWS region to use for Terraform.
-aws_region: eu-west-1
-
-#
-# Terraform remote state file
-#
-
-#. terraform_storage_bucket_name (required): ($ organization_canonical $)-terraform-remote-state
-#+ AWS S3 bucket name to store terraform remote state file.
-terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-state
-
-
-#
-# Keypair to use for newly created instances
-#
-
-#. keypair_public (required): ((custom_keypair.ssh_pub))
-#+ The public SSH key to provision to bastion for external access through SSH
-keypair_public: ((custom_keypair.ssh_pub))
-
-
-#
 # Repos
 #
 
@@ -56,7 +20,7 @@ stack_git_private_key: ((git.ssh_key))
 
 #. stack_terraform_path (required): stack-webapp/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-webapp/terraform
+stack_terraform_path: stack-webapp/terraform/aws
 
 
 #
@@ -75,9 +39,9 @@ config_git_branch: ($ cr_branch $)
 #+ SSH key pair to fetch the config Git repository.
 config_git_private_key: ((git.ssh_key))
 
-#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
+#. config_terraform_path (required): ($ project $)/terraform/aws/($ environment $)
 #+ Path of Terraform files in the config git repository
-config_terraform_path: ($ project $)/terraform/($ environment $)
+config_terraform_path: ($ project $)/terraform/aws/($ environment $)
 
 
 #
@@ -107,10 +71,6 @@ cycloid_api_key: ((custom_api-key-admin.key))
 #. cycloid_inventory_jwt (required): ($ inventory_jwt $)
 #+ JWT token to access Cycloid inventory (acting as HTTP Terraform backend).
 cycloid_inventory_jwt: ($ inventory_jwt $)
-
-#. slack_hook (required): ((raw_slack-hooks.demo_channel))
-#+ URL to send notifications to cycloid-demo channel.
-slack_hook: ((raw_slack-hooks.demo_channel))
 
 #. terraform_version (required): '1.1.9'
 #+ terraform version used to execute your code.
