@@ -16,9 +16,9 @@ server {
     access_log /var/log/nginx/app.log;
     root /var/www/build;
     index index.html index.htm;
-    try_files $uri /index.html;
+    try_files $$uri /index.html;
     location / {
-        try_files $uri $uri/ = 404;
+        try_files $$uri $$uri/ = 404;
     }
 }
 EOF
