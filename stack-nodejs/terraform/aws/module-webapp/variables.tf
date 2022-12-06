@@ -14,11 +14,6 @@ variable "secret_key" {
   default     = ""
 }
 
-variable "access_key" {
-  description = "AWS Access Key"
-  default     = ""
-}
-
 variable "region" {
   description = "AWS Region"
   default     = ""
