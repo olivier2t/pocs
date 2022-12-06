@@ -80,7 +80,7 @@ use_cases:
         key: git_app_url
         widget: simple_text
         type: string
-        default: "8081"
+        default: "https://github.com/ahfarmer/calculator.git"
         required: true
 
   - name: AWS Cloud Provider
