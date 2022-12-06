@@ -18,17 +18,17 @@ module "webapp" {
   # AWS Account
   #
 
-  #. access_key: ''
+  #. aws_access_key: ''
   #+ AWS Access Key
-  access_key = "Value injected by StackForms"
+  aws_access_key = "Value injected by StackForms"
 
-  #. secret_key: ''
+  #. aws_secret_key: ''
   #+ AWS Secret Key
-  secret_key = "Value injected by StackForms"
+  aws_secret_key = "Value injected by StackForms"
 
-  #. region: ''
+  #. aws_region: ''
   #+ AWS Region
-  region = "Value injected by StackForms"
+  aws_region = "Value injected by StackForms"
 
   #
   # Web App
