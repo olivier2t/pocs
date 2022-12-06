@@ -5,19 +5,8 @@ use_cases:
   sections:
   - name: NodeJS Server
     groups:
-    - name: Custom Infrastructure
-      technologies: [terraform]
-      vars:
-      - name: "Customize Infrastructure"
-        description: "Whether to customize virtual machine specifications."
-        key: vm_custom
-        widget: switch
-        type: boolean
-        default: false
-        required: true
     - name: Virtual machine specifications
       technologies: [terraform]
-      condition: "vm_custom==true"
       vars:
       - name: "Instance type"
         description: "Instance type for the instance."
@@ -43,7 +32,6 @@ use_cases:
         required: true
     - name: Security
       technologies: [pipeline]
-      condition: "vm_custom==true"
       vars:
       - name: "Keypair public"
         description: "The public SSH key, for SSH access to newly-created instances."
