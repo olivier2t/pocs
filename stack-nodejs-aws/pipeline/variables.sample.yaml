@@ -42,9 +42,9 @@ stack_git_branch: ($ scs_branch $)
 #+ SSH key pair to fetch the stack Git repository.
 stack_git_private_key: ((git.ssh_key))
 
-#. stack_terraform_path (required): stack-nodejs/terraform
+#. stack_terraform_path (required): stack-nodejs-aws/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-nodejs/terraform/aws
+stack_terraform_path: stack-nodejs-aws/terraform
 
 
 #
@@ -63,9 +63,9 @@ config_git_branch: ($ cr_branch $)
 #+ SSH key pair to fetch the config Git repository.
 config_git_private_key: ((git.ssh_key))
 
-#. config_terraform_path (required): ($ project $)/terraform/aws/($ environment $)
+#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
 #+ Path of Terraform files in the config git repository
-config_terraform_path: ($ project $)/terraform/aws/($ environment $)
+config_terraform_path: ($ project $)/terraform/($ environment $)
 
 
 #
