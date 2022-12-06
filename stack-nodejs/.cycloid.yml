@@ -21,7 +21,7 @@ technologies:
     version: "n/a"
 
 config:
-  default:
+  aws:
     name: 'AWS'
     description: 'Build and deploy a Node.js web application on a cloud instance'
     cloud_provider: aws
