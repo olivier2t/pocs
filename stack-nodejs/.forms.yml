@@ -86,7 +86,7 @@ use_cases:
   - name: AWS Cloud Provider
     groups:
     - name: Access Configuration
-      technologies: [terraform]
+      technologies: [pipeline]
       vars:
       - name: "AWS access key"
         description: "Amazon AWS access key for Terraform."
