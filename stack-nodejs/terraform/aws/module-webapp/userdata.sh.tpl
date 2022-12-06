@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt update
-sudo apt install git -y
+sudo apt install git nodejs npm -y
 cd $(mktemp -d)
 git clone ${git_app_url} webapp
 cd webapp
