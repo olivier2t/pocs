@@ -41,8 +41,7 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
-      aws_access_key: ((aws_access_key))
-      aws_secret_key: ((aws_secret_key))
+      aws_cred: ((aws_cred))
       aws_region: ((aws_region))
       keypair_public: ((keypair_public))
       env: ((env))
@@ -193,8 +192,16 @@ jobs:
             - put: cycloid-event
               params:
                 severity: info
-                message: "Build finished: ${ATC_EXTERNAL_URL}/teams/main/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
-                title: "Build finished: ${BUILD_PIPELINE_NAME}/${BUILD_JOB_NAME}/${BUILD_NAME}"
+                title: Cycloid worker deployment successful
+                message: The project ((project)) on ((env)) environment deployed successfully
+
+        # on_success:
+        #   do:
+        #     - put: cycloid-event
+        #       params:
+        #         severity: info
+        #         title: "Build finished: ${BUILD_PIPELINE_NAME}/${BUILD_JOB_NAME}/${BUILD_NAME}"
+        #         message: "Build finished: ${ATC_EXTERNAL_URL}/teams/main/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
             # - put: send-email
             #   params:
             #     subject_text: "Build SUCCESS: ${BUILD_PIPELINE_NAME}/${BUILD_JOB_NAME}/${BUILD_NAME}"

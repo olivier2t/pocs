@@ -77,20 +77,16 @@ use_cases:
     - name: Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "AWS access key"
-        description: "Amazon AWS access key for Terraform."
-        key: aws_access_key
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key"
+        key: aws_cred
         widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - aws
         type: string
-        default: "((aws.access_key))"
-        required: true
-      - name: "AWS secret key"
-        description: "Amazon AWS secret key for Terraform."
-        key: aws_secret_key
-        widget: cy_cred
-        type: string
-        default: "((aws.secret_key))"
-        required: true
+        default: "((aws))"
       - name: "Amazon AWS region"
         description: "Amazon AWS region to use for Terraform."
         key: aws_region
@@ -190,34 +186,16 @@ use_cases:
 #     - name: Access Configuration
 #       technologies: [pipeline]
 #       vars:
-#       - name: "Azure subscription ID"
-#         description: "Azure subscription ID for Terraform."
-#         key: azure_subscription_id
-#         widget: cy_cred
-#         type: string
-#         default: "((azure-infra-deployment.subscription_id))"
-#         required: true
-#       - name: "Azure tenant ID"
-#         description: "Azure tenant ID for Terraform."
-#         key: azure_tenant_id
-#         widget: cy_cred
-#         type: string
-#         default: "((azure-infra-deployment.tenant_id))"
-#         required: true
-#       - name: "Azure client ID"
-#         description: "Azure client ID for Terraform."
-#         key: azure_client_id
-#         widget: cy_cred
-#         type: string
-#         default: "((azure-infra-deployment.client_id))"
-#         required: true
-#       - name: "Azure client secret"
-#         description: "Azure client secret for Terraform."
-#         key: azure_client_secret
-#         widget: cy_cred
-#         type: string
-#         default: "((azure-infra-deployment.client_secret))"
-#         required: true
+      # - name: "Azure credential"
+      #   description: "The azure credential containing subscription_id, tenant_id, client_id, client_secret"
+      #   key: azure_cred
+      #   widget: cy_cred
+      #   widget_config:
+      #     full_cred: false
+      #     cred_types:
+      #       - azure
+      #   type: string
+      #   default: "((azure_step-by-step))"
 #       - name: "Azure location"
 #         description: "Azure location for Terraform."
 #         key: azure_location

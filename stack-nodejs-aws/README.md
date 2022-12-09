@@ -1,4 +1,4 @@
-# stack-nodejs
+# stack-nodejs-aws
 
 Build and deploy a Node.js web application on an AWS EC2 instance.
 
