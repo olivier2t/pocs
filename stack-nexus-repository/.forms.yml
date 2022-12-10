@@ -1,0 +1,741 @@
+---
+version: "2"
+use_cases:
+- name: cycloid-common
+  sections:
+  - name: Git Repositories
+    groups:
+    - name: Stack Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "SSH key"
+        description: "SSH key pair to fetch the stack Git repository."
+        key: stack_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+    - name: Config Git Repository
+      technologies: [pipeline]
+      vars:
+      - name: "SSH key"
+        description: "SSH key pair to fetch the config Git repository."
+        key: config_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((git.ssh_key))"
+        required: true
+  - name: Cycloid Platform
+    groups:
+    - name: Cycloid API
+      technologies: [pipeline]
+      vars:
+      - name: "Cycloid API URL"
+        description: "Cycloid API URL. Leave the default value unless your are running an on premises Cycloid platform."
+        key: cycloid_api_url
+        widget: simple_text
+        type: string
+        default: "https://http-api.cycloid.io"
+        required: true
+      - name: "Cycloid API key"
+        description: "API key to grant access to Cycloid API."
+        key: cycloid_api_key
+        widget: cy_cred
+        type: string
+        default: "((api-key-admin.key))"
+        required: true
+
+
+- name: aws
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Instance type"
+        description: "Instance type for the Nexus Repository."
+        key: vm_instance_type
+        widget: slider_list
+        type: string
+        default: "t3a.medium"
+        values:
+            - "t3a.medium"
+            - "t3a.large"
+            - "t3a.xlarge"
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 20
+            - 250
+        required: true
+    - name: SSH Keypair to access new instances
+      technologies: [pipeline]
+      vars:
+      - name: "Keypair"
+        description: "The  SSH keypair containing ssh_prv and ssh_pub to connect via SSH to execute the Ansible playbook"
+        key: keypair
+        widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - ssh
+        type: string
+        default: "((keypair))"
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+      - name: "Admin password"
+        description: "Initial admin password for Nexus Repository first installation."
+        key: nexus_admin_password
+        widget: simple_text
+        type: string
+        default: "changeme"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
+        key: aws_cred
+        widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+
+
+- name: azure
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Custom Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Customize Infrastructure"
+        description: "Whether to customize virtual machine specifications."
+        key: vm_custom
+        widget: switch
+        type: boolean
+        default: false
+        required: true
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Instance type"
+        description: "Instance type for the Nexus Repository."
+        key: vm_instance_type
+        widget: slider_list
+        type: string
+        default: "Standard_DS2_v2"
+        values:
+            - "Standard_DS1_v2"
+            - "Standard_DS2_v2"
+            - "Standard_DS3_v2"
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 30
+        values:
+            - 30
+            - 250
+        required: true
+    - name: Instance Operations
+      technologies: [pipeline]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Instance status"
+        description: "Instance status for the Nexus Repository."
+        key: vm_instance_status
+        widget: dropdown
+        type: string
+        default: "Running"
+        values:
+            - "Running"
+            - "Stopped"
+        required: true
+    - name: SSH Keypair to access new instances
+      technologies: [pipeline]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Keypair public"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        required: true
+        default: "((keypair.ssh_pub))"
+        required: true
+      - name: "Keypair private"
+        description: "The private SSH key allowing ansible to run playbooks in the Nexus Repository instance via bastion."
+        key: keypair_private
+        widget: cy_cred
+        type: string
+        default: "((keypair.ssh_prv))"
+        required: true
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+      - name: "Admin password"
+        description: "Initial admin password for Nexus Repository first installation."
+        key: nexus_admin_password
+        widget: simple_text
+        type: string
+        default: "changeme"
+        required: true
+
+  - name: Azure Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((azure-infra-deployment.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((azure-infra-deployment.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((azure-infra-deployment.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((azure-infra-deployment.client_secret))"
+        required: true
+      - name: "Azure location"
+        description: "Azure location for Terraform."
+        key: azure_location
+        widget: auto_complete
+        type: string
+        values: ["West Europe","North Europe","France Central","France South","East US","West US","East Asia","Southeast Asia","South Africa North","South Africa West","Australia Central","China East","China North"]
+        default: "West Europe"
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform Azure Resource Group"
+        description: "Azure Resource Group of the Storage Account to use to store terraform remote state file."
+        key: terraform_resource_group_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform
+        required: true
+      - name: "Terraform Azure Storage Account name"
+        description: "Azure Storage Account name to use to store terraform remote state file."
+        key: terraform_storage_account_name
+        widget: cy_cred
+        type: string
+        default: ((azure-tfstate.account_name))
+        required: true
+      - name: "Terraform Azure Storage Account key"
+        description: "Azure Storage Account key to use to store terraform remote state file."
+        key: terraform_storage_access_key
+        widget: cy_cred
+        type: string
+        default: ((azure-tfstate.access_key))
+        required: true
+      - name: "Terraform Azure Storage container name"
+        description: "Azure Storage container name to store terraform remote state file."
+        key: terraform_storage_container_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)
+        required: true
+      - name: "Terraform Azure Storage container path"
+        description: "Azure Storage container path to store terraform remote state file."
+        key: terraform_storage_container_path
+        widget: simple_text
+        type: string
+        default: ($ project $)/($ environment $)
+        required: true
+    - name: Azure Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Resource group name"
+        description: "The name of the existing resource group where the resources will be deployed."
+        key: rg_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+
+
+- name: gcp
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Custom Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Customize Infrastructure"
+        description: "Whether to customize virtual machine specifications."
+        key: vm_custom
+        widget: switch
+        type: boolean
+        default: false
+        required: true
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Machine type"
+        description: "Machine type for the Nexus Repository."
+        key: vm_machine_type
+        widget: slider_list
+        type: string
+        default: "n2-standard-2"
+        values:
+            - n1-standard-2
+            - n2-standard-2
+            - n2d-standard-2
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 10
+            - 250
+        required: true
+    - name: SSH Keypair to access new instances
+      technologies: [pipeline]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Keypair public"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        required: true
+        default: "((keypair.ssh_pub))"
+        required: true
+      - name: "Keypair private"
+        description: "The private SSH key allowing ansible to run playbooks in the Nexus Repository instance via bastion."
+        key: keypair_private
+        widget: cy_cred
+        type: string
+        default: "((keypair.ssh_prv))"
+        required: true
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+      - name: "Admin password"
+        description: "Initial admin password for Nexus Repository first installation."
+        key: nexus_admin_password
+        widget: simple_text
+        type: string
+        default: "changeme"
+        required: true
+
+  - name: GCP Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "GCP project"
+        description: "Google Cloud Platform project ID for Terraform."
+        key: gcp_project
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "GCP region"
+        description: "Google Cloud Platform region to use for Terraform."
+        key: gcp_region
+        widget: auto_complete
+        type: string
+        default: "europe-west1"
+        values:
+            - europe-west1
+            - europe-west2
+            - europe-west3
+            - europe-north1
+            - europe-north2
+            - northamerica-northeast1
+            - northamerica-northeast2
+        required: true
+      - name: "GCP credentials"
+        description: "Google Cloud Platform JSON credentials to use for Terraform."
+        key: gcp_credentials_json
+        widget: cy_cred
+        type: string
+        default: "((gcp.json_key))"
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform storage bucket"
+        description: "GCP bucket name to store terraform remote state file."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
+    - name: Networking Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "VPC name"
+        description: "The name for the VPC network to create where the Nexus Repository instance will be deployed."
+        key: vpc_name
+        widget: simple_text
+        type: string
+        default: "cycloid-get-started"
+        required: true
+
+
+- name: eks-helm
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Pod specifications
+      technologies: [terraform]
+      vars:
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 10
+            - 250
+        required: true
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Cloud Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+    - name: EKS Kubernetes Cluster Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Cluster Name"
+        description: "Cluster name where to deploy the workload. The Kubernetes cluster shall exist or be created beforehand."
+        key: eks_cluster_name
+        widget: simple_text
+        type: string
+        default: default
+        required: true
+      - name: "Namespace"
+        description: "Namespace where to deploy the workload. The Namespace will be created."
+        key: eks_namespace
+        widget: simple_text
+        type: string
+        default: nexus
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform Remote State File S3 bucket name"
+        description: "AWS S3 bucket name to store terraform remote state file. The S3 bucket shall exist or be created beforehand."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
+
+
+- name: vmware
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Custom Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Customize Infrastructure"
+        description: "Whether to customize virtual machine specifications."
+        key: vm_custom
+        widget: switch
+        type: boolean
+        default: false
+        required: true
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      condition: "vm_custom==true"
+      vars:
+      - name: "vCPU"
+        unit: vCPU
+        description: "Number of vCPU allocated to the virtual machine."
+        key: vm_cpu
+        widget: slider_range
+        type: integer
+        default: 2
+        values:
+            - 1
+            - 4
+        required: true
+      - name: "Memory"
+        unit: Mo
+        description: "Memory allocated to the virtual machine."
+        key: vm_memory
+        widget: slider_list
+        type: integer
+        default: 2048
+        values:
+            - 1024
+            - 2048
+            - 4096
+        required: true
+      - name: "Disk"
+        unit: Go
+        description: "Disk size allocated to the virtual machine."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 16
+            - 200
+        required: true
+      - name: "Operating System"
+        description: "Virtual Machine template name to clone."
+        key: vsphere_template
+        widget: auto_complete
+        type: string
+        values: ["debian-9","ubuntu"]
+        default: "debian-9"
+        required: true
+      - name: "Network"
+        description: "Network where the virtual machine will be located."
+        key: vsphere_network
+        widget: simple_text
+        default: "VM Network"
+        type: string
+        required: true
+      - name: "IP Address"
+        description: "IP address to assign to the virtual machine network interface. You can also integrate Cycloid with an IP Address Management tool."
+        key: vm_ip
+        widget: simple_text
+        default: "212.129.18.92"
+        type: string
+        required: true
+      - name: "MAC Address"
+        description: "MAC address to assign to the virtual machine network interface. You can also integrate Cycloid with a MAC Address Management tool."
+        key: vm_mac
+        widget: simple_text
+        default: "00:50:56:01:f1:96"
+        type: string
+        required: true
+    - name: SSH connection to new instances
+      technologies: [pipeline]
+      condition: "vm_custom==true"
+      vars:
+      - name: "Keypair public"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        required: true
+        default: "((keypair.ssh_pub))"
+        required: true
+      - name: "Keypair private"
+        description: "The private SSH key allowing ansible to run playbooks in the Nexus Repository instance via bastion."
+        key: keypair_private
+        widget: cy_cred
+        type: string
+        default: "((keypair.ssh_prv))"
+        required: true
+    - name: Application Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+      - name: "Admin password"
+        description: "Initial admin password for Nexus Repository first installation."
+        key: nexus_admin_password
+        widget: simple_text
+        type: string
+        default: "changeme"
+        required: true
+
+  - name: VMware Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "vCenter server"
+        description: "vCenter server for Terraform."
+        key: vsphere_server
+        widget: simple_text
+        type: string
+        default: "212.83.169.2"
+        required: true
+      - name: "vCenter admin username"
+        description: "vCenter admin username for Terraform."
+        key: vsphere_user
+        widget: cy_cred
+        type: string
+        default: "((basic_auth_vsphere.username))"
+        required: true
+      - name: "vCenter admin password"
+        description: "vCenter admin password for Terraform."
+        key: vsphere_password
+        widget: cy_cred
+        type: string
+        default: "((basic_auth_vsphere.password))"
+        required: true
+    - name: Deployment Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Datacenter"
+        description: "Datacenter where to create the virtual machine."
+        key: vsphere_datacenter
+        widget: auto_complete
+        type: string
+        values: ["dc1","dc2"]
+        default: "dc1"
+        required: true
+      - name: "Datastore"
+        description: "Datastore where to create the virtual machine."
+        key: vsphere_datastore
+        widget: auto_complete
+        type: string
+        values: ["datastore1","datastore2"]
+        default: "datastore1"
+        required: true
+      - name: "Cluster"
+        description: "Cluster where the virtual machine will be located."
+        key: vsphere_cluster
+        widget: simple_text
+        default: "cluster1"
+        type: string
+        required: true
+
+  - name: Terraform remote state file
+    groups:
+    - name: Storage Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.access_key))"
+        required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws_cycloid-demo.secret_key))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+    - name: Terraform remote state file
+      technologies: [pipeline]
+      vars:
+      - name: "Terraform Remote State File S3 bucket name"
+        description: "AWS S3 bucket name to store terraform remote state file. The S3 bucket shall exist or be created beforehand."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+        required: true
