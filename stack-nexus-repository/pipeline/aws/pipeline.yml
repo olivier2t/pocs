@@ -36,14 +36,12 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
+      aws_cred: ((aws_cred))
+      aws_region: ((aws_region))
       customer: ((customer))
       project: ((project))
       env: ((env))
       keypair: ((keypair))
-    env:
-      AWS_ACCESS_KEY_ID: ((aws_cred.access_key))
-      AWS_SECRET_ACCESS_KEY: ((aws_cred.secret_key))
-      AWS_DEFAULT_REGION: ((aws_region))
 
 # The Terraform stack (will be merged with the config)
 - name: git_stack-terraform
