@@ -85,7 +85,7 @@ use_cases:
         widget_config:
           full_cred: false
           cred_types:
-            - ssh
+            - custom
         type: string
         default: "((keypair))"
     - name: Application Configuration
