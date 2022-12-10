@@ -38,7 +38,7 @@ config:
     # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
     terraform:
       main:
-        path: 'terraform/aws/main.tf.sample'
+        path: 'terraform/aws/main.tf'
         destination: '($ project $)/terraform/aws/($ environment $)/main.tf'
 
   azure:
@@ -60,7 +60,7 @@ config:
     # Configuration of terraform
     terraform:
       main:
-        path: 'terraform/azure/main.tf.sample'
+        path: 'terraform/azure/main.tf'
         destination: '($ project $)/terraform/azure/($ environment $)/main.tf'
 
   gcp:
@@ -82,7 +82,7 @@ config:
     # Configuration of terraform
     terraform:
       main:
-        path: 'terraform/gcp/main.tf.sample'
+        path: 'terraform/gcp/main.tf'
         destination: '($ project $)/terraform/gcp/($ environment $)/main.tf'
 
   eks-helm:
@@ -99,7 +99,7 @@ config:
     # Configuration of terraform
     terraform:
       main:
-        path: 'terraform/eks-helm/main.tf.sample'
+        path: 'terraform/eks-helm/main.tf'
         destination: '($ project $)/terraform/eks-helm/($ environment $)/main.tf'
 
   vmware:
@@ -121,5 +121,5 @@ config:
     # Configuration of terraform
     terraform:
       main:
-        path: 'terraform/vmware/main.tf.sample'
+        path: 'terraform/vmware/main.tf'
         destination: '($ project $)/terraform/vmware/($ environment $)/main.tf'
