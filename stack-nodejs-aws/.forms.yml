@@ -82,7 +82,7 @@ use_cases:
         key: aws_cred
         widget: cy_cred
         widget_config:
-          full_cred: false
+          full_cred: true
           cred_types:
             - aws
         type: string
