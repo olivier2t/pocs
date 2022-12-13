@@ -26,9 +26,9 @@ module "webapp" {
   # Instance
   #
 
-  #. vm_instance_type: 't3.micro'
-  #+ Instance type for the VM
-  vm_instance_type = "Value injected by StackForms"
+  #. vm_instance_type: 'n2-standard-2'
+  #+ Machine type for the VM
+  vm_machine_type = "Value injected by StackForms"
 
   #. vm_disk_size: 20
   #+ Disk size for the VM (Go)

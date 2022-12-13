@@ -10,9 +10,9 @@ variable "git_app_url" {
 }
 
 # Infra
-variable "vm_instance_type" {
-  description = "Instance type to deploy."
-  default     = "t3a.small"
+variable "vm_machine_type" {
+  description = "Machine type for the Nexus Repository"
+  default     = "n2-standard-2"
 }
 
 variable "vm_disk_size" {

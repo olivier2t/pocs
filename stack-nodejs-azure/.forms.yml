@@ -13,11 +13,11 @@ use_cases:
         key: vm_instance_type
         widget: slider_list
         type: string
-        default: "t3a.small"
+        default: "Standard_DS2_v2"
         values:
-            - "t3a.small"
-            - "t3a.medium"
-            - "t3a.large"
+            - "Standard_DS1_v2"
+            - "Standard_DS2_v2"
+            - "Standard_DS3_v2"
         required: true
       - name: "Disk size"
         unit: Go
@@ -25,11 +25,12 @@ use_cases:
         key: vm_disk_size
         widget: slider_range
         type: integer
-        default: 20
+        default: 30
         values:
-            - 20
+            - 30
             - 250
         required: true
+
     - name: NodeJS Application
       technologies: [terraform]
       vars:
@@ -74,26 +75,49 @@ use_cases:
   #       default: "((cycloid-api-key.key))"
   #       required: true
 
-  - name: AWS Cloud Provider
+  - name: Azure Cloud Provider
     groups:
     - name: Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "AWS account"
-        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
-        key: aws_cred
+      - name: "Azure credentials"
+        description: "The azure credential used to deploy the infrastructure. It contains subscription_id, tenant_id, client_id, and client_secret."
+        key: azure_cred
         widget: cy_cred
         widget_config:
-          full_cred: true
+          full_cred: false
           cred_types:
-            - aws
+            - azure
         type: string
-        default: "((aws))"
-      - name: "Amazon AWS region"
-        description: "Amazon AWS region to use for Terraform."
-        key: aws_region
+        default: "((azure))"
+      - name: "Azure location"
+        description: "Azure location for Terraform."
+        key: azure_location
         widget: auto_complete
         type: string
-        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
-        default: eu-west-1
+        values:
+            - Australia Central
+            - China East
+            - China North
+            - East Asia
+            - East US
+            - France Central
+            - France South
+            - North Europe
+            - Southeast Asia
+            - South Africa North
+            - South Africa West
+            - West Europe
+            - West US
+        default: "West Europe"
+        required: true
+    - name: Azure Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Existing resource group name"
+        description: "The name of the existing resource group where the resources will be deployed."
+        key: rg_name
+        widget: simple_text
+        type: string
+        default: ""
         required: true

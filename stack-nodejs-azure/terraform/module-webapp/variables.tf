@@ -12,12 +12,12 @@ variable "git_app_url" {
 # Infra
 variable "vm_instance_type" {
   description = "Instance type to deploy."
-  default     = "t3a.small"
+  default     = "Standard_DS2_v2"
 }
 
 variable "vm_disk_size" {
   description = "Disk size for the instance (Go)"
-  default = "20"
+  default = "30"
 }
 
 variable "vm_os_user" {
@@ -28,6 +28,17 @@ variable "vm_os_user" {
 variable "keypair_public" {
   description = "Public key to provision to the instance"
   default = ""
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the existing resource group where the resources will be deployed."
+  default     = ""
+}
+
+variable "azure_location" {
+  description = "Azure location"
+  default = "West Europe"
 }
 
 # Tags

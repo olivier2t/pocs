@@ -1,9 +1,17 @@
 #
-# VPC outputs
+# Resource Group outputs
 #
-output "vpc_id" {
-  description = "The VPC ID for the VPC"
-  value       = module.webapp.vpc_id
+output "rg_name" {
+  description = "The name for the Resource Group"
+  value       = module.webapp.rg_name
+}
+
+#
+# vNet outputs
+#
+output "vnet_name" {
+  description = "The name for the virtual network"
+  value       = module.webapp.vnet_name
 }
 
 #

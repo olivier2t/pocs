@@ -26,16 +26,24 @@ module "webapp" {
   # Instance
   #
 
-  #. vm_instance_type: 't3.micro'
+  #. vm_instance_type: 'Standard_DS2_v2'
   #+ Instance type for the VM
   vm_instance_type = "Value injected by StackForms"
 
-  #. vm_disk_size: 20
+  #. vm_disk_size: 30
   #+ Disk size for the VM (Go)
   vm_disk_size = "Value injected by StackForms"
+
+  #. rg_name: ''
+  #+ The name of the existing resource group where the resources will be deployed
+  rg_name = "Value injected by StackForms"
 
   #. keypair_public: ''
   #+ Public key to provision to the instance
   keypair_public = var.keypair_public
+
+  #. azure_location: "West Europe"
+  #+ Azure location
+  azure_location = var.azure_location
 
 }
