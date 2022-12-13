@@ -36,6 +36,6 @@ module "webapp" {
 
   #. keypair_public: ''
   #+ Public key to provision to the instance
-  keypair_public = var.keypair_public
+  keypair_public = "Value injected by StackForms"
 
 }

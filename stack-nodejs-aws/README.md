@@ -3,8 +3,8 @@
 Build and deploy a Node.js web application on an AWS EC2 instance.
 
 This stack will:
-  * Create a vpc.
-  * Create an EC2 instance and deploy the Web application.
+  * Create a VPC and subnets.
+  * Create an EC2 instance and deploy the Web application via cloud-init.
 
 # Details
 
