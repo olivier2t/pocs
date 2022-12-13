@@ -21,8 +21,8 @@ variable "vm_disk_size" {
 }
 
 variable "vm_os_user" {
-  description = "Admin username to connect to instance via SSH. Set to 'admin' because we use debian OS."
-  default     = "admin"
+  description = "Admin username to connect to instance via SSH. 'admin' is not allowed by Azure."
+  default     = "cycloid"
 }
 
 variable "keypair_public" {
