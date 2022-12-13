@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo apt update
-sudo apt install git nodejs npm -y
+sudo apt-get update
+sudo apt-get install git nodejs npm -y
 cd /tmp
 git clone ${git_app_url} webapp
 cd webapp
@@ -9,7 +9,7 @@ sudo npm install
 sudo npm run build
 sudo mkdir /var/www/
 sudo mv build/ /var/www/
-sudo apt install nginx -y
+sudo apt-get install nginx -y
 sudo cat << EOF >/etc/nginx/sites-enabled/default
 server {
     listen 0.0.0.0:80;
