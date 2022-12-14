@@ -41,17 +41,18 @@ resource "google_compute_instance" "webapp" {
     }
   }
 
+  metadata = {
+    sshKeys = "${var.vm_os_user}:${var.keypair_public}"
+  }
+
+  metadata_startup_script = templatefile(
+    "${path.module}/userdata.sh.tpl",
+    {
+      git_app_url = var.git_app_url
+    }
+  )
+
   labels = merge(local.merged_tags, {
     role       = "webapp"
   })
-
-  metadata = {
-    sshKeys = "${var.vm_os_user}:${var.keypair_public}"
-    user-data = templatefile(
-      "${path.module}/userdata.sh.tpl",
-      {
-        git_app_url = var.git_app_url
-      }
-    )
-  }
 }
