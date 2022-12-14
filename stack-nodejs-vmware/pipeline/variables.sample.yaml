@@ -2,32 +2,11 @@
 # Cloud Provider
 #
 
-# GCP access to use to run terraform. Usually admin account to be able to create cloud services.
+# VMware vSphere access to use to run terraform. Usually admin account to be able to create cloud services.
 
-#. gcp_credentials_json (required): ((gcp.json_key))
-#+ Google Cloud Platform JSON credentials to use for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-gcp_credentials_json: ((gcp.json_key))
-
-#. gcp_project (required): ""
-#+ Google Cloud Platform project ID for Terraform.
-gcp_project: ""
-
-#. gcp_region (required): "europe-west1"
-#+ Google Cloud Platform region to use for Terraform.
-gcp_region: "europe-west1"
-
-#. gcp_zone (required): "b"
-#+ Google Cloud Platform zone to use for Terraform.
-gcp_zone: "b"
-
-
-#
-# Keypair to use for newly created instances
-#
-
-#. keypair_public (required): ((custom_keypair.ssh_pub))
-#+ The public SSH key to provision for external access through SSH
-keypair_public: ((custom_keypair.ssh_pub))
+#. vsphere_cred (required): ((vsphere))
+#+ VMware vSphere credentials containing server, user and password for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+vsphere_cred: ((vsphere))
 
 
 #
@@ -46,9 +25,9 @@ stack_git_branch: ($ scs_branch $)
 #+ SSH key pair to fetch the stack Git repository.
 stack_git_private_key: ((git.ssh_key))
 
-#. stack_terraform_path (required): stack-nodejs-gcp/terraform
+#. stack_terraform_path (required): stack-nodejs-aws/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-nodejs-gcp/terraform
+stack_terraform_path: stack-nodejs-aws/terraform
 
 
 #

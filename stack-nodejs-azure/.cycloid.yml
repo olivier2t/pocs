@@ -1,5 +1,5 @@
 version: "2"
-name: NodeJS App on Azure
+name: NodeJS WebApp on Azure
 canonical: stack-nodejs-azure
 status: private
 author: Cycloid

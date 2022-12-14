@@ -84,7 +84,7 @@ use_cases:
         key: gcp_credentials_json
         widget: cy_cred
         widget_config:
-          full_cred: true
+          full_cred: false
           cred_types:
             - gcp
         type: string

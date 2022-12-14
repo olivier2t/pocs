@@ -1,10 +1,10 @@
 version: "2"
-name: NodeJS WebApp on AWS
-canonical: stack-nodejs-aws
+name: NodeJS WebApp on VMware
+canonical: stack-nodejs-vmware
 status: private
 author: Cycloid
 description: |
-  Build and deploy a Node.js web application on an AWS EC2 instance.
+  Build and deploy a Node.js web application on a VMware Virtual Machine.
 image: |
   https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/node.svg
 keywords:
@@ -13,7 +13,7 @@ keywords:
   - webapp
   - nodejs
   - nginx
-  - provider:aws
+  - provider:vmware
 technologies:
   - technology: nodejs
     version: "n/a"
@@ -24,7 +24,7 @@ config:
   default:
     name: 'Default'
     description: 'Build and deploy a Node.js web application'
-    cloud_provider: aws
+    cloud_provider: vmware
     # Pipeline and variable configuration for the default CD pipeline use case
     pipeline:
       pipeline:
