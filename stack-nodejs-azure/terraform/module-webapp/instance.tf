@@ -3,7 +3,7 @@ resource "azurerm_linux_virtual_machine" "webapp" {
   name                  = "${var.customer}-${var.project}-${var.env}-webapp"
   computer_name         = "webapp"
   resource_group_name   = data.azurerm_resource_group.webapp.name
-  location              = data.azurerm_resource_group.webapp.location
+  location              = var.azure_location
   network_interface_ids = [azurerm_network_interface.webapp.id]
   size                  = var.vm_instance_type
   admin_username        = var.vm_os_user

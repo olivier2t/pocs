@@ -2,7 +2,7 @@
 resource "azurerm_network_security_group" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
-  location            = data.azurerm_resource_group.webapp.location
+  location            = var.azure_location
 
   security_rule {
     name                       = "inbound-ssh"
@@ -37,7 +37,7 @@ resource "azurerm_network_security_group" "webapp" {
 resource "azurerm_public_ip" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
-  location            = data.azurerm_resource_group.webapp.location
+  location            = var.azure_location
   allocation_method   = "Dynamic"
 
   tags = merge(local.merged_tags, {
@@ -49,7 +49,7 @@ resource "azurerm_public_ip" "webapp" {
 resource "azurerm_network_interface" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
-  location            = data.azurerm_resource_group.webapp.location
+  location            = var.azure_location
 
   ip_configuration {
       name                          = "${var.customer}-${var.project}-${var.env}-webapp"
@@ -72,7 +72,7 @@ resource "azurerm_network_interface_security_group_association" "webapp" {
 resource "azurerm_virtual_network" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
-  location            = data.azurerm_resource_group.webapp.location
+  location            = var.azure_location
   address_space       = ["10.0.0.0/16"]
 
   tags = merge(local.merged_tags, {
