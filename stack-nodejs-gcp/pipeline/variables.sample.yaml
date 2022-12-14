@@ -16,6 +16,10 @@ gcp_project: ""
 #+ Google Cloud Platform region to use for Terraform.
 gcp_region: "europe-west1"
 
+#. gcp_zone (required): "b"
+#+ Google Cloud Platform zone to use for Terraform.
+gcp_zone: "b"
+
 
 #
 # Keypair to use for newly created instances
