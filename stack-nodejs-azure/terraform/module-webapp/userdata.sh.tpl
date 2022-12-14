@@ -1,5 +1,5 @@
 #!/bin/bash
-while [ sudo apt-get update -y ]; do sleep 1; done
+until sudo apt-get update; do sleep 1; done
 sudo apt-get install git nodejs npm -y
 cd /tmp
 git clone ${git_app_url} webapp
