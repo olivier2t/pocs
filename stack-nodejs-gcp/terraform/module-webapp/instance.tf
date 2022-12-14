@@ -47,11 +47,11 @@ resource "google_compute_instance" "webapp" {
 
   metadata = {
     sshKeys = "${var.vm_os_user}:${var.keypair_public}"
-    user-data = base64encode(templatefile(
+    user-data = templatefile(
       "${path.module}/userdata.sh.tpl",
       {
         git_app_url = var.git_app_url
       }
-    ))
+    )
   }
 }
