@@ -5,8 +5,8 @@ cd /tmp
 git clone ${git_app_url} webapp
 cd webapp
 sed -i 's/"homepage": ".*"/"homepage": "."/g' package.json
-npm install
-npm run build
+sudo npm install
+sudo npm run build
 sudo mkdir /var/www/
 sudo mv build/ /var/www/
 until sudo apt-get install nginx -y; do sleep 1; done
