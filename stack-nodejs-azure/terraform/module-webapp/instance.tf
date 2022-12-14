@@ -1,7 +1,7 @@
 # Create webapp VM
 resource "azurerm_linux_virtual_machine" "webapp" {
   name                  = "${var.customer}-${var.project}-${var.env}-webapp"
-  computer_name         = "webapp"
+  computer_name         = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name   = data.azurerm_resource_group.webapp.name
   location              = var.azure_location
   network_interface_ids = [azurerm_network_interface.webapp.id]

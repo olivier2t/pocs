@@ -90,6 +90,9 @@ use_cases:
             - azure
         type: string
         default: "((azure))"
+    - name: Azure Infrastructure
+      technologies: [terraform]
+      vars:
       - name: "Azure location"
         description: "Azure location for Terraform."
         key: azure_location
@@ -111,9 +114,6 @@ use_cases:
             - West US
         default: "West Europe"
         required: true
-    - name: Azure Infrastructure
-      technologies: [terraform]
-      vars:
       - name: "Existing resource group name"
         description: "The name of the existing resource group where the resources will be deployed."
         key: rg_name

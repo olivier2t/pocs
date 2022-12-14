@@ -8,10 +8,6 @@
 #+ The azure credential used to deploy the infrastructure. It contains subscription_id, tenant_id, client_id, and client_secret. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
 azure_cred: ((azure))
 
-#. azure_location (required): "West Europe"
-#+ Azure location for Terraform.
-azure_location: "West Europe"
-
 
 #
 # Keypair to use for newly created instances

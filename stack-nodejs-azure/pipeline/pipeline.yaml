@@ -45,7 +45,6 @@ resources:
       address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
       azure_cred: ((azure_cred))
-      azure_location: ((azure_location))
       keypair_public: ((keypair_public))
       env: ((env))
       project: ((project))

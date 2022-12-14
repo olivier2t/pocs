@@ -38,12 +38,12 @@ module "webapp" {
   #+ The name of the existing resource group where the resources will be deployed
   rg_name = "Value injected by StackForms"
 
+  #. azure_location: "West Europe"
+  #+ Azure location
+  azure_location = "Value injected by StackForms"
+
   #. keypair_public: ''
   #+ Public key to provision to the instance
   keypair_public = var.keypair_public
-
-  #. azure_location: "West Europe"
-  #+ Azure location
-  azure_location = var.azure_location
 
 }
