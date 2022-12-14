@@ -15,7 +15,7 @@ use_cases:
         type: string
         default: "n2-standard-2"
         values:
-            - n1-standard-2
+            - e2-medium
             - n2-standard-2
             - n2d-standard-2
         required: true
