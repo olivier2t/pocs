@@ -8,28 +8,81 @@ use_cases:
     - name: Virtual machine specifications
       technologies: [terraform]
       vars:
-      - name: "Instance type"
-        description: "Instance type for the VM."
-        key: vm_instance_type
-        widget: slider_list
-        type: string
-        default: "t3a.small"
+      - name: "vCPU"
+        unit: vCPU
+        description: "Number of vCPU allocated to the virtual machine."
+        key: vm_cpu
+        widget: slider_range
+        type: integer
+        default: 2
         values:
-            - "t3a.small"
-            - "t3a.medium"
-            - "t3a.large"
+            - 1
+            - 4
         required: true
-      - name: "Disk size"
+        # CPU amount will be deducted from the team quota
+        quota_config:
+          type: "cpu"
+      - name: "Memory"
+        unit: Mo
+        description: "Memory allocated to the virtual machine."
+        key: vm_memory
+        widget: slider_list
+        type: integer
+        default: 2048
+        values:
+            - 1024
+            - 2048
+            - 4096
+        required: true
+        # Memory amount will be deducted from the team quota
+        quota_config:
+          type: "memory"
+      - name: "Disk"
         unit: Go
-        description: "Disk size for the VM."
+        description: "Disk size allocated to the virtual machine."
         key: vm_disk_size
         widget: slider_range
         type: integer
         default: 20
         values:
-            - 20
-            - 250
+            - 10
+            - 200
         required: true
+        # Storage amount will be deducted from the team quota
+        quota_config:
+          type: "storage"
+      - name: "Clone from VM or Template Name"
+        description: "Virtual Machine or Template name to clone from. The VM or template must already exist in your VMware datacenter."
+        key: vsphere_template
+        widget: auto_complete
+        type: string
+        values: ["debian","ubuntu","hardened debian"]
+        default: "debian"
+        required: true
+      - name: "IP Address"
+        description: "IP address to assign to the virtual machine network interface. You can also integrate Cycloid with an IP Address Management tool."
+        key: vm_ip
+        widget: simple_text
+        default: "212.129.18.92"
+        type: string
+        required: true
+      - name: "MAC Address"
+        description: "MAC address to assign to the virtual machine network interface. You can also integrate Cycloid with a MAC Address Management tool."
+        key: vm_mac
+        widget: simple_text
+        default: "00:50:56:01:f1:96"
+        type: string
+        required: true
+
+  # Uncomment if you want the user to be able to override the default values set in the terraform module
+  #     - name: "Network"
+  #       description: "Network where the virtual machine will be located."
+  #       key: vsphere_network
+  #       widget: simple_text
+  #       default: "VM Network"
+  #       type: string
+  #       required: true
+
     - name: NodeJS Application
       technologies: [terraform]
       vars:
@@ -41,16 +94,22 @@ use_cases:
         values: ["https://github.com/Rahul-Pandey7/react-image-compressor.git","https://github.com/arnab-datta/counter-app.git","https://github.com/Yog9/SnapShot.git","https://github.com/ahfarmer/calculator.git","https://github.com/ahfarmer/emoji-search.git"]
         default: "https://github.com/Yog9/SnapShot.git"
         required: true
-    - name: Security
+
+  - name: VMware Cloud Provider
+    groups:
+    - name: Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "Public SSH key"
-        description: "The public SSH key, for SSH access to newly-created instances."
-        key: keypair_public
+      - name: "vSphere Environment"
+        description: "The vSphere environment where to deploy the infrastructure. It contains server, user, password, datacenter, datastore and cluster."
+        key: vsphere_env
         widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - custom
         type: string
-        default: "((custom_keypair.ssh_pub))"
-        required: true
+        default: "((vsphere))"
 
   # Uncomment if you want the user to be able to override the default values set in the pipeline
   #
@@ -73,19 +132,3 @@ use_cases:
   #       type: string
   #       default: "((cycloid-api-key.key))"
   #       required: true
-
-  - name: VMware Cloud Provider
-    groups:
-    - name: Access Configuration
-      technologies: [pipeline]
-      vars:
-      - name: "vSphere account"
-        description: "The vSphere account where to deploy the infrastructure. It contains server, user and password."
-        key: vsphere_cred
-        widget: cy_cred
-        widget_config:
-          full_cred: false
-          cred_types:
-            - custom
-        type: string
-        default: "((vsphere))"

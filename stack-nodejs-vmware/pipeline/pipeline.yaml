@@ -44,7 +44,7 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
-      vsphere_cred: ((vsphere_cred))
+      vsphere_env: ((vsphere_env))
       env: ((env))
       project: ((project))
       customer: ((customer))

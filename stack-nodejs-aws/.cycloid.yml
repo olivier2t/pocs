@@ -16,9 +16,7 @@ keywords:
   - provider:aws
 technologies:
   - technology: nodejs
-    version: "n/a"
   - technology: nginx
-    version: "n/a"
 
 config:
   default:

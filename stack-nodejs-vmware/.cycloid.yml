@@ -16,9 +16,9 @@ keywords:
   - provider:vmware
 technologies:
   - technology: nodejs
-    version: "n/a"
   - technology: nginx
-    version: "n/a"
+  - technology: VMware vCenter
+    version: "7.x"
 
 config:
   default:

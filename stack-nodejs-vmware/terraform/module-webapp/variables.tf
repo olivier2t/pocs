@@ -27,27 +27,17 @@ variable "vsphere_cluster" {
   default     = "cluster1"
 }
 
-variable "vsphere_template" {
-  description = "Virtual machine template"
-  default     = "debian-9"
-}
-
 variable "vsphere_network" {
   description = "Network to connect the virtual machine to"
   default     = "VM Network"
 }
 
 #
-# Nexus Repository
+# VM
 #
-variable "vm_ip" {
-  description = "IP address of the virtual machine"
-  default     = "212.129.18.92"
-}
-
-variable "vm_mac" {
-  description = "MAC address of the virtual machine"
-  default     = "00:50:56:01:f1:96"
+variable "vsphere_template" {
+  description = "Virtual machine template"
+  default     = "debian-9"
 }
 
 variable "vm_cpu" {
@@ -63,4 +53,14 @@ variable "vm_memory" {
 variable "vm_disk_size" {
   description = "Disk size for the Nexus Repository (Go)"
   default = "20"
+}
+
+variable "vm_ip" {
+  description = "IP address of the virtual machine"
+  default     = "212.129.18.92"
+}
+
+variable "vm_mac" {
+  description = "MAC address of the virtual machine"
+  default     = "00:50:56:01:f1:96"
 }

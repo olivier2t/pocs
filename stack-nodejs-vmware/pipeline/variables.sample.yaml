@@ -4,9 +4,9 @@
 
 # VMware vSphere access to use to run terraform. Usually admin account to be able to create cloud services.
 
-#. vsphere_cred (required): ((vsphere))
-#+ VMware vSphere credentials containing server, user and password for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
-vsphere_cred: ((vsphere))
+#. vsphere_env (required): ((vsphere))
+#+ The vSphere environment where to deploy the infrastructure. It contains server, user, password, datacenter, datastore and cluster for Terraform. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+vsphere_env: ((vsphere))
 
 
 #

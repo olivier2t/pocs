@@ -4,7 +4,7 @@ variable "project" {}
 variable "customer" {}
 
 # vSphere variables
-variable "vsphere_cred" {}
+variable "vsphere_env" {}
 variable "vsphere_allow_unverified_ssl"{
     default = true
 }
