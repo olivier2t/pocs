@@ -2,7 +2,7 @@
 # Configuration of the Cycloid stack
 version: '2'
 name: 'Azure Storage Account'
-canonical: 'stack-azure-storage'
+canonical: 'stack-azure-storage-rtf-poc'
 description: This stack creates and manages an Azure Storage Account.
 author: 'Olivier de Turckheim'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/azure-storage.svg'
