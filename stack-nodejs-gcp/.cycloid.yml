@@ -1,6 +1,6 @@
 version: "2"
 name: NodeJS WebApp on GCP
-canonical: stack-nodejs-gcp
+canonical: stack-nodejs-gcp-poc
 status: private
 author: Cycloid
 description: |

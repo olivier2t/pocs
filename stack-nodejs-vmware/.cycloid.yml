@@ -1,6 +1,6 @@
 version: "2"
 name: NodeJS WebApp on VMware
-canonical: stack-nodejs-vmware
+canonical: stack-nodejs-vmware-poc
 status: private
 author: Cycloid
 description: |

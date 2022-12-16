@@ -1,6 +1,6 @@
 version: "2"
 name: NodeJS WebApp on AWS
-canonical: stack-nodejs-aws
+canonical: stack-nodejs-aws-poc
 status: private
 author: Cycloid
 description: |
