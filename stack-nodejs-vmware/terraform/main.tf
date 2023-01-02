@@ -22,15 +22,15 @@ module "webapp" {
 
   #. vsphere_datacenter (required,string): dc1
   #+ Datacenter where to create the virtual machine
-  vsphere_datacenter = var.vsphere_env['datacenter']
+  vsphere_datacenter = var.vsphere_env["datacenter"]
 
   #. vsphere_datastore (required,string): datastore1
   #+ Datastore where to create the virtual machine
-  vsphere_datastore = var.vsphere_env['datastore']
+  vsphere_datastore = var.vsphere_env["datastore"]
 
   #. vsphere_cluster (required,string): cluster1
   #+ Cluster where to create the virtual machine
-  vsphere_cluster = var.vsphere_env['cluster']
+  vsphere_cluster = var.vsphere_env["cluster"]
 
   #. vsphere_network (required,string): VM Network
   #+ Cluster where to create the virtual machine
