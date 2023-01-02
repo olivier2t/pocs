@@ -25,9 +25,9 @@ stack_git_branch: ($ scs_branch $)
 #+ SSH key pair to fetch the stack Git repository.
 stack_git_private_key: ((git.ssh_key))
 
-#. stack_terraform_path (required): stack-nodejs-aws/terraform
+#. stack_terraform_path (required): stack-nodejs-vmware/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-nodejs-aws/terraform
+stack_terraform_path: stack-nodejs-vmware/terraform
 
 
 #

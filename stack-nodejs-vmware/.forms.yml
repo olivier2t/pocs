@@ -105,7 +105,7 @@ use_cases:
         key: vsphere_env
         widget: cy_cred
         widget_config:
-          full_cred: false
+          display_keys: false
           cred_types:
             - custom
         type: string
