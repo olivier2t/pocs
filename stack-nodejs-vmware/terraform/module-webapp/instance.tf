@@ -1,5 +1,5 @@
 resource vsphere_virtual_machine "vm" {
-  name             = var.hostname
+  name             = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   datastore_id     = data.vsphere_datastore.datastore.id
 
@@ -36,7 +36,7 @@ resource vsphere_virtual_machine "vm" {
   # Using vApp Properties when using OVF/OVA templates
   vapp {
     properties ={
-      hostname = var.hostname
+      hostname = "${var.customer}-${var.project}-${var.env}-webapp"
       user-data = base64encode(templatefile(
         "${path.module}/userdata.sh.tpl",
         {
