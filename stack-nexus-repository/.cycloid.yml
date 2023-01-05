@@ -6,7 +6,7 @@ canonical: 'stack-nexus-repository'
 description: This stack deploys a Nexus Repository.
 author: 'Cycloid'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/nexus.png'
-status: 'public'
+status: 'private'
 keywords:
 - nexus
 - repository
