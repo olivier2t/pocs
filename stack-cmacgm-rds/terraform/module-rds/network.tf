@@ -8,8 +8,8 @@ module "vpc" {
   name = "${var.customer}-${var.project}-${var.env}-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = [data.aws_availability_zones.available.names[0]]
-  public_subnets  = ["10.0.101.0/24"]
+  azs            = data.aws_availability_zones.available.names
+  public_subnets = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 
   enable_nat_gateway   = false
   enable_vpn_gateway   = false
