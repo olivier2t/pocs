@@ -22,4 +22,5 @@ output "username" {
 output "password" {
   description = "The password of the RDS instance"
   value       = random_password.password.result
+  sensitive   = true
 }
