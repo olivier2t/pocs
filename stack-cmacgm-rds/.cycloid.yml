@@ -1,0 +1,32 @@
+version: "2"
+name: RDS service for CMA-CGM
+canonical: stack-cmacgm-rds
+status: private
+author: Cycloid
+description: |
+  Deploys an AWS RDS instance.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/rds.png
+keywords:
+  - database
+  - instance
+  - provider:aws
+technologies:
+  - technology: aws
+
+config:
+  default:
+    name: 'Default'
+    cloud_provider: aws
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

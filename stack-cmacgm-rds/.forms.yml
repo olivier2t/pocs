@@ -1,0 +1,87 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: RDS Instance
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "RDS Instance class"
+        description: "Instance class for the RDS service."
+        key: rds_instance_class
+        widget: slider_list
+        type: string
+        default: "db.t3.micro"
+        values:
+            - "db.t3.micro"
+            - "db.t3.small"
+            - "db.t3.medium"
+        required: true
+      - name: "Allocated Storage"
+        unit: Go
+        description: "Allocated storage for the RDS service."
+        key: rds_allocated_storage
+        widget: slider_range
+        type: integer
+        default: 5
+        values:
+            - 5
+            - 100
+        required: true
+      - name: "DB engine"
+        description: "Database engine for the RDS service."
+        key: rds_engine
+        widget: auto_complete
+        type: string
+        default: postgres
+        values:
+            - aurora
+            - aurora-mysql
+            - aurora-postgresql
+            - docdb
+            - mariadb
+            - mysql
+            - neptune
+            - oracle-ee
+            - oracle-se
+            - oracle-se1
+            - oracle-se2
+            - postgres
+            - sqlserver-ee
+            - sqlserver-ex
+            - sqlserver-se
+            - sqlserver-web
+        required: true
+      - name: "Username"
+        description: "Username to connect to the RDS instance."
+        key: rds_username
+        widget: text
+        type: string
+        default: "rds_user"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
+        key: aws_cred
+        widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
