@@ -4,7 +4,7 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-resource "aws_db_instance" "education" {
+resource "aws_db_instance" "rds" {
   identifier             = "${var.customer}-${var.project}-${var.env}-rds"
   instance_class         = var.rds_instance_class
   allocated_storage      = var.rds_allocated_storage
