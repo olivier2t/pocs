@@ -41,7 +41,7 @@ use_cases:
       - name: "Username"
         description: "Username to connect to the RDS instance."
         key: rds_username
-        widget: text
+        widget: simple_text
         type: string
         default: "rds_user"
         required: true
