@@ -36,23 +36,7 @@ use_cases:
         widget: auto_complete
         type: string
         default: postgres
-        values:
-            - aurora
-            - aurora-mysql
-            - aurora-postgresql
-            - docdb
-            - mariadb
-            - mysql
-            - neptune
-            - oracle-ee
-            - oracle-se
-            - oracle-se1
-            - oracle-se2
-            - postgres
-            - sqlserver-ee
-            - sqlserver-ex
-            - sqlserver-se
-            - sqlserver-web
+        values: ["aurora","aurora-mysql","aurora-postgresql","mariadb","mysql","neptune","postgres","sqlserver-ee","sqlserver-ex","sqlserver-se","sqlserver-web"]
         required: true
       - name: "Username"
         description: "Username to connect to the RDS instance."
