@@ -1,0 +1,64 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: PostgreSQL Instance
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Admin Username"
+        description: "The Administrator login for the PostgreSQL Server."
+        key: administrator_login
+        widget: simple_text
+        type: string
+        default: "psqladmin"
+        required: true
+
+  - name: Azure Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "Azure credentials"
+        description: "The azure credential used to deploy the infrastructure. It contains subscription_id, tenant_id, client_id, and client_secret."
+        key: azure_cred
+        widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - azure
+        type: string
+        default: "((azure))"
+    - name: Azure Infrastructure
+      technologies: [terraform]
+      vars:
+      - name: "Azure location"
+        description: "Azure location for Terraform."
+        key: azure_location
+        widget: auto_complete
+        type: string
+        values:
+            - Australia Central
+            - China East
+            - China North
+            - East Asia
+            - East US
+            - France Central
+            - France South
+            - North Europe
+            - Southeast Asia
+            - South Africa North
+            - South Africa West
+            - West Europe
+            - West US
+        default: "West Europe"
+        required: true
+      - name: "Existing resource group name"
+        description: "The name of the existing resource group where the resources will be deployed."
+        key: rg_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true

@@ -1,0 +1,32 @@
+version: "2"
+name: PostgreSQL on Azure
+canonical: stack-azure-postgresql
+status: private
+author: Cycloid
+description: |
+  Manages a PostgreSQL Server on Azure.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/postgresql-azure.png
+keywords:
+  - database
+  - postgresql
+  - provider:azure
+technologies:
+  - technology: postgresql
+
+config:
+  default:
+    name: 'Default'
+    cloud_provider: azurerm
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
