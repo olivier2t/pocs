@@ -1,7 +1,7 @@
 resource "azurerm_postgresql_server" "pgsql" {
   name                = "${var.customer}-${var.project}-${var.env}-pgsql"
   location            = var.azure_location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = data.azurerm_resource_group.rg.name
 
   administrator_login          = var.administrator_login
   administrator_login_password = random_password.password.result
