@@ -6,7 +6,7 @@ resource "azurerm_postgresql_server" "pgsql" {
   administrator_login          = var.administrator_login
   administrator_login_password = random_password.password.result
 
-  sku_name   = "B_Gen4_1"
+  sku_name   = "B_Gen5_1"
   version    = "11"
   storage_mb = 10240
 
