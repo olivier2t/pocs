@@ -17,4 +17,5 @@ output "administrator_login" {
 output "administrator_password" {
   description = "The Administrator password for the PostgreSQL Server"
   value       = module.pgsql.administrator_password
+  sensitive = true
 }
