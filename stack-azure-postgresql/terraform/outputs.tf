@@ -9,6 +9,11 @@ output "rg_name" {
 #
 # PostgreSQL outputs
 #
+output "fqdn" {
+  description = "The PostgreSQL Server FQDN"
+  value       = module.pgsql.fqdn
+}
+
 output "administrator_login" {
   description = "The Administrator login for the PostgreSQL Server"
   value       = module.pgsql.administrator_login
