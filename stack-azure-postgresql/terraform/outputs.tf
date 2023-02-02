@@ -16,5 +16,5 @@ output "administrator_login" {
 
 output "administrator_password" {
   description = "The Administrator password for the PostgreSQL Server"
-  value       = nonsensitive(module.pgsql.administrator_password)
+  value       = module.pgsql.administrator_password
 }
