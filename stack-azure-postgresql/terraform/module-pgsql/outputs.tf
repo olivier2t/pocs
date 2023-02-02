@@ -16,6 +16,5 @@ output "administrator_login" {
 
 output "administrator_password" {
   description = "The Administrator password for the PostgreSQL Server"
-  value       = random_password.password.result
-  sensitive = true
+  value       = nonsensitive(random_password.password.result)
 }
