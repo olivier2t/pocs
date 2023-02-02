@@ -8,7 +8,7 @@ resource "azurerm_postgresql_server" "pgsql" {
 
   sku_name   = "B_Gen4_1"
   version    = "11"
-  storage_mb = 10000
+  storage_mb = 10240
 
   backup_retention_days        = 7
   geo_redundant_backup_enabled = false
