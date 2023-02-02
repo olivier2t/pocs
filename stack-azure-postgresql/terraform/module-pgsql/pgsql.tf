@@ -1,12 +1,6 @@
-resource "random_password" "password" {
-  length = 16
-  special = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
-}
-
-resource "azurerm_postgresql_server" "example" {
+resource "azurerm_postgresql_server" "pgsql" {
   name                = "${var.customer}-${var.project}-${var.env}-pgsql"
-  location            = azurerm_resource_group.rg.location
+  location            = var.azure_location
   resource_group_name = azurerm_resource_group.rg.name
 
   administrator_login          = var.administrator_login

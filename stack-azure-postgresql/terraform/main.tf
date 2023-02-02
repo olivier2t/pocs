@@ -1,7 +1,7 @@
-module "azure-postgresql" {
+module "pgsql" {
   #####################################
   # Do not modify the following lines #
-  source   = "./module-azure-postgresql"
+  source   = "./module-pgsql"
   project  = var.project
   env      = var.env
   customer = var.customer
@@ -13,6 +13,14 @@ module "azure-postgresql" {
     demo = true
     monitoring_discovery = false
   }
+
+  #. azure_location: "West Europe"
+  #+ Azure location
+  azure_location = "Value injected by StackForms"
+
+  #. rg_name: ''
+  #+ The name of the existing resource group where the resources will be deployed
+  rg_name = "Value injected by StackForms"
 
   #. administrator_login: 'psqladmin'
   #+ The Administrator login for the PostgreSQL Server

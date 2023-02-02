@@ -3,7 +3,7 @@
 #
 output "rg_name" {
   description = "The name for the Resource Group"
-  value       = module.pgsql.rg_name
+  value       = data.azurerm_resource_group.webapp.name
 }
 
 #
@@ -16,5 +16,5 @@ output "administrator_login" {
 
 output "administrator_password" {
   description = "The Administrator password for the PostgreSQL Server"
-  value       = module.pgsql.administrator_password
+  value       = random_password.password.result
 }
