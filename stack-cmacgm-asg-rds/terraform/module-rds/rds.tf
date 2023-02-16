@@ -17,40 +17,53 @@ resource "aws_security_group" "pgsql" {
   }
 }
 
-module "rds" {
-  source  = "terraform-aws-modules/rds-aurora/aws"
 
-  name              = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
-  engine            = var.rds_engine
-  engine_version    = var.rds_engine_version
-
-  vpc_id                  = var.vpc_id
-  subnets                 = var.vpc_private_subnets
-  publicly_accessible     = true
-  allowed_security_groups = [aws_security_group.pgsql.id]
-
-  master_username        = var.rds_username
-  master_password        = random_password.password.result
-  create_random_password = false
-  database_name          = var.rds_database_name
-
-  # Multi-AZ
-  availability_zones        = var.vpc_azs
-  allocated_storage         = var.rds_allocated_storage
-  db_cluster_instance_class = var.rds_db_cluster_instance_class
-  iops                      = var.rds_iops
-  storage_type              = "io1"
-
-  storage_encrypted   = true
-  apply_immediately   = true
-  skip_final_snapshot = true
-
-  tags = merge(local.merged_tags, {
-    Name        = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
-    Environment = var.env
-    role        = "rds"
-  }
+resource "aws_rds_cluster" "rds" {
+  cluster_identifier      = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+  engine                  = var.rds_engine
+  engine_version          = var.rds_engine_version
+  availability_zones      = var.vpc_azs
+  database_name           = var.rds_database_name
+  master_username         = var.rds_username
+  master_password         = random_password.password.result
+  backup_retention_period = 5
+  preferred_backup_window = "07:00-09:00"
 }
+
+# module "rds" {
+#   source  = "terraform-aws-modules/rds-aurora/aws"
+
+#   name              = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+#   engine            = var.rds_engine
+#   engine_version    = var.rds_engine_version
+
+#   vpc_id                  = var.vpc_id
+#   subnets                 = var.vpc_private_subnets
+#   publicly_accessible     = true
+#   allowed_security_groups = [aws_security_group.pgsql.id]
+
+#   master_username        = var.rds_username
+#   master_password        = random_password.password.result
+#   create_random_password = false
+#   database_name          = var.rds_database_name
+
+#   # Multi-AZ
+#   availability_zones        = var.vpc_azs
+#   allocated_storage         = var.rds_allocated_storage
+#   db_cluster_instance_class = var.rds_db_cluster_instance_class
+#   iops                      = var.rds_iops
+#   storage_type              = "io1"
+
+#   storage_encrypted   = true
+#   apply_immediately   = true
+#   skip_final_snapshot = true
+
+#   tags = merge(local.merged_tags, {
+#     Name        = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+#     Environment = var.env
+#     role        = "rds"
+#   }
+# }
 
 # # Equivalent SQL:
 # #
