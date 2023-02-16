@@ -38,9 +38,9 @@ use_cases:
         type: string
         default: "db.r6i.large"
         values:
-            - "db.r6i.medium"
-            - "db.r6i.large"
-            - "db.r6i.xlarge"
+            - "db.t3.small"
+            - "db.t3.medium"
+            - "db.t3.large"
         required: true
       - name: "Allocated Storage"
         unit: Go
