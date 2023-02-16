@@ -1,0 +1,72 @@
+# Cycloid
+variable "customer" {}
+variable "env" {}
+variable "project" {}
+
+# VPC
+variable "vpc_id" {
+  description = "The ID for the VPC"
+}
+
+variable "vpc_azs" {
+  description = "The Availability zones of the VPC"
+}
+
+variable "vpc_private_subnets" {
+  description = "The private subnets list of the VPC"
+}
+
+variable "vpc_public_subnets" {
+  description = "The public subnets list of the VPC"
+}
+
+# RDS
+variable "rds_engine" {
+  description = "DB engine. Engine values include aurora, aurora-mysql, aurora-postgresql, docdb, mariadb, mysql, neptune, oracle-ee, oracle-se, oracle-se1, oracle-se2, postgres, sqlserver-ee, sqlserver-ex, sqlserver-se, and sqlserver-web."
+  default     = "postgres"
+}
+
+variable "rds_engine_version" {
+  description = "DB engine varsion"
+  default     = "13.7"
+}
+
+variable "rds_username" {
+  description = "Username to connect to the RDS instance"
+  default = "rds_user"
+}
+
+variable "rds_database_name" {
+  description = "Database name to create in the RDS instance"
+  default = "db01"
+}
+
+variable "rds_allocated_storage" {
+  description = "Disk size for the RDS instance (Go)"
+  default = "32"
+}
+
+variable "rds_db_cluster_instance_class" {
+  description = "RDS instance type."
+  default     = "db.r6i.large"
+}
+
+variable "rds_iops" {
+  description = "IOPS for the DB cluster"
+  default = "2500"
+}
+
+# Tags
+variable "extra_tags" {
+  default = {}
+}
+
+locals {
+  standard_tags = {
+    "cycloid" = "true"
+    env          = var.env
+    project      = var.project
+    customer     = var.customer
+  }
+  merged_tags = merge(local.standard_tags, var.extra_tags)
+}
