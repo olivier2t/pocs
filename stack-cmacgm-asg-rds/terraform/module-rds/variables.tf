@@ -46,7 +46,7 @@ variable "rds_allocated_storage" {
   default = "32"
 }
 
-variable "rds_db_cluster_instance_class" {
+variable "rds_instance_class" {
   description = "RDS instance type."
   default     = "db.r6i.large"
 }
