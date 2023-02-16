@@ -17,18 +17,39 @@ resource "aws_security_group" "pgsql" {
   }
 }
 
-
-resource "aws_rds_cluster" "rds" {
-  cluster_identifier      = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
-  engine                  = var.rds_engine
-  engine_version          = var.rds_engine_version
-  availability_zones      = var.vpc_azs
-  database_name           = var.rds_database_name
-  master_username         = var.rds_username
-  master_password         = random_password.password.result
-  backup_retention_period = 5
-  preferred_backup_window = "07:00-09:00"
+resource "aws_db_instance" "rds" {
+  identifier             = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+  instance_class         = var.rds_instance_class
+  allocated_storage      = var.rds_allocated_storage
+  engine                 = var.rds_engine
+  username               = var.rds_username
+  password               = random_password.password.result
+  db_subnet_group_name   = aws_db_subnet_group.subnetgroup.name
+  publicly_accessible    = true
+  skip_final_snapshot    = true
 }
+
+# resource "aws_db_subnet_group" "subnetgroup" {
+#   name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
+#   subnet_ids = module.vpc.public_subnets
+
+#   tags = merge(local.merged_tags, {
+#     Name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
+#     role       = "subnetgroup"
+#   })
+# }
+
+# resource "aws_rds_cluster" "rds" {
+#   cluster_identifier      = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+#   engine                  = var.rds_engine
+#   engine_version          = var.rds_engine_version
+#   availability_zones      = var.vpc_azs
+#   database_name           = var.rds_database_name
+#   master_username         = var.rds_username
+#   master_password         = random_password.password.result
+#   backup_retention_period = 5
+#   preferred_backup_window = "07:00-09:00"
+# }
 
 # module "rds" {
 #   source  = "terraform-aws-modules/rds-aurora/aws"
