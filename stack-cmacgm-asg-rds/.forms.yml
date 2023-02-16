@@ -33,7 +33,7 @@ use_cases:
       vars:
       - name: "RDS Instance class"
         description: "Instance class for the RDS cluster."
-        key: rds_db_cluster_instance_class
+        key: rds_instance_class
         widget: slider_list
         type: string
         default: "db.r6i.large"

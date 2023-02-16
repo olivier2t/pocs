@@ -51,8 +51,8 @@ module "rds" {
   #+ Disk size for the RDS cluster (Go)
   rds_allocated_storage = "Value injected by StackForms"
 
-  #. rds_db_cluster_instance_class: 5
+  #. rds_instance_class: 5
   #+ Instance class for the RDS cluster (Go)
-  rds_db_cluster_instance_class = "Value injected by StackForms"
+  rds_instance_class = "Value injected by StackForms"
 
 }
