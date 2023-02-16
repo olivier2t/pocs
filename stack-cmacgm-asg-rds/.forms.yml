@@ -36,7 +36,7 @@ use_cases:
         key: rds_instance_class
         widget: slider_list
         type: string
-        default: "db.r6i.large"
+        default: "db.t3.medium"
         values:
             - "db.t3.small"
             - "db.t3.medium"
