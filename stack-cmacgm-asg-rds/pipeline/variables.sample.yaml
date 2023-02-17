@@ -31,7 +31,7 @@ stack_git_private_key: ((git.ssh_key))
 
 #. stack_terraform_path (required): stack-cmacgm-rds/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-cmacgm-rds/terraform
+stack_terraform_path: stack-cmacgm-asg-rds/terraform
 
 
 #
