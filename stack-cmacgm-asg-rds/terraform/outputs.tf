@@ -3,22 +3,22 @@
 #
 output "vpc_id" {
   description = "The ID for the VPC"
-  value       = module.network.vpc_id
+  value       = module.vpc.vpc_id
 }
 
 output "vpc_name" {
   description = "The VPC name"
-  value       = module.vpc_network.name
+  value       = module.vpc.name
 }
 
 output "vpc_private_subnets" {
   description = "The private subnets list of the VPC"
-  value       = module.network.vpc_private_subnets
+  value       = module.vpc.vpc_private_subnets
 }
 
 output "vpc_public_subnets" {
   description = "The public subnets list of the VPC"
-  value       = module.network.vpc_public_subnets
+  value       = module.vpc.vpc_public_subnets
 }
 
 #
