@@ -4,18 +4,18 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
-resource "aws_security_group" "pgsql" {
-  vpc_id      = var.vpc_id
-  name        = "pgsql"
-  description = "Allow all inbound for PostgreSQL"
-  ingress {
-    from_port   = 5432
-    to_port     = 5433
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    # cidr_blocks = [var.vpc_public_subnets]
-  }
-}
+# resource "aws_security_group" "pgsql" {
+#   vpc_id      = var.vpc_id
+#   name        = "pgsql"
+#   description = "Allow all inbound for PostgreSQL"
+#   ingress {
+#     from_port   = 5432
+#     to_port     = 5433
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#     # cidr_blocks = [var.vpc_public_subnets]
+#   }
+# }
 
 resource "aws_db_instance" "rds" {
   identifier             = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
@@ -24,20 +24,29 @@ resource "aws_db_instance" "rds" {
   engine                 = var.rds_engine
   username               = var.rds_username
   password               = random_password.password.result
-  db_subnet_group_name   = aws_db_subnet_group.subnetgroup.name
+  db_name                = var.rds_database_name
+  db_subnet_group_name   = aws_db_subnet_group.rds.name
+  availability_zone      = var.vpc_azs[0]
   publicly_accessible    = true
   skip_final_snapshot    = true
+  apply_immediately      = true
+
+  tags = merge(local.merged_tags, {
+    Name        = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
+    Environment = var.env
+    role        = "rds"
+  }
 }
 
-# resource "aws_db_subnet_group" "subnetgroup" {
-#   name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
-#   subnet_ids = module.vpc.public_subnets
+resource "aws_db_subnet_group" "rds" {
+  name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
+  subnet_ids = module.vpc.public_subnets
 
-#   tags = merge(local.merged_tags, {
-#     Name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
-#     role       = "subnetgroup"
-#   })
-# }
+  tags = merge(local.merged_tags, {
+    Name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
+    role       = "subnetgroup"
+  })
+}
 
 # resource "aws_rds_cluster" "rds" {
 #   cluster_identifier      = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
