@@ -40,7 +40,7 @@ resource "aws_db_instance" "rds" {
 
 resource "aws_db_subnet_group" "rds" {
   name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
-  subnet_ids = module.vpc.public_subnets
+  subnet_ids = var.vpc_public_subnets
 
   tags = merge(local.merged_tags, {
     Name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
