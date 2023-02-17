@@ -35,7 +35,7 @@ resource "aws_db_instance" "rds" {
     Name        = "rds-${var.rds_engine}-${var.customer}-${var.project}-${var.env}"
     Environment = var.env
     role        = "rds"
-  }
+  })
 }
 
 resource "aws_db_subnet_group" "rds" {
