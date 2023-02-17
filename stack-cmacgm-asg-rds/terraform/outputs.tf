@@ -8,7 +8,7 @@ output "vpc_id" {
 
 output "vpc_name" {
   description = "The VPC name"
-  value       = module.vpc.name
+  value       = module.vpc.vpc_name
 }
 
 output "vpc_private_subnets" {
