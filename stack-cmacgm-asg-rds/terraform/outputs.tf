@@ -24,12 +24,28 @@ output "vpc_public_subnets" {
 #
 # RDS instance outputs
 #
-output "identifier" {
-  description = "The VPC ID for the VPC"
-  value       = module.rds.identifier
+output "rds_address" {
+  description = "Address for the RDS instance"
+  value       = module.rds.rds_address
 }
 
-output "username" {
-  description = "The username of the RDS instance"
-  value       = module.rds.username
+output "rds_port" {
+  description = "Port for the RDS instance"
+  value       = module.rds.rds_port
+}
+
+output "rds_username" {
+  description = "The database master username"
+  value       = module.rds.rds_username
+}
+
+# For demo purposes - Please remove for production use !!
+output "rds_password" {
+  description = "The database master password"
+  value       = module.rds.rds_password
+}
+
+output "rds_db_name" {
+  description = "Name for an automatically created database on cluster creation"
+  value       = module.rds.rds_db_name
 }

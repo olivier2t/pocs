@@ -2,27 +2,28 @@
 # RDS instance outputs
 #
 
-output "cluster_endpoint" {
-  description = "Writer endpoint for the cluster"
-  value       = module.rds.cluster_endpoint
+output "rds_address" {
+  description = "Address for the RDS instance"
+  value       = aws_db_instance.rds.address
 }
 
-output "cluster_master_username" {
+output "rds_port" {
+  description = "Port for the RDS instance"
+  value       = aws_db_instance.rds.port
+}
+
+output "rds_username" {
   description = "The database master username"
-  value       = module.rds.cluster_master_username
+  value       = aws_db_instance.rds.username
 }
 
-output "cluster_master_password" {
+# For demo purposes - Please remove for production use !!
+output "rds_password" {
   description = "The database master password"
-  value       = module.rds.cluster_master_password
+  value       = nonsensitive(random_password.password.result)
 }
 
-output "cluster_database_name" {
+output "rds_db_name" {
   description = "Name for an automatically created database on cluster creation"
-  value       = module.rds.cluster_database_name
-}
-
-output "cluster_arn" {
-  description = "Amazon Resource Name (ARN) of cluster"
-  value       = module.rds.cluster_arn
+  value       = aws_db_instance.rds.db_name
 }
