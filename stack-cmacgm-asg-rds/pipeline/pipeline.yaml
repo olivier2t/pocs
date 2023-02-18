@@ -222,22 +222,22 @@ jobs:
             - |
               DIR=${PWD}
               # Connects to ci and check if credential for secrets exist
-              cy --insecure login --org vianeo --api-key $API_KEY
+              cy --insecure login --org $ORG --api-key $API_KEY
 
-              CRED=$(cy --insecure  --org vianeo  credential list -o json | jq -r ".[] | select( .canonical == \"$CRED_CANONICAL\") | .canonical")
+              CRED=$(cy --insecure  --org $ORG  credential list -o json | jq -r ".[] | select( .canonical == \"$CRED_CANONICAL\") | .canonical")
 
               if [ ! -z "$CRED" ]; then
-                echo "Credential [$CRED_CANONICAL_TAG]: already exists"
+                echo "Credential [$CRED_CANONICAL]: already exists. Ignoring."
               else
-                echo "Credential [$CRED_CANONICAL_TAG]: creating for type:$SERVER_TYPE"
-                PASSWORD=$(pwgen 32 1)
-                cy --insecure  --org vianeo  credential create custom --name $CRED_CANONICAL_TAG --path $CRED_CANONICAL \
+                echo "Creating credential [$CRED_CANONICAL]"
+                cy --insecure  --org $ORG  credential create custom --name $CRED_CANONICAL --path $CRED_CANONICAL \
                     --field password=$PASSWORD
               fi
 
           params:
             API_KEY: ((cycloid_api_key))
-            CRED_CANONICAL: ((project))-((env))-docker-tag
+            ORG: ((customer))
+            CRED_CANONICAL: ((project))-((env))-rds
 
   # Destroy the infrastructure
   - name: terraform-destroy
