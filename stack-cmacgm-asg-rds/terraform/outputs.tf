@@ -16,10 +16,10 @@ output "rds_db_name" {
   value       = module.rds.rds_db_name
 }
 
-# output "rds_username" {
-#   description = "The database master username"
-#   value       = module.rds.rds_username
-# }
+output "rds_username" {
+  description = "The database master username"
+  value       = module.rds.rds_username
+}
 
 output "rds_password" {
   description = "The database master password"
