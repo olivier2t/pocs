@@ -20,6 +20,7 @@ output "rds_username" {
 output "rds_password" {
   description = "The database master password"
   value       = random_password.password.result
+  sensitive   = true
 }
 
 output "rds_db_name" {
