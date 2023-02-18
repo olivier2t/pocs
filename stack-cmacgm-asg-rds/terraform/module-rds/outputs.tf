@@ -17,10 +17,9 @@ output "rds_username" {
   value       = aws_db_instance.rds.username
 }
 
-# For demo purposes - Please remove for production use !!
 output "rds_password" {
   description = "The database master password"
-  value       = nonsensitive(random_password.password.result)
+  value       = random_password.password.result
 }
 
 output "rds_db_name" {
