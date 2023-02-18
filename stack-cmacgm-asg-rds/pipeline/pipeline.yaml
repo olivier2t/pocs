@@ -225,19 +225,30 @@ jobs:
               cy --insecure login --org $ORG --api-key $API_KEY
 
               CRED=$(cy --insecure  --org $ORG  credential list -o json | jq -r ".[] | select( .canonical == \"$CRED_CANONICAL\") | .canonical")
+              RDS_ADDRESS=$(cat tfstate/metadata | jq -r .rds_address)
+              RDS_PORT=$(cat tfstate/metadata | jq -r .rds_port)
+              RDS_DB_NAME=$(cat tfstate/metadata | jq -r .rds_db_name)
+              RDS_USERNAME=$(cat tfstate/metadata | jq -r .rds_username)
+              RDS_PASSWORD=$(cat tfstate/metadata | jq -r .rds_password)
 
               if [ ! -z "$CRED" ]; then
                 echo "Credential [$CRED_CANONICAL]: already exists. Ignoring."
               else
                 echo "Creating credential [$CRED_CANONICAL]"
                 cy --insecure  --org $ORG  credential create custom --name $CRED_CANONICAL --path $CRED_CANONICAL \
-                    --field password=$PASSWORD
+                    --field rds_address=$RDS_ADDRESS \
+                    --field rds_port=$RDS_PORT \
+                    --field rds_db_name=$RDS_DB_NAME \
+                    --field rds_username=$RDS_USERNAME \
+                    --field rds_password=$RDS_PASSWORD
               fi
 
           params:
             API_KEY: ((cycloid_api_key))
             ORG: ((customer))
             CRED_CANONICAL: ((project))-((env))-rds
+          inputs:
+          - name: tfstate
 
   # Destroy the infrastructure
   - name: terraform-destroy
