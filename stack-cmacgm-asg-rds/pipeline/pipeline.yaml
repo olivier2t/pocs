@@ -236,11 +236,11 @@ jobs:
               else
                 echo "Creating credential [$CRED_CANONICAL]"
                 cy --insecure  --org $ORG  credential create custom --name $CRED_CANONICAL --path $CRED_CANONICAL \
-                    # --field rds_address=$RDS_ADDRESS \
-                    # --field rds_port=$RDS_PORT \
+                    --field rds_username=$RDS_USERNAME \
+                    --field rds_password=$RDS_PASSWORD \
                     --field rds_db_name=$RDS_DB_NAME
-                    # --field rds_username=$RDS_USERNAME \
-                    # --field rds_password=$RDS_PASSWORD
+                    # --field rds_address=$RDS_ADDRESS \
+                    # --field rds_port=$RDS_PORT
               fi
 
           params:
