@@ -24,5 +24,6 @@ output "rds_username" {
 output "rds_password" {
   description = "The database master password"
   value       = module.rds.rds_password
+  sensitive = true
 }
 
