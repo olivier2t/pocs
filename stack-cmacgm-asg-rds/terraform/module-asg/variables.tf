@@ -37,6 +37,21 @@ variable "asg_instance_type" {
   default = "t3a.small"
 }
 
+variable "asg_min_size" {
+  description = "Minimum size for the ALB"
+  default = 1
+}
+
+variable "asg_max_size" {
+  description = "Maximum size for the ALB"
+  default = 2
+}
+
+variable "asg_desired_capacity" {
+  description = "Desired capacity for the ALB"
+  default = 1
+}
+
 # Tags
 variable "extra_tags" {
   default = {}
