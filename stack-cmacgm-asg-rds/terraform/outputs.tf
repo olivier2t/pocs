@@ -1,6 +1,11 @@
 #
 # RDS instance outputs
 #
+output "rds_endpoint" {
+  description = "Endpoint for the RDS instance"
+  value       = module.rds.rds_endpoint
+}
+
 # output "rds_address" {
 #   description = "Address for the RDS instance"
 #   value       = module.rds.rds_address

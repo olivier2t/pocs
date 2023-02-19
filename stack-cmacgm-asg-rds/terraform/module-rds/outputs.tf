@@ -2,15 +2,20 @@
 # RDS instance outputs
 #
 
-output "rds_address" {
-  description = "Address for the RDS instance"
-  value       = aws_db_instance.rds.address
+output "rds_endpoint" {
+  description = "Endpoint for the RDS instance"
+  value       = aws_db_instance.rds.endpoint
 }
 
-output "rds_port" {
-  description = "Port for the RDS instance"
-  value       = aws_db_instance.rds.port
-}
+# output "rds_address" {
+#   description = "Address for the RDS instance"
+#   value       = aws_db_instance.rds.address
+# }
+
+# output "rds_port" {
+#   description = "Port for the RDS instance"
+#   value       = aws_db_instance.rds.port
+# }
 
 output "rds_username" {
   description = "The database master username"

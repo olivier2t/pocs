@@ -32,5 +32,5 @@ resource "aws_lb_target_group" "alb" {
 
 resource "aws_autoscaling_attachment" "front" {
   autoscaling_group_name = aws_autoscaling_group.front.id
-  alb_target_group_arn   = aws_lb_target_group.alb.arn
+  lb_target_group_arn   = aws_lb_target_group.alb.arn
 }
