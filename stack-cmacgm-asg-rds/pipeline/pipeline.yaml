@@ -225,8 +225,7 @@ jobs:
               cy --insecure login --org $ORG --api-key $API_KEY
 
               CRED=$(cy --insecure  --org $ORG  credential list -o json | jq -r ".[] | select( .canonical == \"$CRED_CANONICAL\") | .canonical")
-              RDS_ADDRESS=$(cat tfstate/metadata | jq -r .rds_address)
-              RDS_PORT=$(cat tfstate/metadata | jq -r .rds_port)
+              RDS_ENDPOINT=$(cat tfstate/metadata | jq -r .rds_endpoint)
               RDS_DB_NAME=$(cat tfstate/metadata | jq -r .rds_db_name)
               RDS_USERNAME=$(cat tfstate/metadata | jq -r .rds_username)
               RDS_PASSWORD=$(cat tfstate/metadata | jq -r .rds_password)
@@ -236,11 +235,10 @@ jobs:
               else
                 echo "Creating credential [$CRED_CANONICAL]"
                 cy --insecure  --org $ORG  credential create custom --name $CRED_CANONICAL --path $CRED_CANONICAL \
-                    --field rds_username=$RDS_USERNAME \
-                    --field rds_password=$RDS_PASSWORD \
+                    --field rds_endpoint=$RDS_ENDPOINT \
                     --field rds_db_name=$RDS_DB_NAME \
-                    --field rds_address=$RDS_ADDRESS \
-                    --field rds_port=$RDS_PORT
+                    --field rds_username=$RDS_USERNAME \
+                    --field rds_password=$RDS_PASSWORD
               fi
 
           params:
