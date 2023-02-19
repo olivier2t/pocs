@@ -29,7 +29,7 @@ variable "rds_username" {
 # ASG
 variable "asg_ami_id" {
   description = "AMI ID for the ASG"
-  default = "ami-0b8ad4a68127a1ad0"
+  default = "ami-089f338f3a2e69431"
 }
 
 variable "asg_instance_type" {

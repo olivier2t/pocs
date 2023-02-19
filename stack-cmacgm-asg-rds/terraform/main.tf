@@ -97,9 +97,9 @@ module "asg" {
   # ASG #
   #######
 
-  #. asg_ami_id: ami-0b8ad4a68127a1ad0
+  #. asg_ami_id: ami-089f338f3a2e69431
   #+ AMI ID for the ASG
-  asg_ami_id = "ami-0b8ad4a68127a1ad0"
+  asg_ami_id = "ami-089f338f3a2e69431"
 
   #. asg_instance_type: "t3a.small"
   #+ Instance types to use in the ASG
