@@ -74,6 +74,26 @@ module "asg" {
   #####################################
 
   #######
+  # VPC #
+  #######
+
+  #. vpc_id: []
+  #+ The ID for the VPC
+  vpc_id = module.vpc.vpc_id
+
+  #. vpc_azs: []
+  #+ The Availability zones of the VPC
+  vpc_azs = module.vpc.vpc_azs
+
+  #. vpc_private_subnets: []
+  #+ The private subnets list of the VPC
+  vpc_private_subnets = module.vpc.vpc_private_subnets
+
+  #. vpc_public_subnets: []
+  #+ The public subnets list of the VPC
+  vpc_public_subnets = module.vpc.vpc_public_subnets
+
+  #######
   # ASG #
   #######
 
