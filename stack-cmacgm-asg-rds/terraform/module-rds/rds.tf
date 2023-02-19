@@ -4,18 +4,6 @@ resource "random_password" "password" {
   override_special = "-_"
 }
 
-resource "aws_security_group" "rds" {
-  vpc_id      = var.vpc_id
-  name        = "rds-sg"
-  description = "Allow all inbound for PostgreSQL"
-  ingress {
-    from_port   = 5432
-    to_port     = 5433
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 resource "aws_db_subnet_group" "rds" {
   name       = "${var.customer}-${var.project}-${var.env}-subnetgroup"
   subnet_ids = var.vpc_public_subnets

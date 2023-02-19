@@ -48,7 +48,7 @@ variable "rds_allocated_storage" {
 
 variable "rds_instance_class" {
   description = "RDS instance type."
-  default     = "db.r6i.large"
+  default     = "db.t3.medium"
 }
 
 variable "rds_iops" {

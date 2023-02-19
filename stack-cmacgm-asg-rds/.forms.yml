@@ -3,9 +3,9 @@ version: "2"
 use_cases:
 - name: default
   sections:
-  - name: AWS Cloud Provider
+  - name: ALB, ASG & RDS based application
     groups:
-    - name: Access Configuration
+    - name: AWS Cloud Provider
       technologies: [pipeline]
       vars:
       - name: "AWS account"
@@ -26,9 +26,8 @@ use_cases:
         values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
         default: eu-west-1
         required: true
-  - name: RDS Instance
-    groups:
-    - name: Virtual machine specifications
+
+    - name: RDS Instance specifications
       technologies: [terraform]
       vars:
       - name: "RDS Instance class"
@@ -53,18 +52,55 @@ use_cases:
             - 32
             - 250
         required: true
-      # - name: "DB engine"
-      #   description: "Database engine for the RDS service."
-      #   key: rds_engine
-      #   widget: auto_complete
-      #   type: string
-      #   default: postgres
-      #   values: ["aurora","aurora-mysql","aurora-postgresql","mariadb","mysql","neptune","oracle","postgres","sqlserver-ee","sqlserver-ex","sqlserver-se","sqlserver-web"]
-      #   required: true
-      # - name: "Username"
-      #   description: "Username to connect to the RDS instance."
-      #   key: rds_username
-      #   widget: simple_text
-      #   type: string
-      #   default: "rds_user"
-      #   required: true
+
+    - name: Auto Scaling Group 
+      technologies: [terraform]
+      vars:
+      - name: "AMI ID"
+        description: "AMI ID for the ASG."
+        key: module.asg.asg_ami_id
+        widget: simple_text
+        type: string
+        default: "ami-0b8ad4a68127a1ad0"
+        required: true
+      - name: "Instance Type"
+        description: "Instance types to use in the ASG."
+        key: module.asg.asg_instance_type
+        widget: slider_list
+        type: string
+        default: "t3a.small"
+        values:
+            - "t3a.small"
+            - "t3a.medium"
+            - "t3a.large"
+        required: true
+      - name: "Minimum Size"
+        description: "Minimum size for the ALB."
+        key: module.asg.asg_min_size
+        widget: slider_range
+        type: integer
+        default: 1
+        values:
+            - 1
+            - 4
+        required: true
+      - name: "Maximum Size"
+        description: "Maximum size for the ALB."
+        key: module.asg.asg_max_size
+        widget: slider_range
+        type: integer
+        default: 3
+        values:
+            - 1
+            - 4
+        required: true
+      - name: "Desired Capacity"
+        description: "Desired capacity for the ALB."
+        key: module.asg.asg_desired_capacity
+        widget: slider_range
+        type: integer
+        default: 1
+        values:
+            - 1
+            - 4
+        required: true
