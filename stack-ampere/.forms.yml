@@ -11,14 +11,14 @@ use_cases:
       - name: "Machine type"
         description: "Machine type for the VM."
         key: vm_machine_type
-        widget: slider_list
+        widget: radios
         type: string
-        default: "t2a-standard-32"
+        default: "t2a-standard-2"
         values:
-            - t2a-standard-32
-            - n2-standard-32
-            - n2d-standard-32
-            - t2d-standard-32
+            - t2a-standard-2
+            - n2-standard-2
+            - n2d-standard-2
+            - t2d-standard-2
         required: true
       - name: "Disk size"
         unit: Go
