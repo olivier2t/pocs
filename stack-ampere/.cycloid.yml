@@ -1,10 +1,10 @@
 version: "2"
-name: NodeJS WebApp on GCP
-canonical: stack-nodejs-gcp
+name: Ampere CPU Instances
+canonical: stack-ampere
 status: private
 author: Cycloid
 description: |
-  Build and deploy a Node.js web application on an GCP Virtual Machine.
+  Build and deploy a Node.js web application on an Ampere CPU based GCP Virtual Machine.
 image: |
   https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/node.svg
 keywords:
