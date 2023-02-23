@@ -22,9 +22,14 @@ resource "google_compute_instance" "webapp" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "debian-cloud/debian-11-arm64"
       size  = var.vm_disk_size
     }
+  }
+
+  // Local SSD disk
+  scratch_disk {
+    interface = "SCSI"
   }
 
   network_interface {
