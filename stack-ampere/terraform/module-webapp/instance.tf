@@ -27,11 +27,6 @@ resource "google_compute_instance" "webapp" {
     }
   }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
-
   network_interface {
     subnetwork = google_compute_subnetwork.webapp.name
 
