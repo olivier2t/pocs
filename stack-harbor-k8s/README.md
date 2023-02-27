@@ -30,7 +30,7 @@ Service catalog deploying a Harbor open-source registry on AWS EKS cluster, conn
 |`cycloid_api_key`|API key to grant admin acess to Cycloid API.|`-`|`((cycloid-api-key.key))`|`True`|
 |`cycloid_api_url`|Cycloid API URL.|`-`|`https://http-api.cycloid.io`|`True`|
 |`eks_cluster_name`|Cluster name where to deploy the workload. The Kubernetes cluster shall exist or be created beforehand|`-`|`default`|`True`|
-|`eks_namespace`|Namespace where to deploy the workload. The Namespace shall exist or be created beforehand|`-`|`default`|`True`|
+|`k8s_namespace`|Namespace where to deploy the workload. The Namespace shall exist or be created beforehand|`-`|`default`|`True`|
 |`env`|Name of the project's environment.|`-`|`($ environment $)`|`True`|
 |`project`|Name of the project.|`-`|`($ project $)`|`True`|
 |`stack_ansible_path`|Path of Ansible files in the stack git repository|`-`|`stack-get-started/ansible`|`True`|
@@ -45,6 +45,6 @@ Service catalog deploying a Harbor open-source registry on AWS EKS cluster, conn
 |Name|Description|Type|Default|Required|
 |---|---|:---:|:---:|:---:|
 |`eks_cluster_name`|Cluster name where to deploy the workload. The Kubernetes cluster shall exist or be created beforehand.|`-`|`default`|`False`|
-|`eks_namespace`|Namespace where to deploy the workload. The Namespace shall exist or be created beforehand.|`-`|`harbor`|`False`|
+|`k8s_namespace`|Namespace where to deploy the workload. The Namespace shall exist or be created beforehand.|`-`|`harbor`|`False`|
 |`harbor_port`|Port where Harbor Repository service is exposed|`-`|`8081`|`False`|
 |`vm_disk_size`|Disk size for the Harbor Repository (Go)|`-`|`20`|`False`|

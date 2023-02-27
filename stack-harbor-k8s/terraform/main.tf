@@ -7,9 +7,9 @@ module "harbor" {
   customer = var.customer
   #####################################
 
-  #. eks_namespace: harbor
+  #. k8s_namespace: harbor
   #+ Namespace where to deploy the workload. The Namespace shall exist or be created beforehand.
-  eks_namespace = var.eks_namespace
+  k8s_namespace = var.k8s_namespace
 
   #. database_host: ""
   #+ Database host
@@ -27,8 +27,16 @@ module "harbor" {
   #+ Database password
   database_password = ""
 
-  #. database_core_name: ""
-  #+ Database core name
-  database_core_name = ""
+  #. database_coreDatabase: ""
+  #+ Database coreDatabase name
+  database_coreDatabase = ""
+
+  #. notaryServerDatabase: ""
+  #+ Database notaryServerDatabase name
+  notaryServerDatabase = ""
+
+  #. notarySignerDatabase: ""
+  #+ Database notarySignerDatabase name
+  notarySignerDatabase = ""
 
 }

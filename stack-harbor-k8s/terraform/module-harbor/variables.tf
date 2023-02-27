@@ -6,7 +6,7 @@ variable "project" {}
 #
 # Kubernetes Cluster
 #
-variable "eks_namespace" {
+variable "k8s_namespace" {
   description = "Namespace where to deploy the workload. The Namespace shall exist or be created beforehand."
   default = "default"
 }

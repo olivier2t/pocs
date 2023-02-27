@@ -1,31 +1,40 @@
-resource "kubernetes_namespace" "harbor" {
+data "kubernetes_namespace" "harbor" {
   metadata {
-    name = var.eks_namespace
+    name = var.k8s_namespace
   }
 }
 
 resource "helm_release" "harbor" {
-  name       = "harbor"
-  repository = "https://helm.goharbor.io"
-  chart      = "harbor/harbor"
-
-  namespace  = kubernetes_namespace.harbor.metadata.0.name
+  name       = "${var.project}-harbor"
+  repository = "https://helm.goharbor.io/harbor"
+  chart      = "harbor"
+  version    = "v1.10.4"
+  namespace  = data.kubernetes_namespace.harbor.metadata.0.name
   wait       = true
   timeout    = 600
 
-  # Parameters description at https://github.com/goharbor/harbor-helm
-  set {
-    name  = "expose.type"
-    value = "NodePort"
-  }
+  values = [
+    file("${path.module}/values.yaml")
+  ]
 
+  # Override some parameters. Description at https://github.com/goharbor/harbor-helm
   set {
     name  = "expose.tls.enabled"
     value = "false"
   }
 
   set {
+    name  = "internalTLS.enabled"
+    value = "false"
+  }
+
+  set {
     name  = "persistence.enabled"
+    value = "false"
+  }
+
+  set {
+    name  = "trivy.enabled"
     value = "false"
   }
 

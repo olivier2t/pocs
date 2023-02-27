@@ -1,9 +1,9 @@
 ---
 # Configuration of the Cycloid stack
 version: '2'
-name: 'Harbor on EKS'
-canonical: 'stack-harbor-eks'
-description: This stack deploys a Harbor open source registry on an AWS EKS cluster connecting to an external Postgres database.
+name: 'Harbor on Kubernetes'
+canonical: 'stack-harbor-k8s'
+description: This stack deploys a Harbor open source registry on a Kubernetes cluster connecting to an external Postgres database.
 author: 'Cycloid'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/harbor.png'
 status: 'private'
@@ -12,16 +12,14 @@ keywords:
 - repository
 - artefact
 - demo
-- provider:aws
 technologies:
 - technology: harbor
   version: "2.7.0"
 
 config:
   default:
-    name: 'AWS EKS'
-    cloud_provider: aws
-    description: 'Deploys a Harbor open source registry in a AWS EKS cluster using a Helm chart'
+    name: 'Kubernetes'
+    description: 'Deploys a Harbor open source registry on a Kubernetes cluster using a Helm chart'
     # Pipeline and variable configuration for the Kubernetes pipeline use case
     pipeline:
       pipeline:

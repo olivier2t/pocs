@@ -1,0 +1,110 @@
+#
+# Kubernetes
+#
+
+#. k8s_config (required): ((kubernetes))
+#+ Kubernetes Config from the Vault used to deploy the workload
+k8s_config: ((kubernetes))
+
+#. k8s_namespace (required): default
+#+ Namespace where to deploy the workload. The Namespace shall exist or be created beforehand
+k8s_namespace: default
+
+
+#
+# Database
+#
+
+#. database_creds (required): ((rds))
+#+ Database Cluster and Credentials
+database_creds: ((rds))
+
+#. database_coreDatabase (required): "registry"
+#+ Core Database name
+database_coreDatabase: "registry"
+
+#. database_notaryServerDatabase (required): "notary_server"
+#+ Notary Server Database name
+database_notaryServerDatabase: "notary_server"
+
+#. database_notarySignerDatabase (required): "notary_signer"
+#+ Notary Signer Database name
+database_notarySignerDatabase: "notary_signer"
+
+
+#
+# Default Stack Repository
+#
+
+#. stack_git_repository (required): ($ scs_url $)
+#+ Git repository URL containing the stack.
+stack_git_repository: ($ scs_url $)
+
+#. stack_git_branch (required): ($ scs_branch $)
+#+ Branch to use on the stack Git repository.
+stack_git_branch: ($ scs_branch $)
+
+#. stack_git_username (required): ((git.username))
+#+ Username to fetch the stack Git repository.
+stack_git_username: ((git.username))
+
+#. stack_git_password (required): ((git.password))
+#+ Password to fetch the stack Git repository.
+stack_git_password: ((git.password))
+
+#. stack_terraform_path (required): stack-harbor-k8s/terraform
+#+ Path of Terraform files in the stack git repository
+stack_terraform_path: stack-harbor-k8s/terraform
+
+#
+# Default Config Repository
+#
+
+#. config_git_repository (required): ($ cr_url $)
+#+ Git repository URL containing the config of the stack.
+config_git_repository: ($ cr_url $)
+
+#. config_git_branch (required): ($ cr_branch $)
+#+ Branch to use on the config Git repository.
+config_git_branch: ($ cr_branch $)
+
+#. config_git_username (required): ((git.username))
+#+ Username to fetch the config Git repository.
+config_git_username: ((git.username))
+
+#. config_git_password (required): ((git.password))
+#+ Password to fetch the config Git repository.
+config_git_password: ((git.password))
+
+#. config_terraform_path (required): ($ project $)/terraform/($ environment $)
+#+ Path of Terraform files in the config git repository
+config_terraform_path: ($ project $)/terraform/($ environment $)
+
+
+#
+# Default variables that shouldn't be changed except if needed
+#
+
+#. env (required): ($ environment $)
+#+ Name of the project's environment.
+env: ($ environment $)
+
+#. project (required): ($ project $)
+#+ Name of the project.
+project: ($ project $)
+
+#. customer (required): ($ organization_canonical $)
+#+ Name of the Cycloid Organization, used as customer variable name.
+customer: ($ organization_canonical $)
+
+#. cycloid_api_url (required): https://http-api.cycloid.io
+#+ Cycloid API URL.
+cycloid_api_url: 'https://cycloid.shared-services-noprd.aws.cld.cma-cgm.com/api'
+
+#. cycloid_api_key (required): ((cycloid-api-key.key))
+#+ API key to grant admin acess to Cycloid API.
+cycloid_api_key: ((cycloid-api-key.key))
+
+#. terraform_version (required): '1.1.9'
+#+ terraform version used to execute your code.
+terraform_version: '1.1.9'
