@@ -12,6 +12,10 @@ use_cases:
         description: "Database Cluster and Credentials."
         key: database_cluster
         widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - custom
         type: string
         default: ((rds))
         required: true
