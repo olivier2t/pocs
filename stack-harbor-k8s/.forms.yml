@@ -9,7 +9,7 @@ use_cases:
       technologies: [terraform]
       vars:
       - name: "Database Cluster"
-        description: "Database Cluster and Credentials."
+        description: "Database Cluster and Credentials. Includes endpoint, username and password."
         key: database_cluster
         widget: cy_cred
         widget_config:
@@ -44,26 +44,16 @@ use_cases:
     - name: Kubernetes Cluster Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "Kubernetes Hostname"
-        description: "The hostname (in form of URI) of the Kubernetes API where to deploy the workload."
-        key: k8s_host
+      - name: "Kubernetes Cluster"
+        description: "Kubernetes Cluster and Credentials. Includes host, cluster_ca_certificate and token."
+        key: k8s_cluster
+        widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - custom
         type: string
-        widget: simple_text
-        default: ""
-        required: true
-      - name: "Kubernetes Cluster CA Certificate"
-        description: "PEM-encoded root certificates bundle for TLS authentication."
-        key: k8s_cluster_ca_certificate
-        type: string
-        widget: simple_text
-        default: ""
-        required: true
-      - name: "Kubernetes Service Account Token"
-        description: "Token of your service account."
-        key: k8s_token
-        type: string
-        widget: simple_text
-        default: ""
+        default: ((kubernetes))
         required: true
       - name: "Namespace"
         description: "Namespace where to deploy the workload. The Namespace shall already exist."

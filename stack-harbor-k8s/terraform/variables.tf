@@ -6,21 +6,9 @@ variable "customer" {}
 #
 # Kubernetes
 #
-variable k8s_host {
+variable k8s_cluster {
   type        = string
-  description = "The hostname (in form of URI) of the Kubernetes API."
-  default     = ""
-}
-
-variable k8s_cluster_ca_certificate {
-  type        = string
-  description = "PEM-encoded root certificates bundle for TLS authentication."
-  default     = ""
-}
-
-variable k8s_token {
-  type        = string
-  description = "Token of your service account."
+  description = "Kubernetes Cluster and Credentials. Includes host, cluster_ca_certificate and token."
   default     = ""
 }
 

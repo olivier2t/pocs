@@ -4,32 +4,11 @@
 
 #. k8s_config (required): ((kubernetes))
 #+ Kubernetes Config from the Vault used to deploy the workload
-k8s_config: ((kubernetes))
+k8s_cluster: ((kubernetes))
 
 #. k8s_namespace (required): default
 #+ Namespace where to deploy the workload. The Namespace shall exist or be created beforehand
 k8s_namespace: default
-
-
-#
-# Database
-#
-
-#. database_creds (required): ((rds))
-#+ Database Cluster and Credentials
-database_creds: ((rds))
-
-#. database_coreDatabase (required): "registry"
-#+ Core Database name
-database_coreDatabase: "registry"
-
-#. database_notaryServerDatabase (required): "notary_server"
-#+ Notary Server Database name
-database_notaryServerDatabase: "notary_server"
-
-#. database_notarySignerDatabase (required): "notary_signer"
-#+ Notary Signer Database name
-database_notarySignerDatabase: "notary_signer"
 
 
 #

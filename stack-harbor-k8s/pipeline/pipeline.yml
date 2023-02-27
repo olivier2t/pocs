@@ -33,9 +33,7 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
-      k8s_host: ((k8s_host))
-      k8s_cluster_ca_certificate: ((k8s_cluster_ca_certificate))
-      k8s_token: ((k8s_token))
+      k8s_cluster: ((k8s_cluster))
       k8s_namespace: ((k8s_namespace))
       env: ((env))
       project: ((project))
