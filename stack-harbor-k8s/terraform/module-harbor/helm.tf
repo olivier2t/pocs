@@ -45,26 +45,36 @@ resource "helm_release" "harbor" {
 
   set {
     name  = "database.external.host"
-    value = var.database_host
+    value = split(":", var.database_cluster.endpoint)[0]
   }
 
   set {
     name  = "database.external.port"
-    value = var.database_port
+    value = split(":", var.database_cluster.endpoint)[1]
   }
 
   set {
     name  = "database.external.username"
-    value = var.database_username
+    value = var.database_cluster.username
   }
 
   set {
     name  = "database.external.password"
-    value = var.database_password
+    value = var.database_cluster.password
   }
 
   set {
     name  = "database.external.coreDatabase"
-    value = var.database_core_name
+    value = var.database_coreDatabase
+  }
+
+  set {
+    name  = "database.external.notaryServerDatabase"
+    value = var.database_notaryServerDatabase
+  }
+
+  set {
+    name  = "database.external.notarySignerDatabase"
+    value = var.database_notarySignerDatabase
   }
 }

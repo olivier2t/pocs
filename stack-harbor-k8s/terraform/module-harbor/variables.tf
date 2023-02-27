@@ -14,22 +14,18 @@ variable "k8s_namespace" {
 #
 # Harbor Registry Database
 #
-variable "database_host" {
-  description = "Database host"
+variable "database_cluster" {
+  description = "Database Cluster and Credentials"
 }
 
-variable "database_port" {
-  description = "Database port"
+variable "database_coreDatabase" {
+  description = "Database coreDatabase name"
 }
 
-variable "database_username" {
-  description = "Database username"
+variable "database_notaryServerDatabase" {
+  description = "Database notaryServerDatabase name"
 }
 
-variable "database_password" {
-  description = "Database password"
-}
-
-variable "database_core_name" {
-  description = "Database core name"
+variable "database_notarySignerDatabase" {
+  description = "Database notarySignerDatabase name"
 }
