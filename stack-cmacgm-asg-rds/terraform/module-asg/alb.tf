@@ -1,9 +1,10 @@
-# data "aws_acm_certificate" "issued" {
-#   domain   = "*.shared-services-noprd.aws.cld.cma-cgm.com"
-#   statuses = ["ISSUED"]
-# }
+data "aws_acm_certificate" "issued" {
+  domain   = "*.shared-services-noprd.aws.cld.cma-cgm.com"
+  statuses = ["ISSUED"]
+}
 
 resource "aws_lb" "alb" {
+  # "name" cannot be longer than 32 characters
   name               = "${var.project}-${var.env}"
   internal           = true
   load_balancer_type = "application"
@@ -39,11 +40,9 @@ resource "aws_lb_listener" "alb" {
 
 resource "aws_lb_listener" "alb_ssl" {
   load_balancer_arn = aws_lb.alb.arn
-  # port              = "443"
-  port              = "80"
-  # protocol          = "HTTPS"
-  protocol          = "HTTP"
-  # certificate_arn   = data.aws_acm_certificate.issued.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  certificate_arn   = data.aws_acm_certificate.issued.arn
 
   default_action {
     target_group_arn = aws_lb_target_group.alb.arn

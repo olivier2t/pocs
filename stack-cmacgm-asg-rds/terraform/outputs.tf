@@ -6,16 +6,6 @@ output "rds_endpoint" {
   value       = module.rds.rds_endpoint
 }
 
-# output "rds_address" {
-#   description = "Address for the RDS instance"
-#   value       = module.rds.rds_address
-# }
-
-# output "rds_port" {
-#   description = "Port for the RDS instance"
-#   value       = module.rds.rds_port
-# }
-
 output "rds_db_name" {
   description = "Name for an automatically created database on cluster creation"
   value       = module.rds.rds_db_name
