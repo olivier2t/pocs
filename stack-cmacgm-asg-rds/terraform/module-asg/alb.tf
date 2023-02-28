@@ -4,7 +4,7 @@
 # }
 
 resource "aws_lb" "alb" {
-  name               = "${var.customer}-${var.project}-${var.env}-alb"
+  name               = "${var.project}-${var.env}"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
