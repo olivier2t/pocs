@@ -12,6 +12,7 @@ keywords:
 - repository
 - artefact
 - demo
+- provider:kubernetes
 technologies:
 - technology: harbor
   version: "2.7.0"
