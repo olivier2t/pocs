@@ -43,7 +43,7 @@ resources:
     backend_type: http
     backend_config:
       # address: '((cycloid_api_url))/api/inventory?jwt=((cycloid_inventory_jwt))'
-      address: 'https://((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
+      address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
       skip_cert_verification: true
     vars:
       aws_cred: ((aws_cred))
