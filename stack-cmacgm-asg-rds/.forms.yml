@@ -95,7 +95,7 @@ use_cases:
             - 4
         required: true
       - name: "Desired Capacity"
-        description: "Desired capacity for the ALB."
+        description: "Initial desired capacity for the ALB."
         key: module.asg.asg_desired_capacity
         widget: slider_range
         type: integer
