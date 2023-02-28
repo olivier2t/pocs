@@ -61,7 +61,7 @@ use_cases:
         key: module.asg.asg_ami_id
         widget: simple_text
         type: string
-        default: "ami-089f338f3a2e69431"
+        default: "ami-082a12a990b3012f3"
         required: true
       - name: "Instance Type"
         description: "Instance types to use in the ASG."

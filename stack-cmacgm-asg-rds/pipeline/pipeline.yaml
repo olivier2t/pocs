@@ -19,11 +19,11 @@ resource_types:
     repository: cycloid/terraform-resource
     tag: ((terraform_version))
 
-- name: cycloid-events
-  type: registry-image
-  source:
-    repository: cycloid/cycloid-events-resource
-    tag: latest
+#- name: cycloid-event
+#  type: registry-image
+#  source:
+#    repository: cycloid/cycloid-events-resource
+#    tag: latest
 
 # The email Concourse resource type allowing to send emails from this pipeline.
 # (cf. https://github.com/pivotal-cf/email-resource)
@@ -42,7 +42,8 @@ resources:
     env_name: ((env))
     backend_type: http
     backend_config:
-      address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
+      address: '((cycloid_api_url))/api/inventory?jwt=((cycloid_inventory_jwt))'
+      skip_cert_verification: true
     vars:
       aws_cred: ((aws_cred))
       aws_region: ((aws_region))
@@ -51,21 +52,21 @@ resources:
       customer: ((customer))
 
 # The Cycloid event resource to log events
-- name: cycloid-event
-  type: cycloid-events
-  source:
-    api_key: ((cycloid_api_key))
-    api_url: ((cycloid_api_url))
-    icon: fa-code-branch
-    organization: ((customer))
-    severity: info
-    type: Custom
-    tags:
-      - key: project
-        value: ((project))
-      - key: env
-        value: ((env))
-  icon: calendar
+#- name: cycloid-event
+#  type: cycloid-events
+#  source:
+#    api_key: ((cycloid_api_key))
+#    api_url: ((cycloid_api_url))
+#    icon: fa-code-branch
+#    organization: ((customer))
+#    severity: info
+#    type: Custom
+#    tags:
+#      - key: project
+#        value: ((project))
+#      - key: env
+#        value: ((env))
+#  icon: calendar
 
 # The email Concourse resource allowing to send emails from this pipeline.
 # Please add a custom "smtp" credential in Cycloid console accordingly.
@@ -88,7 +89,8 @@ resources:
   source:
     uri: ((stack_git_repository))
     branch: ((stack_git_branch))
-    private_key: ((stack_git_private_key))
+    username: ((stack_git_username))
+    password: ((stack_git_token))
     paths:
       - ((stack_terraform_path))/*
 
@@ -99,7 +101,8 @@ resources:
   source:
     uri: ((config_git_repository))
     branch: ((config_git_branch))
-    private_key: ((config_git_private_key))
+    username: ((stack_git_username))
+    password: ((stack_git_token))
     paths:
       - ((config_terraform_path))/*
 
@@ -188,16 +191,16 @@ jobs:
 
       - put: tfstate
         params:
-          plan_run: true
+          plan_run: false
           terraform_source: merged-stack/
 
-        on_success:
-          do:
-            - put: cycloid-event
-              params:
-                severity: info
-                title: Cycloid worker deployment successful
-                message: The project ((project)) on ((env)) environment deployed successfully
+#        on_success:
+#          do:
+#            - put: cycloid-event
+#              params:
+#                severity: info
+#                title: Cycloid worker deployment successful
+#                message: The project ((project)) on ((env)) environment deployed successfully
 
         # On job execution success, send also a notification email.
         # To enable it, you will need to uncomment the above resource type and resource declaration.

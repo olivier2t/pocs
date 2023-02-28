@@ -27,7 +27,7 @@ stack_git_branch: ($ scs_branch $)
 
 #. stack_git_private_key (required): ((git.ssh_key))
 #+ SSH key pair to fetch the stack Git repository.
-stack_git_private_key: ((git.ssh_key))
+#stack_git_private_key: ((git.ssh_key))
 
 #. stack_terraform_path (required): stack-cmacgm-rds/terraform
 #+ Path of Terraform files in the stack git repository
@@ -48,7 +48,9 @@ config_git_branch: ($ cr_branch $)
 
 #. config_git_private_key (required): ((git.ssh_key))
 #+ SSH key pair to fetch the config Git repository.
-config_git_private_key: ((git.ssh_key))
+#config_git_private_key: ((git.ssh_key))
+stack_git_username: ((git.username))
+stack_git_token: ((git.password))
 
 #. config_terraform_path (required): ($ project $)/terraform/($ environment $)
 #+ Path of Terraform files in the config git repository
@@ -73,7 +75,7 @@ customer: ($ organization_canonical $)
 
 #. cycloid_api_url (required): https://http-api.cycloid.io
 #+ Cycloid API URL.
-cycloid_api_url: 'https://http-api.cycloid.io'
+cycloid_api_url: 'https://cycloid.shared-services-noprd.aws.cld.cma-cgm.com'
 
 #. cycloid_api_key (required): ((custom_api-key-admin.key))
 #+ API key to grant admin acess to Cycloid API.

@@ -16,19 +16,15 @@ variable "vpc_private_subnets" {
   description = "The private subnets list of the VPC"
 }
 
-variable "vpc_public_subnets" {
-  description = "The public subnets list of the VPC"
-}
-
 # RDS
 variable "rds_engine" {
   description = "DB engine. Engine values include aurora, aurora-mysql, aurora-postgresql, docdb, mariadb, mysql, neptune, oracle-ee, oracle-se, oracle-se1, oracle-se2, postgres, sqlserver-ee, sqlserver-ex, sqlserver-se, and sqlserver-web."
-  default     = "postgres"
+  default     = "mysql"
 }
 
 variable "rds_engine_version" {
   description = "DB engine varsion"
-  default     = "13.7"
+  default     = "5.7"
 }
 
 variable "rds_username" {

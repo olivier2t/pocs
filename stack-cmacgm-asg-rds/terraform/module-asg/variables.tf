@@ -16,14 +16,17 @@ variable "vpc_private_subnets" {
   description = "The private subnets list of the VPC"
 }
 
-variable "vpc_public_subnets" {
-  description = "The public subnets list of the VPC"
-}
-
 # RDS
 variable "rds_username" {
-  description = "Username to connect to the RDS instance"
-  default = "rds_user"
+  description = "The database master username"
+}
+
+variable "rds_password" {
+  description = "The database master password"
+}
+
+variable "rds_endpoint" {
+  description = "Endpoint for the RDS instance"
 }
 
 # ASG
@@ -65,4 +68,10 @@ locals {
     customer     = var.customer
   }
   merged_tags = merge(local.standard_tags, var.extra_tags)
+}
+
+variable "IsUbuntu" {
+  type    = bool
+  default = false
+
 }
