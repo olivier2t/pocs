@@ -1,12 +1,12 @@
 version: "2"
-name: ALB, ASG, RDS services for CMA-CGM
+name: Auto-Scaling Wordpress
 canonical: stack-cmacgm-asg-rds
 status: private
 author: CMA-CGM
 description: |
-  Deploys AWS ALB, ASG, RDS services.
+  Deploys a auto-scaling cluster of Wordpress nodes using AWS ALB and ASG. The data is persisted using an AWS RDS PostgreSQL service.
 image: |
-  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/rds.png
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/wordpress.png
 keywords:
   - database
   - instance

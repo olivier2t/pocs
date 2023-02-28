@@ -3,7 +3,7 @@ version: "2"
 use_cases:
 - name: default
   sections:
-  - name: ALB, ASG & RDS based application
+  - name: Auto-Scaling Wordpress
     groups:
     - name: AWS Cloud Provider
       technologies: [pipeline]

@@ -101,8 +101,8 @@ resources:
   source:
     uri: ((config_git_repository))
     branch: ((config_git_branch))
-    username: ((stack_git_username))
-    password: ((stack_git_token))
+    username: ((config_git_username))
+    password: ((config_git_token))
     paths:
       - ((config_terraform_path))/*
 
@@ -246,6 +246,7 @@ jobs:
 
           params:
             API_KEY: ((cycloid_api_key))
+            CY_API_URL: ((cycloid_api_url))
             ORG: ((customer))
             CRED_CANONICAL: ((project))-((env))-rds
           inputs:

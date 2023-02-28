@@ -68,8 +68,6 @@ module "asg" {
     demo                 = true
     monitoring_discovery = false
   }
-
-  depends_on = [module.rds]
 }
 
 
@@ -121,18 +119,3 @@ module "rds" {
   #+ Instance class for the RDS cluster
   rds_instance_class = "db.t3.medium"
 }
-
-/*
-resource "aws_route53_record" "cycloid" {
-  provider = aws.network
-  zone_id  = data.aws_route53_zone.private.zone_id
-  name     = "poc-cycloid-wordpress.shared-services-noprd.aws.cld.cma-cgm.com."
-  type     = "A"
-
-  alias {
-    name                   = module.asg.alb_dns_name
-    zone_id                = module.asg.alb_zone_id
-    evaluate_target_health = true
-  }
-}
-*/
