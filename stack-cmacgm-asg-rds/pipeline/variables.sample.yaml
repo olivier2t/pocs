@@ -89,7 +89,7 @@ customer: ($ organization_canonical $)
 
 #. cycloid_api_url (required): https://http-api.cycloid.io
 #+ Cycloid API URL.
-cycloid_api_url: 'http-api.cycloid.io'
+cycloid_api_url: 'https://http-api.cycloid.io'
 # cycloid_api_url: 'https://cycloid.shared-services-noprd.aws.cld.cma-cgm.com'
 
 #. cycloid_api_key (required): ((custom_api-key-admin.key))
