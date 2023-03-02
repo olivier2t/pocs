@@ -31,7 +31,7 @@ resources:
     env_name: ((env))
     backend_type: http
     backend_config:
-      address: '((cycloid_api_url))/api/inventory?jwt=((cycloid_inventory_jwt))'
+      address: '((cycloid_api_url))/inventory?jwt=((cycloid_inventory_jwt))'
     vars:
       k8s_cluster: ((k8s_cluster))
       k8s_namespace: ((k8s_namespace))
