@@ -13,7 +13,6 @@ variable k8s_cluster {
     token                   = string 
   })
   description = "Kubernetes Cluster and Credentials. Includes host, cluster_ca_certificate and token."
-  default     = ""
 }
 
 variable "k8s_namespace" {
