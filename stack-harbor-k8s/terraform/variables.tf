@@ -7,7 +7,11 @@ variable "customer" {}
 # Kubernetes
 #
 variable k8s_cluster {
-  type        = string
+  type = object({
+    host                    = string
+    cluster_ca_certificate  = string
+    token                   = string 
+  })
   description = "Kubernetes Cluster and Credentials. Includes host, cluster_ca_certificate and token."
   default     = ""
 }
