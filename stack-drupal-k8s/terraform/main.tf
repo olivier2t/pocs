@@ -1,7 +1,7 @@
-module "harbor" {
+module "bitnami" {
   #####################################
   # Do not modify the following lines #
-  source   = "./module-harbor"
+  source   = "./module-bitnami"
   project  = var.project
   env      = var.env
   customer = var.customer
@@ -15,16 +15,8 @@ module "harbor" {
   #+ Database Cluster and Credentials
   database_cluster = ""
 
-  #. database_coreDatabase: ""
-  #+ Database coreDatabase name
-  database_coreDatabase = ""
-
-  #. database_notaryServerDatabase: ""
-  #+ Database notaryServerDatabase name
-  database_notaryServerDatabase = ""
-
-  #. database_notarySignerDatabase: ""
-  #+ Database notarySignerDatabase name
-  database_notarySignerDatabase = ""
+  #. database_name: ""
+  #+ Database name
+  database_name = ""
 
 }

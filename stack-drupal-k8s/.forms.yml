@@ -19,26 +19,12 @@ use_cases:
         type: string
         default: ((rds))
         required: true
-      - name: "Core Database name"
-        description: "Core Database name."
-        key: database_coreDatabase
+      - name: "Database name"
+        description: "Database name."
+        key: database_name
         widget: simple_text
         type: string
-        default: "registry"
-        required: true
-      - name: "Notary Server Database name"
-        description: "Notary Server Database name."
-        key: database_notaryServerDatabase
-        widget: simple_text
-        type: string
-        default: "notary_server"
-        required: true
-      - name: "Notary Signer Database name"
-        description: "Notary Signer Database name."
-        key: database_notarySignerDatabase
-        widget: simple_text
-        type: string
-        default: "notary_signer"
+        default: "bitnami_drupal"
         required: true
 
     - name: Kubernetes Cluster Access Configuration

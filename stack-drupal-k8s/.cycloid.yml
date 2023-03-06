@@ -1,26 +1,26 @@
 ---
 # Configuration of the Cycloid stack
 version: '2'
-name: 'Harbor on Kubernetes'
-canonical: 'stack-harbor-k8s'
-description: This stack deploys a Harbor open source registry on a Kubernetes cluster connecting to an external Postgres database.
+name: 'Drupal on Kubernetes'
+canonical: 'stack-drupal-k8s'
+description: This stack deploys a Drupal on a Kubernetes cluster connecting to an external MySQL database.
 author: 'Cycloid'
-image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/harbor.png'
+image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/drupal.png'
 status: 'private'
 keywords:
-- harbor
+- drupal
 - repository
 - artefact
 - demo
 - provider:kubernetes
 technologies:
-- technology: harbor
-  version: "2.7.0"
+- technology: drupal
+  version: "n/a"
 
 config:
   default:
     name: 'Kubernetes'
-    description: 'Deploys a Harbor open source registry on a Kubernetes cluster using a Helm chart'
+    description: 'Deploys a Drupal on a Kubernetes cluster using a Helm chart'
     # Pipeline and variable configuration for the Kubernetes pipeline use case
     pipeline:
       pipeline:

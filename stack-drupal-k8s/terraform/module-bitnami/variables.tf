@@ -18,14 +18,6 @@ variable "database_cluster" {
   description = "Database Cluster and Credentials"
 }
 
-variable "database_coreDatabase" {
-  description = "Database coreDatabase name"
-}
-
-variable "database_notaryServerDatabase" {
-  description = "Database notaryServerDatabase name"
-}
-
-variable "database_notarySignerDatabase" {
-  description = "Database notarySignerDatabase name"
+variable "database_name" {
+  description = "Database name"
 }
