@@ -44,16 +44,38 @@ use_cases:
     - name: Kubernetes Cluster Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "Kubernetes Cluster"
-        description: "Kubernetes Cluster and Credentials. Includes host, cluster_ca_certificate and token."
-        key: k8s_cluster
+      - name: "Kubernetes Host"
+        description: "The hostname (in form of URI) of the Kubernetes API."
+        key: k8s_host
         widget: cy_cred
         widget_config:
-          display_keys: false
+          display_keys: true
           cred_types:
             - custom
         type: string
-        default: ((kubernetes))
+        default: ((kubernetes.host))
+        required: true
+      - name: "Kubernetes Cluster CA Certificate"
+        description: "PEM-encoded root certificates bundle for TLS authentication."
+        key: k8s_cluster_ca_certificate
+        widget: cy_cred
+        widget_config:
+          display_keys: true
+          cred_types:
+            - custom
+        type: string
+        default: ((kubernetes.cluster_ca_certificate))
+        required: true
+      - name: "Kubernetes Token"
+        description: "Token of your service account."
+        key: k8s_token
+        widget: cy_cred
+        widget_config:
+          display_keys: true
+          cred_types:
+            - custom
+        type: string
+        default: ((kubernetes.token))
         required: true
       - name: "Namespace"
         description: "Namespace where to deploy the workload. The Namespace shall already exist."

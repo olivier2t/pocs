@@ -2,9 +2,17 @@
 # Kubernetes
 #
 
-#. k8s_config (required): ((kubernetes))
-#+ Kubernetes Config from the Vault used to deploy the workload
-k8s_cluster: ((kubernetes))
+#. k8s_host (required): ((kubernetes.host))
+#+ The hostname (in form of URI) of the Kubernetes API
+k8s_host: ((kubernetes.host))
+
+#. k8s_cluster_ca_certificate (required): ((kubernetes.cluster_ca_certificate))
+#+ PEM-encoded root certificates bundle for TLS authentication
+k8s_cluster_ca_certificate: ((kubernetes.cluster_ca_certificate))
+
+#. k8s_token (required): ((kubernetes.token))
+#+ Token of your service account
+k8s_token: ((kubernetes.token))
 
 #. k8s_namespace (required): default
 #+ Namespace where to deploy the workload. The Namespace shall exist or be created beforehand
