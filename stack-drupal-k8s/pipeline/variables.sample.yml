@@ -39,9 +39,9 @@ stack_git_username: ((git.username))
 #+ Password to fetch the stack Git repository.
 stack_git_password: ((git.password))
 
-#. stack_terraform_path (required): stack-harbor-k8s/terraform
+#. stack_terraform_path (required): stack-drupal-k8s/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: stack-harbor-k8s/terraform
+stack_terraform_path: stack-drupal-k8s/terraform
 
 #
 # Default Config Repository

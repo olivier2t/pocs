@@ -1,15 +1,15 @@
-data "kubernetes_namespace" "harbor" {
+data "kubernetes_namespace" "drupal" {
   metadata {
     name = var.k8s_namespace
   }
 }
 
-resource "helm_release" "harbor" {
-  name       = "${var.project}-harbor"
+resource "helm_release" "drupal" {
+  name       = "${var.project}-drupal"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "drupal"
   version    = "12.5.13"
-  namespace  = data.kubernetes_namespace.harbor.metadata.0.name
+  namespace  = data.kubernetes_namespace.drupal.metadata.0.name
   wait       = true
   timeout    = 600
 

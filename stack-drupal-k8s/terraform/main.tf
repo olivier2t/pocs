@@ -7,7 +7,7 @@ module "bitnami" {
   customer = var.customer
   #####################################
 
-  #. k8s_namespace: harbor
+  #. k8s_namespace: drupal
   #+ Namespace where to deploy the workload. The Namespace shall exist or be created beforehand.
   k8s_namespace = var.k8s_namespace
 

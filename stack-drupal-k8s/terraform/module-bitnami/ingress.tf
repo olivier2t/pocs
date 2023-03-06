@@ -1,6 +1,6 @@
-# resource "kubernetes_ingress" "harbor" {
+# resource "kubernetes_ingress" "drupal" {
 #   metadata {
-#     name      = "${var.project}-harbor"
+#     name      = "${var.project}-drupal"
 #     namespace = var.namespace
 #     labels    = {
 #       "app.kubernetes.io/name"       = "${var.project}-web"

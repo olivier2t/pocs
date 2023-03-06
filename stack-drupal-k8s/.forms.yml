@@ -3,7 +3,7 @@ version: "2"
 use_cases:
 - name: default
   sections:
-  - name: Harbor Registry
+  - name: Drupal
     groups:
     - name: Database Configuration
       technologies: [terraform]

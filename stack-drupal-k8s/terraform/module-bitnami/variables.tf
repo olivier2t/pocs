@@ -12,7 +12,7 @@ variable "k8s_namespace" {
 }
 
 #
-# Harbor Registry Database
+# Drupal
 #
 variable "database_cluster" {
   description = "Database Cluster and Credentials"
