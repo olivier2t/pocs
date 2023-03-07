@@ -6,18 +6,37 @@ use_cases:
   - name: Drupal
     groups:
     - name: Database Configuration
-      technologies: [terraform]
+      technologies: [pipeline]
       vars:
-      - name: "Database Cluster"
-        description: "Database Cluster and Credentials. Includes endpoint, username and password."
-        key: database_cluster
+      - name: "Database Endpoint"
+        description: "Database endpoint."
+        key: database_endpoint
         widget: cy_cred
         widget_config:
-          display_keys: false
           cred_types:
             - custom
         type: string
-        default: ((rds))
+        default: ((rds.endpoint))
+        required: true
+      - name: "Database Username"
+        description: "Database username."
+        key: database_username
+        widget: cy_cred
+        widget_config:
+          cred_types:
+            - custom
+        type: string
+        default: ((rds.username))
+        required: true
+      - name: "Database Password"
+        description: "Database password."
+        key: database_password
+        widget: cy_cred
+        widget_config:
+          cred_types:
+            - custom
+        type: string
+        default: ((rds.password))
         required: true
       - name: "Database name"
         description: "Database name."

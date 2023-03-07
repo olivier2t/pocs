@@ -25,22 +25,22 @@ resource "helm_release" "drupal" {
 
   set {
     name  = "externalDatabase.host"
-    value = split(":", var.database_cluster.endpoint)[0]
+    value = split(":", var.database_endpoint)[0]
   }
 
   set {
     name  = "externalDatabase.port"
-    value = split(":", var.database_cluster.endpoint)[1]
+    value = split(":", var.database_endpoint)[1]
   }
 
   set {
     name  = "externalDatabase.user"
-    value = var.database_cluster.username
+    value = var.database_username
   }
 
   set {
     name  = "externalDatabase.password"
-    value = var.database_cluster.password
+    value = var.database_password
   }
 
   set {

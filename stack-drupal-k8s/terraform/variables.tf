@@ -25,3 +25,26 @@ variable "k8s_namespace" {
   description = "Namespace where to deploy the workload. The Namespace shall already exist."
   default = ""
 }
+
+#
+# Database
+#
+variable "database_endpoint" {
+  description = "Database endpoint."
+  default = ""
+}
+
+variable "database_username" {
+  description = "Database username."
+  default = ""
+}
+
+variable "database_password" {
+  description = "Database password."
+  default = ""
+}
+
+variable "database_name" {
+  description = "Database name."
+  default = ""
+}

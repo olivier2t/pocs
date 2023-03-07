@@ -20,6 +20,27 @@ k8s_namespace: default
 
 
 #
+# Database
+#
+
+#. database_endpoint (required): ((rds.endpoint))
+#+ Database endpoint
+database_endpoint: ((rds.endpoint))
+
+#. database_username (required): ((rds.username))
+#+ Database username
+database_username: ((rds.username))
+
+#. database_password (required): ((rds.password))
+#+ Database password
+database_password: ((rds.password))
+
+#. database_name (required): default
+#+ Database name
+database_name: "bitnami_drupal"
+
+
+#
 # Default Stack Repository
 #
 

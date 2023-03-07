@@ -14,8 +14,16 @@ variable "k8s_namespace" {
 #
 # Drupal
 #
-variable "database_cluster" {
-  description = "Database Cluster and Credentials"
+variable "database_endpoint" {
+  description = "Database Endpoint"
+}
+
+variable "database_username" {
+  description = "Database Username"
+}
+
+variable "database_password" {
+  description = "Database Password"
 }
 
 variable "database_name" {
