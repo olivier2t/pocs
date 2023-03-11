@@ -2,7 +2,7 @@
 # Configuration of the Cycloid stack
 version: '2'
 name: 'Nexus Repository'
-canonical: 'stack-nexus-repository'
+canonical: 'stack-nexus-repository-poc'
 description: This stack deploys a Nexus Repository.
 author: 'Cycloid'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/nexus.png'
