@@ -13,8 +13,19 @@ resources:
       headers:
         Content-Type: application/x-www-form-urlencoded
       text: |
-        variables[ACTION]=((SEC_ACTION))&variables[SECRET_NAME]=((SEC_SECRET_NAME))
-        variables[REGION]=((SEC_REGION))
+        variables[ACTION]=((SEC_ACTION))
+        &variables[SECRET_NAME]=((SEC_SECRET_NAME))
+        &variables[REGION]=((SEC_REGION))
+        &variables[SEC_AWS_ACCESS_KEY]=((SEC_AWS_ACCESS_KEY))
+        &variables[SEC_AWS_SECRET_KEY]=((SEC_AWS_SECRET_KEY))
+        &variables[SEC_AWS_SESSION_TOKEN]=((SEC_AWS_SESSION_TOKEN))
+        &variables[SEC_INFRA_PASSWORD]=((SEC_INFRA_PASSWORD))
+        &variables[SEC_SPLUNK_TOKEN]=((SEC_SPLUNK_TOKEN))
+        &variables[SEC_VCS_OAUTH_TOKEN_ID]=((SEC_VCS_OAUTH_TOKEN_ID))
+        &variables[SEC_GITLAB_PERSONAL_ACCESS_TOKEN]=((SEC_GITLAB_PERSONAL_ACCESS_TOKEN))
+        &variables[SEC_GITLAB_USER]=((SEC_GITLAB_USER))
+        &variables[SEC_PLT_APP_GITLAB_TOKEN]=((SEC_PLT_APP_GITLAB_TOKEN))
+        &variables[SEC_ENV_APP_GITLAB_TOKEN]=((SEC_ENV_APP_GITLAB_TOKEN))
       version:
         jq: .id
         hash: body
