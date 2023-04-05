@@ -1,0 +1,33 @@
+resource_types:
+  - name: api-call
+    type: docker-image
+    source:
+      repository: jgriff/http-resource
+
+resources:
+  - name: gitlab-trigger-pipeline
+    type: api-call
+    source:
+      url: https://gitlab.com/api/v4/projects/((gitlab-project-id))/trigger/pipeline?token=((gitlab-token))&ref=((gitlab-ref-name))
+      method: POST
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      text: |
+        variables[ACTION]=((SEC_ACTION))&variables[SECRET_NAME]=((SEC_SECRET_NAME))
+        variables[REGION]=((SEC_REGION))
+      version:
+        jq: .id
+        hash: body
+
+groups:
+- name: overview
+  jobs:
+    - gitlab-pipeline
+
+jobs:
+  - name: gitlab-pipeline
+    plan:
+      - put: gitlab-trigger-pipeline
+        # on_success:
+        #   do:
+        #     - put: ...

@@ -1,0 +1,64 @@
+#
+# Cloud Provider
+#
+
+#. gitlab-project-id (required): ""
+#+ Gitlab project ID
+gitlab-project-id: 29451081
+
+#. gitlab-token (required): ""
+#+ Gitlab project access token with ability to manage pipelines
+gitlab-token: ((gitlab-token-simple-counter-app.key))
+
+#. gitlab-ref-name (required): ""
+#+ Gitlab ref name
+gitlab-ref-name: main
+
+SEC_ACTION: "CREATE"
+SEC_SECRET_NAME: "ada-usv-poc"
+SEC_REGION: us-east-2
+SEC_AWS_ACCESS_KEY: ""
+SEC_AWS_SECRET_KEY: ""
+SEC_AWS_SESSION_TOKEN: ""
+SEC_INFRA_PASSWORD: ""
+SEC_SPLUNK_TOKEN: ""
+SEC_VCS_OAUTH_TOKEN_ID: ""
+SEC_GITLAB_PERSONAL_ACCESS_TOKEN: ""
+SEC_GITLAB_USER: ""
+SEC_PLT_APP_GITLAB_TOKEN: ""
+SEC_ENV_APP_GITLAB_TOKEN: ""
+DEP_ACTION: "DEPLOY"
+DEP_CONFIG_DIR: "1.0.0-cycloid/ada-usv-poc"
+DEP_ENVIRONMENT_LAYER_NAME: "ada-usv-poc"
+DEP_ENVIRONMENT_SUFFIX: "env"
+DEP_ENVIRONMENT_INFRA_BRANCH: "1.0.0-cycloid"
+DEP_TF_LOG: "INFO"
+DEP_AWS_ACCESS_KEY: ""
+DEP_AWS_SECRET_KEY: ""
+DEP_AWS_SESSION_TOKEN: ""
+DEP_AWS_REGION: us-east-2
+DEP_TYPE_ENV: "devops"
+
+#
+# Default variables that shouldn't be changed except if needed
+#
+
+#. env (required): ($ environment $)
+#+ Name of the project's environment.
+env: ($ environment $)
+
+#. project (required): ($ project $)
+#+ Name of the project.
+project: ($ project $)
+
+#. customer (required): ($ organization_canonical $)
+#+ Name of the Cycloid Organization, used as customer variable name.
+customer: ($ organization_canonical $)
+
+#. cycloid_api_url (required): https://http-api.cycloid.io
+#+ Cycloid API URL.
+cycloid_api_url: 'https://http-api.cycloid.io'
+
+#. cycloid_api_key (required): ((custom_api-key-admin.key))
+#+ API key to grant admin acess to Cycloid API.
+cycloid_api_key: ((custom_api-key-admin.key))
