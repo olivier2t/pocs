@@ -98,6 +98,4 @@ jobs:
             PROJECT_ID: ((project_id_secret))
             PRIVATE_TOKEN: ((access_token_secret))
 
-  - name: deploy
-    plan:
       - put: gitlab-deploy-pipeline
