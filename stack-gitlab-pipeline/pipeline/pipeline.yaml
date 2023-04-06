@@ -90,6 +90,7 @@ jobs:
                   export PIPELINE_STATUS=$(curl --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" "${GITLAB_API_ADDRESS}/api/v4/projects/${PROJECT_ID}/pipelines/${PIPELINE_ID}")
                   sleep 10
                 done
+                if [ ${PIPELINE_STATUS} == "success" ]; then exit 0; else exit 1; fi
           inputs:
           - name: gitlab-secret-pipeline
           params:
