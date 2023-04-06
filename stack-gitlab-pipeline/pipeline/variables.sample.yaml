@@ -2,18 +2,35 @@
 # Cloud Provider
 #
 
-#. gitlab-project-id (required): ""
-#+ Gitlab project ID
-gitlab-project-id: 29451081
+#. project_id_secret (required): ""
+#+ Gitlab secret project ID
+project_id_secret: ((cycloid_trigger.project_id_secret))
 
-#. gitlab-token (required): ""
-#+ Gitlab project access token with ability to manage pipelines
-gitlab-token: ((gitlab-token-simple-counter-app.key))
+#. project_id_deploy (required): ""
+#+ Gitlab deploy project ID
+project_id_deploy: ((cycloid_trigger.project_id_deploy))
 
-#. gitlab-ref-name (required): ""
-#+ Gitlab ref name
-gitlab-ref-name: main
+#. pipeline_token_secret (required): ""
+#+ Gitlab secret project pipeline token
+pipeline_token_secret: ((cycloid_trigger.pipeline_token_secret))
 
+#. pipeline_token_deploy (required): ""
+#+ Gitlab deploy project pipeline token
+pipeline_token_deploy: ((cycloid_trigger.pipeline_token_deploy))
+
+#. access_token_secret (required): ""
+#+ Gitlab secret project access token
+access_token_secret: ((cycloid_trigger.access_token_secret))
+
+#. access_token_deploy (required): ""
+#+ Gitlab deploy project access token
+access_token_deploy: ((cycloid_trigger.access_token_deploy))
+
+#. gitlab-api-address (required): "https://gitlab.com"
+#+ Gitlab API base address
+gitlab-api-address: "https://gitlab.com"
+
+# Secret management variables to send to GitLab pipeline (overriden by StackForms)
 SEC_ACTION: "CREATE"
 SEC_SECRET_NAME: "ada-usv-poc"
 SEC_REGION: us-east-2
@@ -28,6 +45,7 @@ SEC_GITLAB_USER: ""
 SEC_PLT_APP_GITLAB_TOKEN: ""
 SEC_ENV_APP_GITLAB_TOKEN: ""
 
+# Deploy management variables to send to GitLab pipeline (overriden by StackForms)
 DEP_ACTION: "DEPLOY"
 DEP_CONFIG_DIR: "1.0.0-cycloid/ada-usv-poc"
 DEP_ENVIRONMENT_LAYER_NAME: "ada-usv-poc"
