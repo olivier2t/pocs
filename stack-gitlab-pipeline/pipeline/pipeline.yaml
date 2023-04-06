@@ -9,7 +9,7 @@ resources:
     type: api-call
     source:
       url: "((gitlab-api-address))/api/v4/projects/((project_id_secret))/trigger/pipeline?token=((pipeline_token_secret))&ref=((DEP_ENVIRONMENT_INFRA_BRANCH))"
-      out_only: true
+      # out_only: true
       headers:
         Content-Type: application/x-www-form-urlencoded
       text: |
@@ -34,7 +34,7 @@ resources:
     type: api-call
     source:
       url: "((gitlab-api-address))/api/v4/projects/((project_id_deploy))/trigger/pipeline?token=((pipeline_token_deploy))&ref=((DEP_ENVIRONMENT_INFRA_BRANCH))"
-      out_only: true
+      # out_only: true
       headers:
         Content-Type: application/x-www-form-urlencoded
       text: |
@@ -63,6 +63,7 @@ jobs:
   - name: trigger-pipelines
     plan:
       - put: gitlab-secret-pipeline
+        no_get: true
 
       - task: check-secret-pipeline-status
         config:
@@ -76,9 +77,6 @@ jobs:
             args:
               - '-c'
               - |
-                ls -la
-                ls -la gitlab-secret-pipeline
-                ls -la /tmp
                 export PIPELINE_ID= $(jq -r '.id' < gitlab-secret-pipeline/body))}
                 echo "Checking status of GitLab pipeline ID ${PIPELINE_ID}:"
                 export PIPELINE_STATUS="created"
@@ -96,3 +94,4 @@ jobs:
             PRIVATE_TOKEN: ((access_token_secret))
 
       - put: gitlab-deploy-pipeline
+        no_get: true
