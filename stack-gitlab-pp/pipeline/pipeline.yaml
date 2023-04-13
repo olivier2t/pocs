@@ -63,4 +63,9 @@ jobs:
 
   - name: deploy-pipeline-job
     plan:
+      - get: secret-pipeline
+        trigger: true
+        passed:
+          - secret-pipeline-job
+          
       - put: deploy-pipeline
