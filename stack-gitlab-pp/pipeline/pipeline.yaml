@@ -1,0 +1,66 @@
+resource_types:
+  - name: gitlab-pipeline
+    type: docker-image
+    source:
+      repository: public.ecr.aws/cycloid-demo/gitlab-pipeline-resource
+
+resources:
+  - name: secret-pipeline
+    type: gitlab-pipeline
+    source:
+      base_url: ((gitlab-api-address))
+      project_id: ((project_id_secret))
+      trigger_token: ((pipeline_token_secret))
+      access_token: ((access_token_secret))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((SEC_ACTION))
+        SECRET_NAME: ((SEC_SECRET_NAME))
+        REGION: ((SEC_REGION))
+        AWS_ACCESS_KEY: ((SEC_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((SEC_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((SEC_AWS_SESSION_TOKEN))
+        INFRA_PASSWORD: ((SEC_INFRA_PASSWORD))
+        SPLUNK_TOKEN: ((SEC_SPLUNK_TOKEN))
+        VCS_OAUTH_TOKEN_ID: ((SEC_VCS_OAUTH_TOKEN_ID))
+        GITLAB_PERSONAL_ACCESS_TOKEN: ((SEC_GITLAB_PERSONAL_ACCESS_TOKEN))
+        GITLAB_USER: ((SEC_GITLAB_USER))
+        PLT_APP_GITLAB_TOKEN: ((SEC_PLT_APP_GITLAB_TOKEN))
+        ENV_APP_GITLAB_TOKEN: ((SEC_ENV_APP_GITLAB_TOKEN))
+
+  - name: deploy-pipeline
+    type: gitlab-pipeline
+    source:
+      base_url: ((gitlab-api-address))
+      project_id: ((project_id_deploy))
+      trigger_token: ((pipeline_token_deploy))
+      access_token: ((access_token_deploy))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((DEP_ACTION))
+        CONFIG_DIR: ((DEP_CONFIG_DIR))
+        ENVIRONMENT_LAYER_NAME: ((DEP_ENVIRONMENT_LAYER_NAME))
+        ENVIRONMENT_SUFFIX: ((DEP_ENVIRONMENT_SUFFIX))
+        ENVIRONMENT_INFRA_BRANCH: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+        TF_LOG: ((DEP_TF_LOG))
+        AWS_ACCESS_KEY: ((DEP_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((DEP_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((DEP_AWS_SESSION_TOKEN))
+        AWS_REGION: ((DEP_AWS_REGION))
+        TYPE_ENV: ((DEP_TYPE_ENV))
+
+
+groups:
+- name: overview
+  jobs:
+    - secret-pipeline-job
+    - deploy-pipeline-job
+
+jobs:
+  - name: secret-pipeline-job
+    plan:
+      - put: secret-pipeline
+
+  - name: deploy-pipeline-job
+    plan:
+      - put: deploy-pipeline
