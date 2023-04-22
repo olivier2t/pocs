@@ -170,20 +170,14 @@ jobs:
     plan:
       - in_parallel:
         - get: git_stack-terraform
-          trigger: false
+          trigger: true
           passed:
             - terraform-plan
         - get: git_config-terraform
-          trigger: false
-          passed:
-            - terraform-plan
-        - get: tfstate
           trigger: true
           passed:
             - terraform-plan
       - put: secret-pipeline
-        passed:
-          - terraform-plan
 
   - name: deploy-infra
     plan:
