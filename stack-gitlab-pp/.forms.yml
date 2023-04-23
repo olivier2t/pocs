@@ -210,3 +210,10 @@ use_cases:
         values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
         default: eu-west-1
         required: true
+      - name: "Public SSH key"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        default: "((custom_keypair.ssh_pub))"
+        required: true
