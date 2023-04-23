@@ -1,7 +1,7 @@
 module "ec2" {
   #####################################
   # Do not modify the following lines #
-  source   = "github.com/olivier2t/iac-library"
+  source   = "git::https://github.com/olivier2t/iac-library.git"
   project  = var.project
   env      = var.env
   customer = var.customer
