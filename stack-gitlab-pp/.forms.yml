@@ -190,7 +190,7 @@ use_cases:
   - name: AWS Cloud Provider
     groups:
     - name: Access Configuration
-      technologies: [terraform]
+      technologies: [pipeline]
       vars:
       - name: "AWS account"
         description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
