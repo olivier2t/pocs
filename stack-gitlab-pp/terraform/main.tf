@@ -13,10 +13,10 @@ module "ec2" {
 
   #. vm_instance_type: 't3.micro'
   #+ Instance type for the VM
-  vm_instance_type = 't3.micro'
+  vm_instance_type = "t3.micro"
 
   #. vm_disk_size: 20
   #+ Disk size for the VM (Go)
-  vm_disk_size = 20
+  vm_disk_size = "20"
 
 }
