@@ -7,13 +7,6 @@ module "ec2" {
   customer = var.customer
   #####################################
 
-  #. extra_tags (optional): {}
-  #+ Dict of extra tags to add on resources. format { "foo" = "bar" }.
-  extra_tags = {
-    demo = true
-    monitoring_discovery = false
-  }
-
   #
   # Instance
   #
@@ -25,9 +18,5 @@ module "ec2" {
   #. vm_disk_size: 20
   #+ Disk size for the VM (Go)
   vm_disk_size = 20
-
-  #. keypair_public: ''
-  #+ Public key to provision to the instance
-  keypair_public = var.keypair_public
 
 }
