@@ -5,7 +5,8 @@ module "ec2-instance" {
   subnet_id = aws_subnet.public-us-east-1a.id
   instance_type = "t3.small"
   key_name = "kaiser-certifai"
-  user_data = file("userdata.sh")
+  # user_data = file("userdata.sh")
+  user_data_base64 = base64encode(file("${path.module}/userdata.sh"))
   vpc_security_group_ids = [aws_security_group.sg.id]
   root_block_device = [{
     volume_size = 500
