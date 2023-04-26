@@ -2,17 +2,17 @@ module "eks" {
   #####################################
   # Do not modify the following lines #
   source   = "./module-eks"
-  project  = var.project
-  env      = var.env
-  customer = var.customer
+  # project  = var.project
+  # env      = var.env
+  # customer = var.customer
   #####################################
 
   #. extra_tags (optional): {}
   #+ Dict of extra tags to add on resources. format { "foo" = "bar" }.
-  extra_tags = {
-    demo = true
-    monitoring_discovery = false
-  }
+  # extra_tags = {
+  #   demo = true
+  #   monitoring_discovery = false
+  # }
 
   #
   # EKS cluster
