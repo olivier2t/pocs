@@ -1,0 +1,33 @@
+version: "2"
+name: AWS EKS cluster for CognitiveScale
+canonical: stack-eks-cognitivescale
+status: private
+author: "Davyd Ramirez"
+description: |
+  Deploy a AWS managed Kubernetes cluster (EKS).
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/kubernetes.png
+keywords:
+  - kubernetes
+  - eks
+  - provider:aws
+technologies:
+  - technology: kubernetes
+
+config:
+  default:
+    name: 'Default'
+    description: 'Deploy a AWS managed Kubernetes cluster (EKS)'
+    cloud_provider: aws
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

@@ -1,0 +1,47 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: EKS Cluster
+    groups:
+    - name: EKS Cluster Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Cluster Name"
+        description: "The name of the EKS cluster."
+        key: cluster_name
+        widget: simple_text
+        type: string
+        default: "certifai-125-eks-dev"
+        required: true
+      - name: "Cluster Version"
+        description: "The version of the EKS cluster."
+        key: cluster_version
+        widget: simple_text
+        type: string
+        default: "1.25"
+        required: true
+
+    - name: AWS Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
+        key: aws_cred
+        widget: cy_cred
+        widget_config:
+          full_cred: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
+        required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true

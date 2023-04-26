@@ -1,0 +1,43 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: reader
+rules:
+- apiGroups: ["*"]
+  resources: ["deployments", "configmaps", "pods", "secrets", "services"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: reader
+subjects:
+- kind: Group
+  name: reader
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: reader
+  apiGroup: rbac.authorization.k8s.io
+
+
+# apiVersion: v1
+# data:
+#   mapRoles: |
+#     - groups:
+#       - system:bootstrappers
+#       - system:nodes
+#       rolearn: arn:aws:iam::711601140448:role/eks-node-group-nodes
+#       username: system:node:{{EC2PrivateDNSName}}
+#   mapUsers: "- groups:\n  - system:admins\n  userarn: arn:aws:iam::711601140448:user/dramirez\n
+#     \ username: dramirez\n- groups:\n  - eks-console-dashboard-restricted-access-group
+#     \     \n  userarn: arn:aws:iam::444455556666:user/my-user\n  username: my-user
+#     \  \n"
+# kind: ConfigMap
+# metadata:
+#   creationTimestamp: "2023-04-20T16:17:49Z"
+#   name: aws-auth
+#   namespace: kube-system
+#   resourceVersion: "275821"
+#   uid: 059d300c-36b1-4831-8106-fed0292c1f45

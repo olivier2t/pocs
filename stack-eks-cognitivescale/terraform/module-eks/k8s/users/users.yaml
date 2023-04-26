@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::711601140448:role/eks-node-group-nodes
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::711601140448:user/mchutani
+      username: mchutani
+    - groups:
+      - system:masters
+      userarn: arn:aws:iam::711601140448:user/dramirez
+      username: dramirez
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-04-20T16:17:49Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "275821"
+  uid: 059d300c-36b1-4831-8106-fed0292c1f45
