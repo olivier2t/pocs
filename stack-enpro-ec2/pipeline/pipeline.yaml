@@ -36,7 +36,7 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=($ inventory_jwt $)'
     vars:
-      aws_cred: ((((aws_cred))))
+      aws_cred: ((aws_cred))
       aws_region: ((aws_region))
       env: ((env))
       project: ((project))
@@ -86,12 +86,12 @@ resources:
 groups:
 - name: overview
   jobs:
-    - terraform-plan
-    - terraform-apply
+  - terraform-plan
+  - terraform-apply
 
 - name: destroy
   jobs:
-    - terraform-destroy
+  - terraform-destroy
 
 
 jobs:
@@ -176,7 +176,7 @@ jobs:
             - put: cycloid-event
               params:
                 severity: info
-                title: NodeJS application deployment successful
+                title: Deployment successful
                 message: The project ((project)) on ((env)) environment deployed successfully
 
 
