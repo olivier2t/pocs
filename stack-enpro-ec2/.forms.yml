@@ -45,11 +45,11 @@ use_cases:
         widget: dropdown
         type: map
         values:
-          - {label: "AWS Dev Account - Public subnet 1", value: "subnet-0866446def6d05a3f"}
-          - {label: "AWS Dev Account - Private subnet 1", value: "subnet-05eceba7d6447a365"}
-          - {label: "AWS Training Account - Public subnet 1", value: "subnet-0b89b11a8b1662386"}
-          - {label: "AWS Training Account - Private subnet 1", value: "subnet-017d7411b3a2e5c15"}
-          - {label: "AWS Training Account - Private subnet 2", value: "subnet-0a74cdafc53078ca4"}
+          - {"label": "AWS Dev Account - Public subnet 1", "value": "subnet-0866446def6d05a3f"}
+          - {"label": "AWS Dev Account - Private subnet 1", "value": "subnet-05eceba7d6447a365"}
+          - {"label": "AWS Training Account - Public subnet 1", "value": "subnet-0b89b11a8b1662386"}
+          - {"label": "AWS Training Account - Private subnet 1", "value": "subnet-017d7411b3a2e5c15"}
+          - {"label": "AWS Training Account - Private subnet 2", "value": "subnet-0a74cdafc53078ca4"}
         required: true
 
     - name: Virtual machine specifications
