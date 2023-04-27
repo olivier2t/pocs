@@ -108,7 +108,7 @@ use_cases:
         key: tag_division
         widget: dropdown
         type: string
-        default: ""
+        default: "TNG"
         values:
             - "TNG"
             - "GST"
@@ -120,7 +120,7 @@ use_cases:
         key: tag_costcenter
         widget: dropdown
         type: string
-        default: ""
+        default: "EBU0"
         values:
             - "EBU0"
             - "STR0"
