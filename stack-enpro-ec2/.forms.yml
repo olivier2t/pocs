@@ -89,72 +89,72 @@ use_cases:
       #     - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
       #   required: true
 
-    - name: "Tagging Policy"
-      technologies: [terraform]
-      vars:
-      - name: "Name"
-        description: "Tag for Instance name."
-        key: tag_name
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Division"
-        description: "Tag for Division name."
-        key: tag_division
-        widget: dropdown
-        type: string
-        default: "TNG"
-        values:
-            - "TNG"
-            - "GST"
-            - "STM"
-            - "ENP"
-        required: true
-      - name: "Cost Center"
-        description: "Tag for Cost Center name."
-        key: tag_costcenter
-        widget: dropdown
-        type: string
-        default: "EBU0"
-        values:
-            - "EBU0"
-            - "STR0"
-            - "ROC0"
-            - "MEX0"
-            - "CLT0"
-        required: true
-      - name: "Application"
-        description: "Tag for Application name."
-        key: tag_application
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Application Owner"
-        description: "Tag for Application owner."
-        key: tag_application_owner
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Backup"
-        description: "Tag for Backup."
-        key: tag_backup
-        widget: dropdown
-        type: string
-        default: "none"
-        values:
-            - "daily"
-            - "none"
-        required: true
-      - name: "Environment"
-        description: "Tag for Environment."
-        key: tag_environment
-        widget: dropdown
-        type: string
-        default: "test"
-        values:
-            - "prod"
-            - "test"
-        required: true
+    # - name: "Tagging Policy"
+    #   technologies: [terraform]
+    #   vars:
+    #   - name: "Name"
+    #     description: "Tag for Instance name."
+    #     key: tag_name
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Division"
+    #     description: "Tag for Division name."
+    #     key: tag_division
+    #     widget: dropdown
+    #     type: string
+    #     default: "TNG"
+    #     values:
+    #         - "TNG"
+    #         - "GST"
+    #         - "STM"
+    #         - "ENP"
+    #     required: true
+    #   - name: "Cost Center"
+    #     description: "Tag for Cost Center name."
+    #     key: tag_costcenter
+    #     widget: dropdown
+    #     type: string
+    #     default: "EBU0"
+    #     values:
+    #         - "EBU0"
+    #         - "STR0"
+    #         - "ROC0"
+    #         - "MEX0"
+    #         - "CLT0"
+    #     required: true
+    #   - name: "Application"
+    #     description: "Tag for Application name."
+    #     key: tag_application
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Application Owner"
+    #     description: "Tag for Application owner."
+    #     key: tag_application_owner
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Backup"
+    #     description: "Tag for Backup."
+    #     key: tag_backup
+    #     widget: dropdown
+    #     type: string
+    #     default: "none"
+    #     values:
+    #         - "daily"
+    #         - "none"
+    #     required: true
+    #   - name: "Environment"
+    #     description: "Tag for Environment."
+    #     key: tag_environment
+    #     widget: dropdown
+    #     type: string
+    #     default: "test"
+    #     values:
+    #         - "prod"
+    #         - "test"
+    #     required: true
