@@ -45,17 +45,17 @@ use_cases:
             - 8
             - 100
         required: true
-      - name: "Instance AMI"
-        description: "Instance AMI for the VM."
-        key: vm_instance_ami
-        widget: radios
-        type: map
-        default: "Amazon Linux"
-        values:
-          - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
-          - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
-          - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
-        required: true
+      # - name: "Instance AMI"
+      #   description: "Instance AMI for the VM."
+      #   key: vm_instance_ami
+      #   widget: radios
+      #   type: map
+      #   default: "Amazon Linux"
+      #   values:
+      #     - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
+      #     - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
+      #     - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
+      #   required: true
       # - name: Subnet
       #   description: Subnet where to deploy the instance.
       #   key: aws_subnet
@@ -76,18 +76,18 @@ use_cases:
       #           - "subnet-017d7411b3a2e5c15"
       #           - "subnet-0a74cdafc53078ca4"
       #   required: true
-      - name: "Subnet"
-        description: "Subnet where to deploy the instance."
-        key: aws_subnet
-        widget: dropdown
-        type: map
-        values:
-          - {label: "Dev Account Public subnet 1", value: "subnet-0866446def6d05a3f"}
-          - {label: "Dev Account Private subnet 1", value: "subnet-05eceba7d6447a365"}
-          - {label: "Training Account Public subnet 1", value: "subnet-0b89b11a8b1662386"}
-          - {label: "Training Account Private subnet 1", value: "subnet-017d7411b3a2e5c15"}
-          - {label: "Training Account Private subnet 2", value: "subnet-0a74cdafc53078ca4"}
-        required: true
+      # - name: "Subnet"
+      #   description: "Subnet where to deploy the instance."
+      #   key: aws_subnet
+      #   widget: dropdown
+      #   type: map
+      #   values:
+      #     - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
+      #     - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
+      #     - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
+      #     - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
+      #     - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
+      #   required: true
 
     - name: "Tagging Policy"
       technologies: [terraform]
