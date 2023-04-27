@@ -2,7 +2,7 @@ version: "2"
 name: EC2 for EnPro
 canonical: stack-enpro-ec2
 status: private
-author: 'EnPro Industries'
+author: EnPro
 description: |
   Deploys an AWS EC2 instance.
 image: |
