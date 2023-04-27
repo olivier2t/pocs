@@ -33,9 +33,9 @@ stack_git_username: ((($ scs_cred_path $).username))
 #+ Password for HTTP(S) auth when pulling/pushing.
 stack_git_token: ((($ scs_cred_path $).password))
 
-#. stack_terraform_path (required): {{stack_path}}/terraform
+#. stack_terraform_path (required): stack-enpro-ec2/terraform
 #+ Path of Terraform files in the stack git repository
-stack_terraform_path: {{stack_path}}/terraform
+stack_terraform_path: stack-enpro-ec2/terraform
 
 
 #
