@@ -39,20 +39,20 @@ use_cases:
       #           - "subnet-017d7411b3a2e5c15"
       #           - "subnet-0a74cdafc53078ca4"
       #   required: true
-      # - name: Subnet
-      #   description: Subnet where to deploy the instance.
-      #   key: aws_subnet
-      #   widget: dropdown
-      #   type: map
-      #   values:
-      #     - {label: "Dev Account Public subnet 1", value: "subnet-0866446def6d05a3f"}
+      - name: "Subnet"
+        description: "Subnet where to deploy the instance."
+        key: aws_subnet
+        widget: dropdown
+        type: map
+        values:
+          - {label: "Dev Account Public subnet 1", value: "subnet-0866446def6d05a3f"}
       #     - {label: "Dev Account Private subnet 1", value: "subnet-05eceba7d6447a365"}
       #     - {label: "Training Account Public subnet 1", value: "subnet-0b89b11a8b1662386"}
       #     - {label: "Training Account Private subnet 1", value: "subnet-017d7411b3a2e5c15"}
       #     - {label: "Training Account Private subnet 2", value: "subnet-0a74cdafc53078ca4"}
-      #   required: true
+        required: true
 
-    - name: Virtual machine specifications
+    - name: "Virtual machine specifications"
       technologies: [terraform]
       vars:
       - name: "Instance type"
@@ -89,7 +89,7 @@ use_cases:
           - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
         required: true
 
-    - name: Tagging Policy
+    - name: "Tagging Policy"
       technologies: [terraform]
       vars:
       - name: "Name"
