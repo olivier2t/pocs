@@ -92,3 +92,73 @@ use_cases:
           - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
           - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
         required: true
+
+    - name: Tagging Policy
+      technologies: [terraform]
+      vars:
+      - name: "Name"
+        description: "Instance name."
+        key: tag_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Division"
+        description: "Division name."
+        key: tag_division
+        widget: dropdown
+        type: string
+        default: ""
+        values:
+            - "TNG"
+            - "GST"
+            - "STM"
+            - "ENP"
+        required: true
+      - name: "Cost Center"
+        description: "Cost Center name."
+        key: tag_costcenter
+        widget: dropdown
+        type: string
+        default: ""
+        values:
+            - "EBU0"
+            - "STR0"
+            - "ROC0"
+            - "MEX0"
+            - "CLT0"
+        required: true
+      - name: "Application"
+        description: "Application name."
+        key: tag_application
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Application Owner"
+        description: "Application owner."
+        key: tag_application_owner
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Backup"
+        description: "Backup."
+        key: tag_backup
+        widget: dropdown
+        type: string
+        default: "none"
+        values:
+            - "daily"
+            - "none"
+        required: true
+      - name: "Environment"
+        description: "Environment."
+        key: tag_environment
+        widget: dropdown
+        type: string
+        default: "test"
+        values:
+            - "prod"
+            - "test"
+        required: true
