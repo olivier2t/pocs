@@ -8,31 +8,16 @@ use_cases:
     - name: Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "AWS access key"
-        description: "Amazon AWS access key used to deploy the infrastructure."
-        key: aws_access_key
-        widget: cy_cred
-        type: string
-        default: "((aws.access_key))"
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure."
+        key: aws_cred
+        widget: dropdown
+        type: map
+        default: "AWS Dev Account"
+        values:
+          - {label: "AWS Dev Account", value: "aws-dev-account"}
+          - {label: "AWS Training Account", value: "aws-training-account"}
         required: true
-      - name: "AWS secret key"
-        description: "Amazon AWS secret key used to deploy the infrastructure."
-        key: aws_secret_key
-        widget: cy_cred
-        type: string
-        default: "((aws.secret_key))"
-        required: true
-      # - name: "AWS account"
-      #   description: "The AWS account where to deploy the infrastructure."
-      #   key: aws_cred
-      #   widget: cy_cred
-      #   widget_config:
-      #     display_keys: false
-      #     cred_types:
-      #       - aws
-      #   type: string
-      #   default: "((aws))"
-      #   required: true
       - name: Subnet
         description: Subnet where to deploy the instance.
         key: aws_subnet
