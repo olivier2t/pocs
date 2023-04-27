@@ -27,12 +27,12 @@ use_cases:
         values:
           options:
             - name: "Subnets for AWS Dev Account"
-              condition: "$aws_access_key == 'AKIAV7HNTHE3IZKYVLPE'"
+              condition: "$aws_cred == 'aws-dev-account'"
               values:
                 - "subnet-0866446def6d05a3f"
                 - "subnet-05eceba7d6447a365"
             - name: "Subnets for AWS Training Account"
-              condition: "$aws_access_key == 'AKIASW66ALRMHBEZT2G4'"
+              condition: "$aws_cred == 'aws-training-account'"
               values:
                 - "subnet-0b89b11a8b1662386"
                 - "subnet-017d7411b3a2e5c15"
