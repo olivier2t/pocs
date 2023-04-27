@@ -1,0 +1,32 @@
+version: "2"
+name: EC2 for EnPro
+canonical: stack-enpro-ec2
+status: private
+author: 'EnPro Industries'
+description: |
+  Deploys an AWS EC2 instance.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/ec2.png
+keywords:
+  - ec2
+  - provider:aws
+technologies:
+  - technology: ec2
+
+config:
+  default:
+    name: 'Default'
+    description: 'Deploys an AWS EC2 instance'
+    cloud_provider: aws
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
