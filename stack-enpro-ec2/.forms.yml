@@ -3,9 +3,9 @@ version: "2"
 use_cases:
 - name: default
   sections:
-  - name: AWS Cloud Provider
+  - name: EC2 Instance
     groups:
-    - name: Access Configuration
+    - name: AWS Cloud Provider
       technologies: [pipeline]
       vars:
       - name: "AWS account"
@@ -52,8 +52,6 @@ use_cases:
           - {label: "AWS Training Account - Private subnet 2", value: "subnet-0a74cdafc53078ca4"}
         required: true
 
-  - name: EC2 Instance
-    groups:
     - name: Virtual machine specifications
       technologies: [terraform]
       vars:
@@ -83,6 +81,8 @@ use_cases:
         description: "Instance AMI for the VM."
         key: vm_instance_ami
         widget: radios
+        widget_config:
+          orientation: vertical
         type: map
         default: "Amazon Linux"
         values:
