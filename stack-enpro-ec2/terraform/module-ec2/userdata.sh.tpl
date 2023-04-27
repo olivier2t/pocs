@@ -2,7 +2,7 @@
 until sudo apt-get update; do sleep 1; done
 until sudo apt-get install git nodejs npm -y; do sleep 1; done
 cd /tmp
-git clone ${git_app_url} webapp
+git clone https://github.com/ahfarmer/calculator.git webapp
 cd webapp
 sed -i 's/"homepage": ".*"/"homepage": "."/g' package.json
 sudo npm install
