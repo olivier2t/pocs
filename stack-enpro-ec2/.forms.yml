@@ -11,32 +11,45 @@ use_cases:
       - name: "AWS account"
         description: "The AWS account where to deploy the infrastructure."
         key: aws_cred
-        widget: dropdown
-        type: map
-        default: "AWS Dev Account"
-        values:
-          - {label: "AWS Dev Account", value: "aws-dev-account"}
-          - {label: "AWS Training Account", value: "aws-training-account"}
+        widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
         required: true
+      # - name: Subnet
+      #   description: Subnet where to deploy the instance.
+      #   key: aws_subnet
+      #   widget: auto_complete
+      #   type: string
+      #   default: ""
+      #   values:
+      #     options:
+      #       - name: "Subnets for AWS Dev Account"
+      #         condition: "$aws_cred.access_key == 'AKIAV7HNTHE3IZKYVLPE'"
+      #         values:
+      #           - "subnet-0866446def6d05a3f"
+      #           - "subnet-05eceba7d6447a365"
+      #       - name: "Subnets for AWS Training Account"
+      #         condition: "$aws_cred.access_key == 'AKIASW66ALRMHBEZT2G4'"
+      #         values:
+      #           - "subnet-0b89b11a8b1662386"
+      #           - "subnet-017d7411b3a2e5c15"
+      #           - "subnet-0a74cdafc53078ca4"
+      #   required: true
       - name: Subnet
         description: Subnet where to deploy the instance.
         key: aws_subnet
-        widget: auto_complete
-        type: string
-        default: ""
+        widget: dropdown
+        type: map
         values:
-          options:
-            - name: "Subnets for AWS Dev Account"
-              condition: "$aws_cred == 'aws-dev-account'"
-              values:
-                - "subnet-0866446def6d05a3f"
-                - "subnet-05eceba7d6447a365"
-            - name: "Subnets for AWS Training Account"
-              condition: "$aws_cred == 'aws-training-account'"
-              values:
-                - "subnet-0b89b11a8b1662386"
-                - "subnet-017d7411b3a2e5c15"
-                - "subnet-0a74cdafc53078ca4"
+          - {label: "AWS Dev Account - Public subnet 1", value: "subnet-0866446def6d05a3f"}
+          - {label: "AWS Dev Account - Private subnet 1", value: "subnet-05eceba7d6447a365"}
+          - {label: "AWS Training Account - Public subnet 1", value: "subnet-0b89b11a8b1662386"}
+          - {label: "AWS Training Account - Private subnet 1", value: "subnet-017d7411b3a2e5c15"}
+          - {label: "AWS Training Account - Private subnet 2", value: "subnet-0a74cdafc53078ca4"}
         required: true
 
   - name: EC2 Instance
