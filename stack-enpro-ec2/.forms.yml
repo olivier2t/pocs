@@ -8,17 +8,31 @@ use_cases:
     - name: Access Configuration
       technologies: [pipeline]
       vars:
-      - name: "AWS account"
-        description: "The AWS account where to deploy the infrastructure."
-        key: aws_cred
+      - name: "AWS access key"
+        description: "Amazon AWS access key used to deploy the infrastructure."
+        key: aws_access_key
         widget: cy_cred
-        widget_config:
-          display_keys: false
-          cred_types:
-            - aws
         type: string
-        default: "((aws))"
+        default: "((aws.access_key))"
         required: true
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key used to deploy the infrastructure."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws.secret_key))"
+        required: true
+      # - name: "AWS account"
+      #   description: "The AWS account where to deploy the infrastructure."
+      #   key: aws_cred
+      #   widget: cy_cred
+      #   widget_config:
+      #     display_keys: false
+      #     cred_types:
+      #       - aws
+      #   type: string
+      #   default: "((aws))"
+      #   required: true
       - name: Subnet
         description: Subnet where to deploy the instance.
         key: aws_subnet
@@ -28,12 +42,12 @@ use_cases:
         values:
           options:
             - name: "Subnets for AWS Dev Account"
-              condition: "$aws_cred == 'cycloid-demo'"
+              condition: "$aws_access_key == 'AKIAXF575J26EPGK56MA'"
               values:
                 - "subnet-0866446def6d05a3f"
                 - "subnet-05eceba7d6447a365"
             - name: "Subnets for AWS Training Account"
-              condition: "$aws_cred == 'AWS Training Account'"
+              condition: "$aws_access_key == 'AKIASW66ALRMHBEZT2G4'"
               values:
                 - "subnet-0b89b11a8b1662386"
                 - "subnet-017d7411b3a2e5c15"
