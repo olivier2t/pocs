@@ -20,141 +20,141 @@ use_cases:
         default: "((aws))"
         required: true
 
-    - name: "Virtual machine specifications"
-      technologies: [terraform]
-      vars:
-      - name: "Instance type"
-        description: "Instance type for the VM."
-        key: vm_instance_type
-        widget: slider_list
-        type: string
-        default: "t3a.small"
-        values:
-        - "t3a.small"
-        - "t3a.medium"
-        - "t3a.large"
-        required: true
-      - name: "Instance volume size"
-        unit: Go
-        description: "Disk size for the VM."
-        key: vm_disk_size
-        widget: slider_range
-        type: integer
-        default: 20
-        values:
-            - 8
-            - 100
-        required: true
-      - name: "Instance AMI"
-        description: "Instance AMI for the VM."
-        key: vm_instance_ami
-        widget: radios
-        type: map
-        default: "Amazon Linux"
-        values:
-        - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
-        - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
-        - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
-        required: true
-      # - name: Subnet
-      #   description: Subnet where to deploy the instance.
-      #   key: aws_subnet
-      #   widget: auto_complete
-      #   type: string
-      #   default: ""
-      #   values:
-      #     options:
-      #       - name: "Subnets for AWS Dev Account"
-      #         condition: "$aws_cred.access_key == 'AKIAV7HNTHE3IZKYVLPE'"
-      #         values:
-      #           - "subnet-0866446def6d05a3f"
-      #           - "subnet-05eceba7d6447a365"
-      #       - name: "Subnets for AWS Training Account"
-      #         condition: "$aws_cred.access_key == 'AKIASW66ALRMHBEZT2G4'"
-      #         values:
-      #           - "subnet-0b89b11a8b1662386"
-      #           - "subnet-017d7411b3a2e5c15"
-      #           - "subnet-0a74cdafc53078ca4"
-      #   required: true
-      - name: "Subnet"
-        description: "Subnet where to deploy the instance."
-        key: aws_subnet
-        widget: dropdown
-        type: map
-        values:
-        - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
-        - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
-        - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
-        - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
-        - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
-        required: true
+    # - name: "Virtual machine specifications"
+    #   technologies: [terraform]
+    #   vars:
+    #   - name: "Instance type"
+    #     description: "Instance type for the VM."
+    #     key: vm_instance_type
+    #     widget: slider_list
+    #     type: string
+    #     default: "t3a.small"
+    #     values:
+    #     - "t3a.small"
+    #     - "t3a.medium"
+    #     - "t3a.large"
+    #     required: true
+    #   - name: "Instance volume size"
+    #     unit: Go
+    #     description: "Disk size for the VM."
+    #     key: vm_disk_size
+    #     widget: slider_range
+    #     type: integer
+    #     default: 20
+    #     values:
+    #         - 8
+    #         - 100
+    #     required: true
+    #   - name: "Instance AMI"
+    #     description: "Instance AMI for the VM."
+    #     key: vm_instance_ami
+    #     widget: radios
+    #     type: map
+    #     default: "Amazon Linux"
+    #     values:
+    #     - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
+    #     - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
+    #     - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
+    #     required: true
+    #   # - name: Subnet
+    #   #   description: Subnet where to deploy the instance.
+    #   #   key: aws_subnet
+    #   #   widget: auto_complete
+    #   #   type: string
+    #   #   default: ""
+    #   #   values:
+    #   #     options:
+    #   #       - name: "Subnets for AWS Dev Account"
+    #   #         condition: "$aws_cred.access_key == 'AKIAV7HNTHE3IZKYVLPE'"
+    #   #         values:
+    #   #           - "subnet-0866446def6d05a3f"
+    #   #           - "subnet-05eceba7d6447a365"
+    #   #       - name: "Subnets for AWS Training Account"
+    #   #         condition: "$aws_cred.access_key == 'AKIASW66ALRMHBEZT2G4'"
+    #   #         values:
+    #   #           - "subnet-0b89b11a8b1662386"
+    #   #           - "subnet-017d7411b3a2e5c15"
+    #   #           - "subnet-0a74cdafc53078ca4"
+    #   #   required: true
+    #   - name: "Subnet"
+    #     description: "Subnet where to deploy the instance."
+    #     key: aws_subnet
+    #     widget: dropdown
+    #     type: map
+    #     values:
+    #     - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
+    #     - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
+    #     - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
+    #     - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
+    #     - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
+    #     required: true
 
-    - name: "Tagging Policy"
-      technologies: [terraform]
-      vars:
-      - name: "Name"
-        description: "Tag for Instance name."
-        key: tag_name
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Division"
-        description: "Tag for Division name."
-        key: tag_division
-        widget: dropdown
-        type: string
-        default: "TNG"
-        values:
-        - "TNG"
-        - "GST"
-        - "STM"
-        - "ENP"
-        required: true
-      - name: "Cost Center"
-        description: "Tag for Cost Center name."
-        key: tag_costcenter
-        widget: dropdown
-        type: string
-        default: "EBU0"
-        values:
-        - "EBU0"
-        - "STR0"
-        - "ROC0"
-        - "MEX0"
-        - "CLT0"
-        required: true
-      - name: "Application"
-        description: "Tag for Application name."
-        key: tag_application
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Application Owner"
-        description: "Tag for Application owner."
-        key: tag_application_owner
-        widget: simple_text
-        type: string
-        default: ""
-        required: true
-      - name: "Backup"
-        description: "Tag for Backup."
-        key: tag_backup
-        widget: dropdown
-        type: string
-        default: "none"
-        values:
-        - "daily"
-        - "none"
-        required: true
-      - name: "Environment"
-        description: "Tag for Environment."
-        key: tag_environment
-        widget: dropdown
-        type: string
-        default: "test"
-        values:
-        - "prod"
-        - "test"
-        required: true
+    # - name: "Tagging Policy"
+    #   technologies: [terraform]
+    #   vars:
+    #   - name: "Name"
+    #     description: "Tag for Instance name."
+    #     key: tag_name
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Division"
+    #     description: "Tag for Division name."
+    #     key: tag_division
+    #     widget: dropdown
+    #     type: string
+    #     default: "TNG"
+    #     values:
+    #     - "TNG"
+    #     - "GST"
+    #     - "STM"
+    #     - "ENP"
+    #     required: true
+    #   - name: "Cost Center"
+    #     description: "Tag for Cost Center name."
+    #     key: tag_costcenter
+    #     widget: dropdown
+    #     type: string
+    #     default: "EBU0"
+    #     values:
+    #     - "EBU0"
+    #     - "STR0"
+    #     - "ROC0"
+    #     - "MEX0"
+    #     - "CLT0"
+    #     required: true
+    #   - name: "Application"
+    #     description: "Tag for Application name."
+    #     key: tag_application
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Application Owner"
+    #     description: "Tag for Application owner."
+    #     key: tag_application_owner
+    #     widget: simple_text
+    #     type: string
+    #     default: ""
+    #     required: true
+    #   - name: "Backup"
+    #     description: "Tag for Backup."
+    #     key: tag_backup
+    #     widget: dropdown
+    #     type: string
+    #     default: "none"
+    #     values:
+    #     - "daily"
+    #     - "none"
+    #     required: true
+    #   - name: "Environment"
+    #     description: "Tag for Environment."
+    #     key: tag_environment
+    #     widget: dropdown
+    #     type: string
+    #     default: "test"
+    #     values:
+    #     - "prod"
+    #     - "test"
+    #     required: true
