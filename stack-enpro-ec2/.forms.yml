@@ -82,7 +82,7 @@ use_cases:
         key: vm_instance_ami
         widget: radios
         widget_config:
-          orientation: vertical
+        orientation: vertical
         type: map
         default: "Amazon Linux"
         values:
