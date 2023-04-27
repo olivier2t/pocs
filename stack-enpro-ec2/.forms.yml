@@ -82,11 +82,11 @@ use_cases:
         widget: dropdown
         type: map
         values:
-        - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
-        - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
-        - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
-        - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
-        - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
+        - {label: "Dev Account (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
+        - {label: "Dev Account (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
+        - {label: "Training Account (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
+        - {label: "Training Account (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
+        - {label: "Training Account (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
         required: true
 
     - name: "Tagging Policy"
