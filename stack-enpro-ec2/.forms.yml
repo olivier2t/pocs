@@ -34,17 +34,17 @@ use_cases:
             - "t3a.medium"
             - "t3a.large"
         required: true
-      - name: "Instance volume size"
-        unit: Go
-        description: "Disk size for the VM."
-        key: vm_disk_size
-        widget: slider_range
-        type: integer
-        default: 20
-        values:
-            - 8
-            - 100
-        required: true
+      # - name: "Instance volume size"
+      #   unit: Go
+      #   description: "Disk size for the VM."
+      #   key: vm_disk_size
+      #   widget: slider_range
+      #   type: integer
+      #   default: 20
+      #   values:
+      #       - 8
+      #       - 100
+      #   required: true
       # - name: "Instance AMI"
       #   description: "Instance AMI for the VM."
       #   key: vm_instance_ami
