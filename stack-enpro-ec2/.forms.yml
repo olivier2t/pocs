@@ -15,7 +15,7 @@ use_cases:
         widget_config:
           display_keys: false
           cred_types:
-            - aws
+          - aws
         type: string
         default: "((aws))"
         required: true
@@ -30,9 +30,9 @@ use_cases:
         type: string
         default: "t3a.small"
         values:
-            - "t3a.small"
-            - "t3a.medium"
-            - "t3a.large"
+        - "t3a.small"
+        - "t3a.medium"
+        - "t3a.large"
         required: true
       - name: "Instance volume size"
         unit: Go
@@ -52,9 +52,9 @@ use_cases:
         type: map
         default: "Amazon Linux"
         values:
-          - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
-          - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
-          - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
+        - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
+        - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
+        - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
         required: true
       # - name: Subnet
       #   description: Subnet where to deploy the instance.
@@ -82,11 +82,11 @@ use_cases:
         widget: dropdown
         type: map
         values:
-          - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
-          - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
-          - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
-          - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
-          - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
+        - {label: "Dev Account - Public subnet (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
+        - {label: "Dev Account - Private subnet (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
+        - {label: "Training Account - Public subnet (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
+        - {label: "Training Account - Private subnet (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
+        - {label: "Training Account - Private subnet (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
         required: true
 
     - name: "Tagging Policy"
@@ -106,10 +106,10 @@ use_cases:
         type: string
         default: "TNG"
         values:
-            - "TNG"
-            - "GST"
-            - "STM"
-            - "ENP"
+        - "TNG"
+        - "GST"
+        - "STM"
+        - "ENP"
         required: true
       - name: "Cost Center"
         description: "Tag for Cost Center name."
@@ -118,11 +118,11 @@ use_cases:
         type: string
         default: "EBU0"
         values:
-            - "EBU0"
-            - "STR0"
-            - "ROC0"
-            - "MEX0"
-            - "CLT0"
+        - "EBU0"
+        - "STR0"
+        - "ROC0"
+        - "MEX0"
+        - "CLT0"
         required: true
       - name: "Application"
         description: "Tag for Application name."
@@ -145,8 +145,8 @@ use_cases:
         type: string
         default: "none"
         values:
-            - "daily"
-            - "none"
+        - "daily"
+        - "none"
         required: true
       - name: "Environment"
         description: "Tag for Environment."
@@ -155,6 +155,6 @@ use_cases:
         type: string
         default: "test"
         values:
-            - "prod"
-            - "test"
+        - "prod"
+        - "test"
         required: true
