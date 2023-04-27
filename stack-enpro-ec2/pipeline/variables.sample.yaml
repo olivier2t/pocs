@@ -79,9 +79,9 @@ project: ($ project $)
 #+ Name of the Cycloid Organization, used as customer variable name.
 customer: ($ organization_canonical $)
 
-#. cycloid_api_url (required): {{api_url}}
+#. cycloid_api_url (required): https://http-api.cycloid.io
 #+ Cycloid API URL.
-cycloid_api_url: {{api_url}}
+cycloid_api_url: 'https://http-api.cycloid.io'
 
 #. cycloid_api_key (required): ((api-key-admin.key))
 #+ API key to grant admin acess to Cycloid API.
