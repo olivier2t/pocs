@@ -2,38 +2,38 @@
 version: "2"
 use_cases:
 - name: default
-  sections:
-  - name: EC2 Instance
-    groups:
-    - name: AWS Cloud Provider
-      technologies: [pipeline]
-      vars:
-      - name: "AWS account"
-        description: "The AWS account where to deploy the infrastructure."
-        key: aws_cred
-        widget: cy_cred
-        widget_config:
-          display_keys: false
-          cred_types:
-            - aws
-        type: string
-        default: "((aws))"
-        required: true
+  # sections:
+  # - name: EC2 Instance
+  #   groups:
+  #   - name: AWS Cloud Provider
+  #     technologies: [pipeline]
+  #     vars:
+  #     - name: "AWS account"
+  #       description: "The AWS account where to deploy the infrastructure."
+  #       key: aws_cred
+  #       widget: cy_cred
+  #       widget_config:
+  #         display_keys: false
+  #         cred_types:
+  #           - aws
+  #       type: string
+  #       default: "((aws))"
+  #       required: true
 
-    - name: "Virtual machine specifications"
-      technologies: [terraform]
-      vars:
-      - name: "Instance type"
-        description: "Instance type for the VM."
-        key: vm_instance_type
-        widget: slider_list
-        type: string
-        default: "t3a.small"
-        values:
-            - "t3a.small"
-            - "t3a.medium"
-            - "t3a.large"
-        required: true
+  #   - name: "Virtual machine specifications"
+  #     technologies: [terraform]
+  #     vars:
+  #     - name: "Instance type"
+  #       description: "Instance type for the VM."
+  #       key: vm_instance_type
+  #       widget: slider_list
+  #       type: string
+  #       default: "t3a.small"
+  #       values:
+  #           - "t3a.small"
+  #           - "t3a.medium"
+  #           - "t3a.large"
+  #       required: true
       # - name: "Instance volume size"
       #   unit: Go
       #   description: "Disk size for the VM."
