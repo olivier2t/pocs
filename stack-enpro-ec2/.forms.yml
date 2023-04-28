@@ -56,37 +56,59 @@ use_cases:
         - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
         - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
         required: true
-      # - name: Subnet
-      #   description: Subnet where to deploy the instance.
-      #   key: aws_subnet
-      #   widget: auto_complete
-      #   type: string
-      #   default: ""
-      #   values:
-      #     options:
-      #       - name: "Subnets for AWS Dev Account"
-      #         condition: "$aws_cred.access_key == 'AKIAV7HNTHE3IZKYVLPE'"
-      #         values:
-      #           - "subnet-0866446def6d05a3f"
-      #           - "subnet-05eceba7d6447a365"
-      #       - name: "Subnets for AWS Training Account"
-      #         condition: "$aws_cred.access_key == 'AKIASW66ALRMHBEZT2G4'"
-      #         values:
-      #           - "subnet-0b89b11a8b1662386"
-      #           - "subnet-017d7411b3a2e5c15"
-      #           - "subnet-0a74cdafc53078ca4"
-      #   required: true
-      - name: "Subnet"
-        description: "Subnet where to deploy the instance."
-        key: aws_subnet
+      - name: "VPC"
+        description: "VPC where to deploy the instance."
+        key: aws_vpc
         widget: dropdown
         type: map
         values:
-        - {label: "Dev Account (subnet-0866446def6d05a3f)", value: "subnet-0866446def6d05a3f"}
-        - {label: "Dev Account (subnet-05eceba7d6447a365)", value: "subnet-05eceba7d6447a365"}
-        - {label: "Training Account (subnet-0b89b11a8b1662386)", value: "subnet-0b89b11a8b1662386"}
-        - {label: "Training Account (subnet-017d7411b3a2e5c15)", value: "subnet-017d7411b3a2e5c15"}
-        - {label: "Training Account (subnet-0a74cdafc53078ca4)", value: "subnet-0a74cdafc53078ca4"}
+        - {label: "TEST (vpc-b94ae9c4)", value: "vpc-b94ae9c4"}
+        - {label: "Dev Account (vpc-0f4debf96b8a98c80)", value: "vpc-0f4debf96b8a98c80"}
+        - {label: "Training Account (vpc-0fab8156d4f022c17)", value: "vpc-0fab8156d4f022c17"}
+        required: true
+      - name: Subnet
+        description: Subnet where to deploy the instance.
+        key: aws_subnet
+        widget: auto_complete
+        type: string
+        values:
+          options:
+            - name: "Subnets for TEST Account"
+              condition: "$aws_vpc == 'TEST (vpc-b94ae9c4)'"
+              values:
+                - "subnet-a1c457fe"
+                - "subnet-f933a49f"
+            - name: "Subnets for AWS Dev Account"
+              condition: "$aws_vpc == 'Dev Account (vpc-0f4debf96b8a98c80)'"
+              values:
+                - "subnet-0866446def6d05a3f"
+                - "subnet-05eceba7d6447a365"
+            - name: "Subnets for AWS Training Account"
+              condition: "$aws_vpc == 'Training Account (vpc-0fab8156d4f022c17)'"
+              values:
+                - "subnet-0b89b11a8b1662386"
+                - "subnet-017d7411b3a2e5c15"
+                - "subnet-0a74cdafc53078ca4"
+        required: true
+      - name: SSH Key Pair
+        description: Public Key to provision to the instance.
+        key: aws_key
+        widget: radios
+        type: string
+        values:
+          options:
+            - name: "Public key for TEST Account"
+              condition: "$aws_vpc == 'TEST (vpc-b94ae9c4)'"
+              values:
+                - "cycloid-olivier"
+            - name: "Public key for AWS Dev Account"
+              condition: "$aws_vpc == 'Dev Account (vpc-0f4debf96b8a98c80)'"
+              values:
+                - "EnPro-SysOps-Lab"
+            - name: "Public key for AWS Training Account"
+              condition: "$aws_vpc == 'Training Account (vpc-0fab8156d4f022c17)'"
+              values:
+                - "CLT5-Key_Pair"
         required: true
 
     - name: "Tagging Policy"

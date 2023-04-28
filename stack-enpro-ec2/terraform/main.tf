@@ -30,9 +30,17 @@ module "ec2" {
   #+ Instance AMI for the VM
   vm_instance_ami = "Value injected by StackForms"
 
+  #. aws_vpc: 'vpc-0f4debf96b8a98c80'
+  #+ VPC where to deploy the instance
+  aws_vpc = "Value injected by StackForms"
+
   #. aws_subnet: 'subnet-0866446def6d05a3f'
   #+ Subnet where to deploy the instance
   aws_subnet = "Value injected by StackForms"
+
+  #. aws_key: 'EnPro-SysOps-Lab'
+  #+ Public Key to provision to the instance
+  aws_key = "Value injected by StackForms"
 
   #. tag_name: ''
   #+ Tag for Instance name

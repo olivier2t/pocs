@@ -1,10 +1,10 @@
 resource "aws_security_group" "ec2" {
-  name        = "${var.customer}-${var.project}-${var.env}-ec2"
+  name        = "${var.tag_name}"
   description = "Allow accessing the instance from the internet."
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.aws_vpc
 
   tags = merge(local.merged_tags, {
-    Name       = "${var.customer}-${var.project}-${var.env}-ec2"
+    role       = "security_group"
   })
 }
 
@@ -47,7 +47,7 @@ resource "aws_security_group_rule" "ingress-https" {
 resource "aws_instance" "ec2" {
   ami           = var.vm_instance_ami
   instance_type = var.vm_instance_type
-  key_name      = 
+  key_name      = var.aws_key
 
   vpc_security_group_ids = [aws_security_group.ec2.id]
 

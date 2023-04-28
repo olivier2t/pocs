@@ -25,9 +25,19 @@ variable "vm_instance_ami" {
   default = "ami-02396cdd13e9a1257"
 }
 
+variable "aws_vpc" {
+  description = "VPC where to deploy the instance"
+  default = "vpc-0f4debf96b8a98c80"
+}
+
 variable "aws_subnet" {
   description = "Subnet where to deploy the instance"
   default = "subnet-0866446def6d05a3f"
+}
+
+variable "aws_key" {
+  description = "Public Key to provision to the instance"
+  default = "EnPro-SysOps-Lab"
 }
 
 variable "tag_name" {
