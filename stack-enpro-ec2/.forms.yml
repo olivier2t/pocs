@@ -17,7 +17,7 @@ use_cases:
           cred_types:
           - aws
         type: string
-        default: "((aws))"
+        default: "((aws-dev-account))"
         required: true
 
     - name: "Virtual machine specifications"
@@ -53,7 +53,6 @@ use_cases:
         default: "Amazon Linux"
         values:
         - {label: "Amazon Linux", value: "ami-02396cdd13e9a1257"}
-        - {label: "Debian 11", value: "ami-0fec2c2e2017f4e7b"}
         - {label: "Microsoft Windows Server 2022", value: "ami-0bde1eb2c18cb2abe"}
         required: true
       - name: "VPC"
@@ -62,7 +61,6 @@ use_cases:
         widget: dropdown
         type: map
         values:
-        - {label: "TEST (vpc-b94ae9c4)", value: "vpc-b94ae9c4"}
         - {label: "Dev Account (vpc-0f4debf96b8a98c80)", value: "vpc-0f4debf96b8a98c80"}
         - {label: "Training Account (vpc-0fab8156d4f022c17)", value: "vpc-0fab8156d4f022c17"}
         required: true
@@ -73,11 +71,6 @@ use_cases:
         type: string
         values:
           options:
-            - name: "Subnets for TEST Account"
-              condition: "$aws_vpc == 'TEST (vpc-b94ae9c4)'"
-              values:
-                - "subnet-a1c457fe"
-                - "subnet-f933a49f"
             - name: "Subnets for AWS Dev Account"
               condition: "$aws_vpc == 'Dev Account (vpc-0f4debf96b8a98c80)'"
               values:
@@ -97,10 +90,6 @@ use_cases:
         type: string
         values:
           options:
-            - name: "Public key for TEST Account"
-              condition: "$aws_vpc == 'TEST (vpc-b94ae9c4)'"
-              values:
-                - "cycloid-olivier"
             - name: "Public key for AWS Dev Account"
               condition: "$aws_vpc == 'Dev Account (vpc-0f4debf96b8a98c80)'"
               values:
