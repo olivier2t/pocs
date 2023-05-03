@@ -1,5 +1,5 @@
 version: "2"
-name: Gitlab Pipeline with Observability
+name: EKS cluster for IQVIA
 canonical: stack-iqvia-eks
 status: private
 author: Cycloid
