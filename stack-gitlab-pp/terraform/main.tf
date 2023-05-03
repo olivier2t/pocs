@@ -17,6 +17,10 @@ module "ec2" {
 
   #. vm_disk_size: 20
   #+ Disk size for the VM (Go)
-  vm_disk_size = "20"
+  vm_disk_size = 20
+
+  #. keypair_public: ''
+  #+ Public key to provision to the instance
+  keypair_public = var.keypair_public
 
 }
