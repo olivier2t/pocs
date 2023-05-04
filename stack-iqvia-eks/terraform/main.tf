@@ -1,3 +1,3 @@
 module "eks" {
-  source   = "git::${var.git_iac}"
+  source   = "git::https://github.com/olivier2t/iac-library.git"
 }

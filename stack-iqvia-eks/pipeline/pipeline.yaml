@@ -42,7 +42,6 @@ resources:
       vars:
         aws_cred: ((aws_cred))
         aws_region: ((aws_region))
-        git_iac: ((git_iac))
         env: ((env))
         project: ((project))
         customer: ((customer))

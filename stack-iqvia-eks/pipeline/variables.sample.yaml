@@ -12,7 +12,6 @@ aws_cred: ((aws))
 #+ Amazon AWS region to use for Terraform.
 aws_region: eu-west-1
 
-git_iac: "https://github.com/olivier2t/iac-library.git"
 
 #
 # Stack Git repository

@@ -187,19 +187,6 @@ use_cases:
         default: "devops"
         required: true
 
-  - name: IaC for Cost Estimation
-    groups:
-    - name: IaC Git URL
-      technologies: [pipeline]
-      vars:
-      - name: "IaC Git URL"
-        description: "Git where the IaC resides."
-        key: git_url
-        widget: simple_text
-        type: string
-        default: "https://github.com/olivier2t/iac-library.git"
-        required: true
-
   - name: AWS Cloud Provider
     groups:
     - name: Access Configuration
