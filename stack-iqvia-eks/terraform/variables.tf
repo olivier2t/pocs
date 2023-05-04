@@ -13,4 +13,5 @@ variable "aws_region" {
 }
 variable "git_iac" {
   description = "Git where the IaC resides."
+  default = "https://github.com/olivier2t/iac-library.git"
 }
