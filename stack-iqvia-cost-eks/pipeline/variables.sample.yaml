@@ -1,0 +1,163 @@
+#. gitlab_api_address (required): https://gitlab.ims.io
+#+ GitLab base address
+gitlab_api_address: https://gitlab.ims.io
+
+#
+# Platform Terraform plan pipeline trigger
+#
+
+#. tfplan_platform_project_id (required): ((iqvia-eks.tfplan_platform_project_id))
+#+ Project ID for Platform Terraform Plan pipeline trigger.
+tfplan_platform_project_id: ((iqvia-eks.tfplan_platform_project_id))
+
+#. tfplan_platform_trigger_token (required): ((iqvia-eks.tfplan_platform_trigger_token))
+#+ Trigger token for Platform Terraform Plan pipeline trigger.
+tfplan_platform_trigger_token: ((iqvia-eks.tfplan_platform_trigger_token))
+
+#. tfplan_platform_access_token (required): ((iqvia-eks.tfplan_platform_access_token))
+#+ Access token for Platform Terraform Plan pipeline trigger.
+tfplan_platform_access_token: ((iqvia-eks.tfplan_platform_access_token))
+
+#
+# Environment Terraform plan pipeline trigger
+#
+
+#. tfplan_environment_project_id (required): ((iqvia-eks.tfplan_environment_project_id))
+#+ Project ID for Environment Terraform Plan pipeline trigger.
+tfplan_environment_project_id: ((iqvia-eks.tfplan_environment_project_id))
+
+#. tfplan_environment_trigger_token (required): ((iqvia-eks.tfplan_environment_trigger_token))
+#+ Trigger token for Environment Terraform Plan pipeline trigger.
+tfplan_environment_trigger_token: ((iqvia-eks.tfplan_environment_trigger_token))
+
+#. tfplan_environment_access_token (required): ((iqvia-eks.tfplan_environment_access_token))
+#+ Access token for Environment Terraform Plan pipeline trigger.
+tfplan_environment_access_token: ((iqvia-eks.tfplan_environment_access_token))
+
+#
+# Secret deployment pipeline trigger
+#
+
+#. secret_project_id (required): ((iqvia-eks.secret_project_id))
+#+ Project ID for Secret deployment pipeline trigger.
+secret_project_id: ((iqvia-eks.secret_project_id))
+
+#. secret_trigger_token (required): ((iqvia-eks.secret_trigger_token))
+#+ Trigger token for Secret deployment pipeline trigger.
+secret_trigger_token: ((iqvia-eks.secret_trigger_token))
+
+#. secret_access_token (required): ((iqvia-eks.secret_access_token))
+#+ Access token for Secret deployment pipeline trigger.
+secret_access_token: ((iqvia-eks.secret_access_token))
+
+#
+# Platform deployment pipeline trigger
+#
+
+#. platform_project_id (required): ((iqvia-eks.platform_project_id))
+#+ Project ID for Platform deployment pipeline trigger.
+platform_project_id: ((iqvia-eks.platform_project_id))
+
+#. platform_trigger_token (required): ((iqvia-eks.platform_trigger_token))
+#+ Trigger token for Platform deployment pipeline trigger.
+platform_trigger_token: ((iqvia-eks.platform_trigger_token))
+
+#. platform_access_token (required): ((iqvia-eks.platform_access_token))
+#+ Access token for Platform deployment pipeline trigger.
+platform_access_token: ((iqvia-eks.platform_access_token))
+
+#
+# Environment deployment pipeline trigger
+#
+
+#. environment_project_id (required): ((iqvia-eks.environment_project_id))
+#+ Project ID for Environment deployment pipeline trigger.
+environment_project_id: ((iqvia-eks.environment_project_id))
+
+#. environment_trigger_token (required): ((iqvia-eks.environment_trigger_token))
+#+ Trigger token for Environment deployment pipeline trigger.
+environment_trigger_token: ((iqvia-eks.environment_trigger_token))
+
+#. environment_access_token (required): ((iqvia-eks.environment_access_token))
+#+ Access token for Environment deployment pipeline trigger.
+environment_access_token: ((iqvia-eks.environment_access_token))
+
+#
+# Platform Terraform Plan state file
+#
+
+#. tfplan_platform_project_id (required): ((iqvia-eks.tfplan_platform_project_id))
+#+ Project ID for Platform Terraform Plan state file.
+#tfplan_platform_project_id: ((iqvia-eks.tfplan_platform_project_id))
+
+#. tfplan_platform_access_token (required): ((iqvia-eks.tfplan_platform_access_token))
+#+ Access token for Platform Terraform Plan state file.
+#tfplan_platform_access_token: ((iqvia-eks.tfplan_platform_access_token))
+
+#
+# Environment Terraform Plan state file
+#
+
+#. tfplan_environment_project_id (required): ((iqvia-eks.tfplan_environment_project_id))
+#+ Project ID for Environment Terraform Plan state file.
+#tfplan_environment_project_id: ((iqvia-eks.tfplan_environment_project_id))
+
+#. tfplan_environment_access_token (required): ((iqvia-eks.tfplan_environment_access_token))
+#+ Access token for Environment Terraform Plan state file.
+#tfplan_environment_access_token: ((iqvia-eks.tfplan_environment_access_token))
+
+#
+# Gitlab variables
+#
+
+# Secret management variables to send to GitLab pipeline (overriden by StackForms)
+SEC_ACTION: "CREATE"
+SEC_SECRET_NAME: "ada-usv-poc"
+SEC_REGION: us-east-2
+SEC_AWS_ACCESS_KEY: ""
+SEC_AWS_SECRET_KEY: ""
+SEC_AWS_SESSION_TOKEN: ""
+SEC_INFRA_PASSWORD: ""
+SEC_SPLUNK_TOKEN: ""
+SEC_VCS_OAUTH_TOKEN_ID: ""
+SEC_GITLAB_PERSONAL_ACCESS_TOKEN: ""
+SEC_GITLAB_USER: ""
+SEC_PLT_APP_GITLAB_TOKEN: ""
+SEC_ENV_APP_GITLAB_TOKEN: ""
+
+# Deploy management variables to send to GitLab pipeline (overriden by StackForms)
+DEP_ACTION: "DEPLOY"
+DEP_CONFIG_DIR: "1.0.0-cycloid/ada-usv-poc"
+DEP_ENVIRONMENT_LAYER_NAME: "ada-usv-poc"
+DEP_ENVIRONMENT_SUFFIX: "env"
+DEP_ENVIRONMENT_INFRA_BRANCH: "1.0.0-cycloid"
+DEP_TF_LOG: "INFO"
+DEP_AWS_ACCESS_KEY: ""
+DEP_AWS_SECRET_KEY: ""
+DEP_AWS_SESSION_TOKEN: ""
+DEP_AWS_REGION: us-east-2
+DEP_TYPE_ENV: "devops"
+
+#
+# Default variables that shouldn't be changed except if needed
+#
+
+#. env (required): ($ environment $)
+#+ Name of the project's environment.
+env: ($ environment $)
+
+#. project (required): ($ project $)
+#+ Name of the project.
+project: ($ project $)
+
+#. customer (required): ($ organization_canonical $)
+#+ Name of the Cycloid Organization, used as customer variable name.
+customer: ($ organization_canonical $)
+
+#. cycloid_api_url (required): https://http-api.cycloid.io
+#+ Cycloid API URL.
+cycloid_api_url: 'https://http-api.cycloid.io'
+
+#. cycloid_api_key (required): ((custom_api-key-admin.key))
+#+ API key to grant admin acess to Cycloid API.
+cycloid_api_key: ((custom_api-key-admin.key))

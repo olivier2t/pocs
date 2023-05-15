@@ -1,0 +1,219 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: GitLab Pipeline Configuration
+    groups:
+    - name: Secret Management
+      technologies: [pipeline]
+      vars:
+      - name: "Action"
+        description: "Action to perform."
+        key: SEC_ACTION
+        widget: dropdown
+        type: string
+        values: ["CREATE", "UPDATE", "DELETE"]
+        default: "CREATE"
+        required: true
+      - name: "Secret Name"
+        description: "Name of the secret to create, update or delete. Use the eks_cluster_name."
+        key: SEC_SECRET_NAME
+        widget: simple_text
+        type: string
+        default: "ada-usv-poc"
+        required: true
+      - name: "Region"
+        description: "Region where the secrets will be created, updated or deleted."
+        key: SEC_REGION
+        widget: auto_complete
+        type: string
+        values: ["us-east-1","us-east-2","us-west-1","us-west-2","eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1"]
+        default: us-east-2
+        required: true
+      - name: "AWS Access Key"
+        description: "AWS Access Key to deploy the infrastructure."
+        key: SEC_AWS_ACCESS_KEY
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "AWS Secret Key"
+        description: "AWS Access Secret Key to deploy the infrastructure."
+        key: SEC_AWS_SECRET_KEY
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "AWS Session Token"
+        description: "AWS Session Token to deploy the infrastructure."
+        key: SEC_AWS_SESSION_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Infra Password"
+        description: "8-Character Infra Admin Password for login to the grafana-dashboard, kubeflow-dashboard."
+        key: SEC_INFRA_PASSWORD
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Splunk Token"
+        description: "Splunk Token."
+        key: SEC_SPLUNK_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "VCS Oauth Token"
+        description: "VCS Oauth Token."
+        key: SEC_VCS_OAUTH_TOKEN_ID
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Gitlab personal access Token"
+        description: "Gitlab personal access Token."
+        key: SEC_GITLAB_PERSONAL_ACCESS_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Gitlab project user"
+        description: "Gitlab project user."
+        key: SEC_GITLAB_USER
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Gitlab Token of Platform APP"
+        description: "Gitlab Token of Platform APP."
+        key: SEC_PLT_APP_GITLAB_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Gitlab Token of Environment APP"
+        description: "Gitlab Token of Environment APP."
+        key: SEC_ENV_APP_GITLAB_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+
+    - name: Deployment Management
+      technologies: [pipeline]
+      vars:
+      - name: "Action"
+        description: "Action to perform."
+        key: DEP_ACTION
+        widget: dropdown
+        type: string
+        values: ["DEPLOY", "DESTROY"]
+        default: "DEPLOY"
+        required: true
+      - name: "Config Dir"
+        description: "Name of the BRANCH containing the configuration file. Format is branch/platform_dirname."
+        key: DEP_CONFIG_DIR
+        widget: simple_text
+        type: string
+        default: "1.0.0-cycloid/ada-usv-poc"
+        required: true
+      - name: "Environment Layer Name"
+        description: "Insert the environment layer name for the extracting the layer specific variables."
+        key: DEP_ENVIRONMENT_LAYER_NAME
+        widget: simple_text
+        type: string
+        default: "ada-usv-poc"
+        required: true
+      - name: "Environment Suffix"
+        description: "Insert the environment suffix name for the extracting the layer specific variables."
+        key: DEP_ENVIRONMENT_SUFFIX
+        widget: simple_text
+        type: string
+        default: "env"
+        required: true
+      - name: "Environment Infra Branch"
+        description: "Version of the environment gitops pipeline."
+        key: DEP_ENVIRONMENT_INFRA_BRANCH
+        widget: simple_text
+        type: string
+        default: "1.0.0-cycloid"
+        required: true
+      - name: "Terraform Log Level"
+        description: "Select the level of TERRAFORM log."
+        key: DEP_TF_LOG
+        widget: dropdown
+        type: string
+        values: ["ERROR","WARN","INFO","DEBUG","TRACE"]
+        default: "INFO"
+        required: true
+      - name: "AWS Access Key"
+        description: "AWS Access Key ID for the target Infra."
+        key: DEP_AWS_ACCESS_KEY
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "AWS Secret Key"
+        description: "AWS Secret Access Key for the target Infra."
+        key: DEP_AWS_SECRET_KEY
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "AWS Session Token"
+        description: "AWS Session Token for the target Infra."
+        key: DEP_AWS_SESSION_TOKEN
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "AWS Region"
+        description: "AWS Region for the target Infra."
+        key: DEP_AWS_REGION
+        widget: auto_complete
+        type: string
+        values: ["us-east-1","us-east-2","us-west-1","us-west-2","eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1"]
+        default: us-east-2
+        required: true
+      - name: "Environment Type"
+        description: "Type of the environment."
+        key: DEP_TYPE_ENV
+        widget: dropdown
+        type: string
+        values: ["devops", "prodops"]
+        default: "devops"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
+        key: aws_cred
+        widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
+      - name: "Public SSH key"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        default: "((custom_keypair.ssh_pub))"
+        required: true

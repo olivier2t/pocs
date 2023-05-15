@@ -1,0 +1,264 @@
+resource_types:
+  - name: cycloid-resource
+    type: registry-image
+    source:
+      repository: cycloid/cycloid-resource
+      tag: latest
+
+  - name: http-resource
+    type: docker-image
+    source:
+      repository: jgriff/http-resource
+
+  - name: gitlab-pipeline
+    type: docker-image
+    source:
+      repository: public.ecr.aws/cycloid-demo/gitlab-pipeline-resource
+
+resources:
+  # The Platform Terraform plan file 
+  - name: tfplan-platform-file
+    type: http-resource
+    icon: terraform
+    source:
+      url: ((gitlab_api_address))/api/v4/projects/((tfplan_platform_project_id))/terraform/state/((DEP_ENVIRONMENT_LAYER_NAME))
+      headers:
+        Private-Token: ((tfplan_platform_access_token))
+      version:
+        hash: body
+
+  # The Environment Terraform plan file 
+  - name: tfplan-environment-file
+    type: http-resource
+    icon: terraform
+    source:
+      url: ((gitlab_api_address))/api/v4/projects/((tfplan_environment_project_id))/terraform/state/((DEP_ENVIRONMENT_LAYER_NAME))-((DEP_ENVIRONMENT_SUFFIX))
+      headers:
+        Private-Token: ((tfplan_environment_access_token))
+      version:
+        hash: body
+
+  # Terracost resource
+  - name: terracost
+    type: cycloid-resource
+    icon: currency-usd
+    source:
+      feature: terracost
+      api_key: ((cycloid_api_key))
+      api_url: ((cycloid_api_url))
+      env: ((env))
+      org: ((customer))
+      project: ((project))
+
+  # The Platform Terraform plan pipeline trigger
+  - name: tfplan-platform-pipeline
+    type: gitlab-pipeline
+    icon: gitlab
+    source:
+      base_url: ((gitlab_api_address))
+      project_id: ((tfplan_platform_project_id))
+      trigger_token: ((tfplan_platform_trigger_token))
+      access_token: ((tfplan_platform_access_token))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((SEC_ACTION))
+        SECRET_NAME: ((SEC_SECRET_NAME))
+        REGION: ((SEC_REGION))
+        AWS_ACCESS_KEY: ((SEC_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((SEC_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((SEC_AWS_SESSION_TOKEN))
+        INFRA_PASSWORD: ((SEC_INFRA_PASSWORD))
+        SPLUNK_TOKEN: ((SEC_SPLUNK_TOKEN))
+        VCS_OAUTH_TOKEN_ID: ((SEC_VCS_OAUTH_TOKEN_ID))
+        GITLAB_PERSONAL_ACCESS_TOKEN: ((SEC_GITLAB_PERSONAL_ACCESS_TOKEN))
+        GITLAB_USER: ((SEC_GITLAB_USER))
+        PLT_APP_GITLAB_TOKEN: ((SEC_PLT_APP_GITLAB_TOKEN))
+        ENV_APP_GITLAB_TOKEN: ((SEC_ENV_APP_GITLAB_TOKEN))
+
+  # The Environment Terraform plan pipeline trigger 
+  - name: tfplan-environment-pipeline
+    type: gitlab-pipeline
+    icon: gitlab
+    source:
+      base_url: ((gitlab_api_address))
+      project_id: ((tfplan_environment_project_id))
+      trigger_token: ((tfplan_environment_trigger_token))
+      access_token: ((tfplan_environment_access_token))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((SEC_ACTION))
+        SECRET_NAME: ((SEC_SECRET_NAME))
+        REGION: ((SEC_REGION))
+        AWS_ACCESS_KEY: ((SEC_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((SEC_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((SEC_AWS_SESSION_TOKEN))
+        INFRA_PASSWORD: ((SEC_INFRA_PASSWORD))
+        SPLUNK_TOKEN: ((SEC_SPLUNK_TOKEN))
+        VCS_OAUTH_TOKEN_ID: ((SEC_VCS_OAUTH_TOKEN_ID))
+        GITLAB_PERSONAL_ACCESS_TOKEN: ((SEC_GITLAB_PERSONAL_ACCESS_TOKEN))
+        GITLAB_USER: ((SEC_GITLAB_USER))
+        PLT_APP_GITLAB_TOKEN: ((SEC_PLT_APP_GITLAB_TOKEN))
+        ENV_APP_GITLAB_TOKEN: ((SEC_ENV_APP_GITLAB_TOKEN))
+
+  # The Secret deployment pipeline trigger 
+  - name: deploy-secret-pipeline
+    type: gitlab-pipeline
+    icon: gitlab
+    source:
+      base_url: ((gitlab_api_address))
+      project_id: ((secret_project_id))
+      trigger_token: ((secret_trigger_token))
+      access_token: ((secret_access_token))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((SEC_ACTION))
+        SECRET_NAME: ((SEC_SECRET_NAME))
+        REGION: ((SEC_REGION))
+        AWS_ACCESS_KEY: ((SEC_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((SEC_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((SEC_AWS_SESSION_TOKEN))
+        INFRA_PASSWORD: ((SEC_INFRA_PASSWORD))
+        SPLUNK_TOKEN: ((SEC_SPLUNK_TOKEN))
+        VCS_OAUTH_TOKEN_ID: ((SEC_VCS_OAUTH_TOKEN_ID))
+        GITLAB_PERSONAL_ACCESS_TOKEN: ((SEC_GITLAB_PERSONAL_ACCESS_TOKEN))
+        GITLAB_USER: ((SEC_GITLAB_USER))
+        PLT_APP_GITLAB_TOKEN: ((SEC_PLT_APP_GITLAB_TOKEN))
+        ENV_APP_GITLAB_TOKEN: ((SEC_ENV_APP_GITLAB_TOKEN))
+
+  # The Platform deployment pipeline trigger 
+  - name: deploy-platform-pipeline
+    type: gitlab-pipeline
+    icon: gitlab
+    source:
+      base_url: ((gitlab_api_address))
+      project_id: ((platform_project_id))
+      trigger_token: ((platform_trigger_token))
+      access_token: ((platform_access_token))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((DEP_ACTION))
+        CONFIG_DIR: ((DEP_CONFIG_DIR))
+        ENVIRONMENT_LAYER_NAME: ((DEP_ENVIRONMENT_LAYER_NAME))
+        ENVIRONMENT_SUFFIX: ((DEP_ENVIRONMENT_SUFFIX))
+        ENVIRONMENT_INFRA_BRANCH: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+        TF_LOG: ((DEP_TF_LOG))
+        AWS_ACCESS_KEY: ((DEP_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((DEP_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((DEP_AWS_SESSION_TOKEN))
+        AWS_REGION: ((DEP_AWS_REGION))
+        TYPE_ENV: ((DEP_TYPE_ENV))
+
+  # The Environment deployment pipeline trigger 
+  - name: deploy-environment-pipeline
+    type: gitlab-pipeline
+    icon: gitlab
+    source:
+      base_url: ((gitlab_api_address))
+      project_id: ((environment_project_id))
+      trigger_token: ((environment_trigger_token))
+      access_token: ((environment_access_token))
+      ref: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+      variables:
+        ACTION: ((DEP_ACTION))
+        CONFIG_DIR: ((DEP_CONFIG_DIR))
+        ENVIRONMENT_LAYER_NAME: ((DEP_ENVIRONMENT_LAYER_NAME))
+        ENVIRONMENT_SUFFIX: ((DEP_ENVIRONMENT_SUFFIX))
+        ENVIRONMENT_INFRA_BRANCH: ((DEP_ENVIRONMENT_INFRA_BRANCH))
+        TF_LOG: ((DEP_TF_LOG))
+        AWS_ACCESS_KEY: ((DEP_AWS_ACCESS_KEY))
+        AWS_SECRET_KEY: ((DEP_AWS_SECRET_KEY))
+        AWS_SESSION_TOKEN: ((DEP_AWS_SESSION_TOKEN))
+        AWS_REGION: ((DEP_AWS_REGION))
+        TYPE_ENV: ((DEP_TYPE_ENV))
+
+
+groups:
+- name: platform
+  jobs:
+    - tfplan-platform-job
+    - terracost-platform-job
+    - deploy-secret-job
+    - deploy-platform-job
+
+- name: environment
+  jobs:
+    - tfplan-environment-job
+    - terracost-environment-job
+    - deploy-environment-job
+
+- name: overview
+  jobs:
+    - tfplan-platform-job
+    - terracost-platform-job
+    - deploy-secret-job
+    - deploy-platform-job
+    - tfplan-environment-job
+    - terracost-environment-job
+    - deploy-environment-job
+
+jobs:
+  - name: tfplan-platform-job
+    plan:
+      - put: tfplan-platform-pipeline
+
+  - name: terracost-platform-job
+    plan:
+      - get: tfplan-platform-file
+        trigger: true
+
+      # Do the terracost estimation
+      - put: terracost
+        params:
+          tfplan_path: tfplan-platform-file/((DEP_ENVIRONMENT_LAYER_NAME))
+
+  - name: deploy-secret-job
+    plan:
+      # Will be triggered by an approval later on
+      - get: tfplan-platform-file
+        trigger: true
+        passed:
+          - terracost-platform-job
+
+      - put: deploy-secret-pipeline
+
+  - name: deploy-platform-job
+    plan:
+      - get: tfplan-platform-file
+        trigger: true
+        passed:
+          - deploy-secret-job
+          
+      - put: deploy-platform-pipeline
+
+  - name: tfplan-environment-job
+    plan:
+      - get: tfplan-platform-file
+        trigger: true
+        passed:
+          - deploy-platform-job
+
+      - put: tfplan-environment-pipeline
+
+  - name: terracost-environment-job
+    plan:
+      - get: tfplan-environment-file
+        trigger: true
+
+      - get: tfplan-platform-file
+        passed:
+          - tfplan-environment-job
+
+      # Do the terracost estimation
+      - put: terracost
+        params:
+          tfplan_path: tfplan-environment-file/((DEP_ENVIRONMENT_LAYER_NAME))-((DEP_ENVIRONMENT_SUFFIX))
+
+  - name: deploy-environment-job
+    plan:
+      # Will be triggered by an approval later on
+      - get: tfplan-environment-file
+        trigger: true
+        passed:
+          - terracost-environment-job
+
+      - put: deploy-environment-pipeline

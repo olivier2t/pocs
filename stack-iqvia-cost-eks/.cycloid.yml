@@ -1,0 +1,32 @@
+version: "2"
+name: EKS with Cost Estimation
+canonical: stack-iqvia-cost-eks
+status: private
+author: IQVIA
+description: |
+  Triggers and manage deployments of an EKS cluster via a Gitlab pipeline.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/gitlab-ci.png
+keywords:
+  - gitlab
+  - eks
+  - pipeline
+technologies:
+  - technology: EKS
+
+config:
+  default:
+    name: 'Default'
+    description: 'Triggers and manage deployments of an EKS cluster via a Gitlab pipeline.'
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
