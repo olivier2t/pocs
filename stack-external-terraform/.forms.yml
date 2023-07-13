@@ -38,7 +38,7 @@ use_cases:
         type: string
         description: "The path of the Terraform module in the Git repository."
         default: ""
-        required: true
+        required: false
 
   - name: AWS Cloud Provider
     groups:
