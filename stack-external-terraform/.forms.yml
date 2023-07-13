@@ -1,0 +1,65 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Infrastructure
+    groups:
+    - name: Terraform module
+      technologies: [pipeline]
+      vars:
+      - name: "SSH URL of the repository"
+        key: terraform_git_repository
+        type: string
+        widget: simple_text
+        description: "SSH URL of the Git repository containing the Terraform code."
+        default: "git@github.com:user/repo.git"
+        required: true
+      - name: "Branch"
+        key: terraform_git_branch
+        widget: simple_text
+        type: string
+        description: "The branch of the repository containing the Terraform code"
+        default: "develop"
+        required: true
+      - name: "SSH key"
+        description: "SSH private key to fetch the Terraform module from the Git repository."
+        key: terraform_git_private_key
+        type: string
+        widget: cy_cred
+        widget_config:
+          cred_types:
+            - ssh
+        default: "((git.ssh_key))"
+        required: true
+      - name: "Path"
+        key: terraform_path
+        widget: simple_text
+        type: string
+        description: "The path of the Terraform module in the Git repository."
+        default: ""
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Access Configuration
+      technologies: [pipeline]
+      vars:
+      - name: "AWS account"
+        description: "The AWS account where to deploy the infrastructure. It contains access key and secret key."
+        key: aws_cred
+        widget: cy_cred
+        widget_config:
+          display_keys: false
+          cred_types:
+            - aws
+        type: string
+        default: "((aws))"
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true

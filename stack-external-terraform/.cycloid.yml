@@ -1,0 +1,32 @@
+version: "2"
+name: External Git Terraform module
+canonical: stack-external-terraform
+status: private
+author: Cycloid
+description: |
+  Deploy an infrastructure using an external Terraform module from a Git repository. This stack allows to select the branch to be deployed and therefore is suitable in a GitFlow organisation.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/git.png
+keywords:
+  - gitflow
+  - terraform
+  - git
+technologies:
+  - technology: terraform
+  - technology: git
+
+config:
+  default:
+    name: 'Default'
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
