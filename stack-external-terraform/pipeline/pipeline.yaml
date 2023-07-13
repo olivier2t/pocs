@@ -49,7 +49,7 @@ resources:
   source:
     uri: ((terraform_git_repository))
     branch: ((terraform_git_branch))
-    private_key: ((terraform_git_private_key))
+#    private_key: ((terraform_git_private_key))
     # username: ((terraform_git_username))
     # password: ((terraform_git_token))
     paths:

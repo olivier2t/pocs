@@ -22,16 +22,16 @@ use_cases:
         description: "The branch of the repository containing the Terraform code"
         default: "develop"
         required: true
-      - name: "SSH key"
-        description: "SSH private key to fetch the Terraform module from the Git repository."
-        key: terraform_git_private_key
-        type: string
-        widget: cy_cred
-        widget_config:
-          cred_types:
-            - ssh
-        default: "((git.ssh_key))"
-        required: true
+#      - name: "SSH key"
+#        description: "SSH private key to fetch the Terraform module from the Git repository."
+#        key: terraform_git_private_key
+#        type: string
+#        widget: cy_cred
+#        widget_config:
+#          cred_types:
+#            - ssh
+#        default: "((git.ssh_key))"
+#        required: true
       - name: "Path"
         key: terraform_path
         widget: simple_text

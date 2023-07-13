@@ -31,7 +31,7 @@ terraform_git_branch: ''
 
 #. terraform_git_private_key (required): ((git.ssh_key))
 #+ SSH key pair to fetch the stack Git repository.
-terraform_git_private_key: ((git.ssh_key))
+#terraform_git_private_key: ((git.ssh_key))
 
 #. terraform_git_username (required): ((git.username))
 #+ Username for HTTP(S) auth when pulling/pushing.
