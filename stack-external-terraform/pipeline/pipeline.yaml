@@ -35,6 +35,10 @@ resources:
       env: ((env))
       project: ((project))
       customer: ((customer))
+    env:
+      AWS_ACCESS_KEY_ID: ((((aws_cred)).access_key))
+      AWS_SECRET_ACCESS_KEY: ((((aws_cred)).secret_key))
+      AWS_DEFAULT_REGION: ((aws_region))
 
 
 # The Terraform stack (will be merged with the config)
@@ -49,19 +53,6 @@ resources:
     # password: ((terraform_git_token))
     paths:
       - ((terraform_path))/*
-
-# The Terraform config (will be merged with the stack)
-- name: git_config-terraform
-  type: git
-  icon: git
-  source:
-    uri: ((config_git_repository))
-    branch: ((config_git_branch))
-    private_key: ((config_git_private_key))
-    # username: ((config_git_username))
-    # password: ((config_git_token))
-    paths:
-      - ((config_terraform_path))/*
 
 groups:
 - name: overview
@@ -85,28 +76,10 @@ jobs:
         - get: git_stack-terraform
           trigger: true
 
-        - get: git_config-terraform
-          trigger: true
-
-      - task: merge-stack-and-config
-        config:
-          <<: *merge-stack-and-config
-          inputs:
-          - name: git_config-terraform
-            path: "config"
-          - name: git_stack-terraform
-            path: "stack"
-          outputs:
-          - name: merged-stack
-            path: "merged-stack"
-        params:
-          CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: ((stack_terraform_path))
-
       - put: tfstate
         params:
           plan_only: true
-          terraform_source: merged-stack/
+          terraform_source: git_stack-terraform/((terraform_path))/
 
 
   # Merge and trigger an apply whenever there is a terraform plan passed successfully
@@ -121,35 +94,15 @@ jobs:
           passed:
             - terraform-plan
 
-        - get: git_config-terraform
-          trigger: false
-          passed:
-            - terraform-plan
-
         - get: tfstate
           trigger: true
           passed:
             - terraform-plan
 
-      - task: merge-stack-and-config
-        config:
-          <<: *merge-stack-and-config
-          inputs:
-          - name: git_config-terraform
-            path: "config"
-          - name: git_stack-terraform
-            path: "stack"
-          outputs:
-          - name: merged-stack
-            path: "merged-stack"
-        params:
-          CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: ((stack_terraform_path))
-
       - put: tfstate
         params:
           plan_run: true
-          terraform_source: merged-stack/
+          terraform_source: git_stack-terraform/((terraform_path))/
 
 
   # Destroy the infrastructure
@@ -163,32 +116,12 @@ jobs:
           passed:
             - terraform-plan
 
-        - get: git_config-terraform
-          trigger: false
-          passed:
-            - terraform-plan
-
         - get: tfstate
           trigger: false
-
-      - task: merge-stack-and-config
-        config:
-          <<: *merge-stack-and-config
-          inputs:
-          - name: git_config-terraform
-            path: "config"
-          - name: git_stack-terraform
-            path: "stack"
-          outputs:
-          - name: merged-stack
-            path: "merged-stack"
-        params:
-          CONFIG_PATH: ((config_terraform_path))
-          STACK_PATH: ((stack_terraform_path))
 
       - put: tfstate
         params:
           action: destroy
-          terraform_source: merged-stack/
+          terraform_source: git_stack-terraform/((terraform_path))/
         get_params:
           action: destroy
