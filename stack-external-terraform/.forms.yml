@@ -22,16 +22,16 @@ use_cases:
         description: "The branch of the repository containing the Terraform code"
         default: "develop"
         required: true
-#      - name: "SSH key"
-#        description: "SSH private key to fetch the Terraform module from the Git repository."
-#        key: terraform_git_private_key
-#        type: string
-#        widget: cy_cred
-#        widget_config:
-#          cred_types:
-#            - ssh
-#        default: "((git.ssh_key))"
-#        required: true
+     - name: "SSH key"
+       description: "SSH private key to fetch the Terraform module from the Git repository."
+       key: terraform_git_private_key
+       type: string
+       widget: cy_cred
+       widget_config:
+         cred_types:
+           - ssh
+       default: "((git.ssh_key))"
+       required: true
       - name: "Path"
         key: terraform_path
         widget: simple_text
@@ -39,6 +39,17 @@ use_cases:
         description: "The path of the Terraform module in the Git repository."
         default: ""
         required: false
+
+    - name: Security
+      technologies: [pipeline]
+      vars:
+      - name: "Public SSH key"
+        description: "The public SSH key, for SSH access to newly-created instances."
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        default: "((keypair.ssh_pub))"
+        required: true
 
   - name: AWS Cloud Provider
     groups:

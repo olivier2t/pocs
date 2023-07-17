@@ -30,9 +30,10 @@ resources:
     backend_config:
       address: '((cycloid_api_url))/inventory?jwt=($ inventory_jwt $)'
     vars:
-      aws_access_key: ((aws_access_key))
-      aws_secret_key: ((aws_secret_key))
-      aws_region: ((aws_region))
+      # aws_access_key: ((aws_access_key))
+      # aws_secret_key: ((aws_secret_key))
+      # aws_region: ((aws_region))
+      keypair_public: ((keypair_public))
       env: ((env))
       project: ((project))
       customer: ((customer))
@@ -49,7 +50,7 @@ resources:
   source:
     uri: ((terraform_git_repository))
     branch: ((terraform_git_branch))
-#    private_key: ((terraform_git_private_key))
+    private_key: ((terraform_git_private_key))
     # username: ((terraform_git_username))
     # password: ((terraform_git_token))
     paths:
