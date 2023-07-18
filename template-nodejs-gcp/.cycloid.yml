@@ -1,23 +1,29 @@
 version: "2"
-name: Auto-Scaling Wordpress
-canonical: stack-cmacgm-asg-rds
-status: private
-author: CMA-CGM
+name: Terraform template for GCP
+canonical: template-nodejs-gcp
+status: 'private'
+template: true
+author: '{{stack_author}}'
 description: |
-  Deploys a auto-scaling cluster of Wordpress nodes using AWS ALB and ASG. The data is persisted using an AWS RDS MySQL service.
+  Build and deploy a Node.js web application on an GCP Virtual Machine using Terraform and Cloud-Init.
 image: |
-  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/wordpress.png
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/terraform.png
 keywords:
-  - database
-  - instance
-  - provider:aws
+  - cloud-init
+  - user data
+  - webapp
+  - nodejs
+  - nginx
+  - provider:gcp
 technologies:
-  - technology: aws
+  - technology: nodejs
+  - technology: nginx
 
 config:
   default:
     name: 'Default'
-    cloud_provider: aws
+    description: 'Build and deploy a Node.js web application'
+    cloud_provider: google
     # Pipeline and variable configuration for the default CD pipeline use case
     pipeline:
       pipeline:
