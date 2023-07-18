@@ -1,0 +1,86 @@
+---
+version: "2"
+use_cases:
+- name: default
+  sections:
+  - name: Landing Zone
+    groups:
+    - name: Resource Group Names
+      technologies: [terraform]
+      vars:
+      - name: "Hub Resource Group Name"
+        description: "Name of the Hub Resource Group."
+        key: hub_az_rg_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Spoke Prod Resource Group Name"
+        description: "Name of the Spoke Prod Resource Group."
+        key: spoke_prod_az_rg_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+      - name: "Spoke Lab Resource Group Name"
+        description: "Name of the Spoke Lab Resource Group."
+        key: spoke_lab_az_rg_name
+        widget: simple_text
+        type: string
+        default: ""
+        required: true
+
+  - name: Azure Cloud Provider
+    groups:
+    - name: Where to deploy the new infrastructure
+      technologies: [pipeline]
+      vars:
+      - name: "Azure subscription ID"
+        description: "Azure subscription ID for Terraform."
+        key: azure_subscription_id
+        widget: cy_cred
+        type: string
+        default: "((azure.subscription_id))"
+        required: true
+      - name: "Azure tenant ID"
+        description: "Azure tenant ID for Terraform."
+        key: azure_tenant_id
+        widget: cy_cred
+        type: string
+        default: "((azure.tenant_id))"
+        required: true
+      - name: "Azure client ID"
+        description: "Azure client ID for Terraform."
+        key: azure_client_id
+        widget: cy_cred
+        type: string
+        default: "((azure.client_id))"
+        required: true
+      - name: "Azure client secret"
+        description: "Azure client secret for Terraform."
+        key: azure_client_secret
+        widget: cy_cred
+        type: string
+        default: "((azure.client_secret))"
+        required: true
+      - name: "Azure location"
+        description: "Azure location for Terraform."
+        key: azure_location
+        widget: auto_complete
+        type: string
+        values:
+            - Australia Central
+            - China East
+            - China North
+            - East Asia
+            - East US
+            - France Central
+            - France South
+            - North Europe
+            - Southeast Asia
+            - South Africa North
+            - South Africa West
+            - West Europe
+            - West US
+        default: "West Europe"
+        required: true

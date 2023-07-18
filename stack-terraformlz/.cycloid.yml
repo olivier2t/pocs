@@ -1,0 +1,32 @@
+version: "2"
+name: Deploy a landing zone on Azure
+canonical: stack-terraformlz
+status: private
+author: PwC
+description: |
+  Azure Landing Zone with Terraform.
+image: |
+  https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/azure-storage.svg
+keywords:
+  - landingzone
+  - provider:azure
+technologies:
+  - technology: azure
+
+config:
+  default:
+    name: 'Default'
+    description: 'Azure Landing Zone with Terraform'
+    cloud_provider: azurerm
+    # Pipeline and variable configuration for the default CD pipeline use case
+    pipeline:
+      pipeline:
+        path: pipeline/pipeline.yaml
+      variables:
+        path: pipeline/variables.sample.yaml
+        destination: ($ project $)/pipeline/($ environment $)/variables.yaml
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
