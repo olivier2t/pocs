@@ -243,6 +243,7 @@ jobs:
           # AWS_ACCESS_KEY_ID: ((aws_access_key))
           # AWS_SECRET_ACCESS_KEY: ((aws_secret_key))
           AWS_DEFAULT_REGION: ((aws_region))
+          AWS_INVENTORY: true
           ANSIBLE_PLAYBOOK_PATH: ansible-playbook
           ANSIBLE_PLAYBOOK_NAME: site.yml
           ANSIBLE_EXTRA_VARS:
