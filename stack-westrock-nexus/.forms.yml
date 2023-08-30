@@ -1,0 +1,94 @@
+---
+version: "2"
+use_cases:
+- name: aws
+  sections:
+  - name: Nexus Repository
+    groups:
+    - name: Virtual machine specifications
+      technologies: [terraform]
+      vars:
+      - name: "Instance type"
+        description: "Instance type for the Nexus Repository."
+        key: vm_instance_type
+        widget: slider_list
+        type: string
+        default: "t3a.medium"
+        values:
+            - "t3a.medium"
+            - "t3a.large"
+            - "t3a.xlarge"
+        required: true
+      - name: "Disk size"
+        unit: Go
+        description: "Disk size for the Nexus Repository."
+        key: vm_disk_size
+        widget: slider_range
+        type: integer
+        default: 20
+        values:
+            - 20
+            - 250
+        required: true
+    - name: SSH Keypair for new instances
+      technologies: [pipeline]
+      vars:
+      - name: "SSH Public key"
+        description: "The public SSH key to connect via SSH to execute the Ansible playbook"
+        key: keypair_public
+        widget: cy_cred
+        type: string
+        default: ((keypair.ssh_pub))
+        required: true
+      - name: "SSH Private key"
+        description: "The private SSH key to connect via SSH to execute the Ansible playbook"
+        key: keypair_private
+        widget: cy_cred
+        type: string
+        default: ((keypair.ssh_prv))
+        required: true
+    - name: Application Configuration
+      technologies: [terraform]
+      vars:
+      - name: "Port"
+        description: "Port where Nexus Repository service is exposed."
+        key: nexus_port
+        widget: simple_text
+        type: string
+        default: "8081"
+        required: true
+      - name: "Admin password"
+        description: "Initial admin password for Nexus Repository first installation."
+        key: nexus_admin_password
+        widget: simple_text
+        type: string
+        default: "changeme"
+        required: true
+
+  - name: AWS Cloud Provider
+    groups:
+    - name: Where to deploy the new infrastructure
+      technologies: [pipeline]
+      vars:
+      # - name: "AWS access key"
+      #   description: "Amazon AWS access key for Terraform."
+      #   key: aws_access_key
+      #   widget: cy_cred
+      #   type: string
+      #   default: "((aws_cycloid-demo.access_key))"
+      #   required: true
+      # - name: "AWS secret key"
+      #   description: "Amazon AWS secret key for Terraform."
+      #   key: aws_secret_key
+      #   widget: cy_cred
+      #   type: string
+      #   default: "((aws_cycloid-demo.secret_key))"
+      #   required: true
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+        required: true
