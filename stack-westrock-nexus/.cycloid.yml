@@ -3,7 +3,7 @@
 version: '2'
 name: 'Nexus Repository with role'
 canonical: 'stack-westrock-nexus'
-description: This stack deploys a Nexus Repository on AWS using Terraform and Ansible.
+description: This stack deploys a Nexus Repository on AWS using Terraform and Ansible. A role allowing to create an EC2 instance, VPC and subnets as well as reading the S3 bucket where the Terraform state files are stores will need to be attached to the Cycloid worker.
 author: 'Cycloid'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/nexus.png'
 status: 'private'
