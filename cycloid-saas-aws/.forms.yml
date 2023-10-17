@@ -228,7 +228,7 @@ use_cases:
         key: module.core.core_domain_console
         widget: simple_text
         type: string
-        default: "console2"
+        default: "console"
         validations:
         # - regexp: "^[a-z0-9.]+$"
         #   error_message: "Please enter a valid domain name such as console2"
@@ -238,7 +238,7 @@ use_cases:
         key: module.core.core_domain_api
         widget: simple_text
         type: string
-        default: "api2"
+        default: "api"
         validations:
         # - regexp: "^[a-z0-9.]+$"
         #   error_message: "Please enter a valid domain name such as api2"
@@ -248,7 +248,7 @@ use_cases:
         key: module.core.core_domain_concourse
         widget: simple_text
         type: string
-        default: "scheduler2"
+        default: "scheduler"
         validations:
         # - regexp: "^[a-z0-9.]+$"
         #   error_message: "Please enter a valid domain name such as scheduler2"
