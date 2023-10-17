@@ -3,8 +3,8 @@
 ############
 
 resource "aws_security_group" "nlb" {
-  name        = "${var.project}-${var.env}"
-  description = "Used by cycloid ${var.project}-${var.env}"
+  name        = "${var.project}-${var.env}-cc"
+  description = "Used by Concourse ${var.project}-${var.env}"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "nlb-to-core-concourse" {
 ############
 
 resource "aws_lb" "cycloid-concourse" {
-  name               = "${var.project}-${var.env}-cycloid-concourse"
+  name               = "${var.project}-${var.env}-cc"
   internal           = false
   load_balancer_type = "network"
   subnets            = var.subnet_ids
@@ -52,7 +52,7 @@ resource "aws_lb_listener" "cycloid-concourse" {
 }
 
 resource "aws_lb_target_group" "cycloid-concourse" {
-  name        = "${var.project}-${var.env}-cycloid-concourse"
+  name        = "${var.project}-${var.env}-cc"
   port        = var.core_concourse_port
   protocol    = "TCP"
   target_type = "ip"

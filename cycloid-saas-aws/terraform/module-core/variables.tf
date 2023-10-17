@@ -56,7 +56,7 @@ variable "core_concourse_port" {
 # Domain
 variable "core_hosted_zone" {
   description = "The domain name of the AWS hosted zone"
-  default     = "cycloid.io"
+  default     = "eu.cycloid.io"
 }
 
 variable "core_domain_console" {

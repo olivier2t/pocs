@@ -26,5 +26,5 @@ output "iam_ses_smtp_user_secret" {
 }
 
 output "cycloid_sg_id" {
-  value = aws_security_group.cycloid-core
+  value = aws_security_group.cycloid-core.id
 }

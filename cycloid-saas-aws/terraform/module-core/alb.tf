@@ -8,7 +8,7 @@ data "aws_acm_certificate" "cycloid-core" {
 ############
 
 resource "aws_security_group" "alb" {
-  name        = "${var.project}-${var.env}"
+  name        = "${var.project}-${var.env}-core"
   description = "Used by cycloid ${var.project}-${var.env}"
   vpc_id      = var.vpc_id
 
@@ -50,7 +50,7 @@ resource "aws_security_group_rule" "lb-to-core-https" {
 ############
 
 resource "aws_lb" "cycloid" {
-  name               = "${var.project}-${var.env}"
+  name               = "${var.project}-${var.env}-core"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
@@ -75,7 +75,7 @@ resource "aws_lb_listener" "https" {
 }
 
 resource "aws_lb_target_group" "cycloid" {
-  name        = "${var.project}-${var.env}-cycloid-https"
+  name        = "${var.project}-${var.env}-core-https"
   port        = 443
   protocol    = "HTTPS"
   target_type = "ip"

@@ -213,6 +213,16 @@ use_cases:
     - name: Cycloid Core Platform Configuration
       technologies: [terraform]
       vars:
+      - name: "Cycloid Core Hosted Zone"
+        description: "AWS Hosted Zone on which to add sub-domains."
+        key: module.core.core_hosted_zone
+        widget: simple_text
+        type: string
+        default: "eu.cycloid.io"
+        validations:
+        - regexp: "^[a-z0-9.]+$"
+          error_message: "Please enter a valid domain name such as eu.cycloid.io"
+        required: true
       - name: "Cycloid Console Domain Name"
         description: "SubDomain name for the Cycloid Console."
         key: module.core.core_domain_console

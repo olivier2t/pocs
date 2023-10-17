@@ -168,7 +168,7 @@ module "core" {
 
   #. trusted_cidr_blocks: []
   #+ A list of trusted external IP to allow connection from.
-  trusted_cidr_blocks = var.vpc_cidr
+  trusted_cidr_blocks = [var.vpc_cidr]
 
   #. core_instance_type: "t3a.medium"
   #+ Instance type for the Cycloid Core servers
@@ -178,9 +178,9 @@ module "core" {
   #+ Volume size for the Cycloid Core servers
   core_volume_size = 30
 
-  #. core_hosted_zone: "cycloid.io"
+  #. core_hosted_zone: "eu.cycloid.io"
   #+ The domain of the hosted zone
-  core_hosted_zone = "cycloid.io"
+  core_hosted_zone = "eu.cycloid.io"
 
   #. core_domain_console: "console2"
   #+ The Cycloid console subdomain of the hosted zone domain. This is used to access Cycloid console
