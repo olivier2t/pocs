@@ -1,8 +1,3 @@
-data "aws_acm_certificate" "cycloid-core" {
-  domain   = var.core_hosted_zone
-  statuses = ["ISSUED"]
-}
-
 ############
 #  SG      #
 ############
