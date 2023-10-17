@@ -1,0 +1,40 @@
+---
+# Configuration of the Cycloid stack
+version: '2'
+name: 'Cycloid Platform on AWS'
+canonical: 'stack-saas-aws'
+description: Deploys Cycloid Sustainable Platform Engineering using AWS RDS and EC2 instances in high-availability mode.
+author: 'Cycloid'
+image: 'https://www.cycloid.io/themes/cycloid/images/owl_logo.png'
+status: 'private'
+keywords:
+- terraform
+- ansible
+- cycloid
+technologies:
+- technology: terraform
+  version: 1.5.7
+- technology: ansible
+  version: 2.9
+
+config:
+  aws:
+    name: 'default'
+    cloud_provider: aws
+    # Pipeline and variable configuration for the AWS CD pipeline use case
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of ansible for provisionning
+    ansible:
+      cycloid:
+        path: 'ansible/environments/cycloid.yml.sample'
+        destination: '($ project $)/ansible/environments/($ environment $)-cycloid.yml'
+    # Configuration of terraform (leave .sample extension to prevent terraform executing the sample file)
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'
