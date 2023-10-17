@@ -55,7 +55,7 @@ resource "aws_lb_target_group" "cycloid-concourse" {
   name        = "${var.project}-${var.env}-cc"
   port        = var.core_concourse_port
   protocol    = "TCP"
-  target_type = "ip"
+  target_type = "instance"
   vpc_id      = var.vpc_id
 
   stickiness {

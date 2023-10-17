@@ -99,10 +99,10 @@ use_cases:
         key: module.database.rds_mysql_allocated_storage
         widget: slider_range
         type: integer
-        default: 16
+        default: 20
         values:
-            - 5
-            - 250
+            - 10
+            - 100
         required: true
       - name: "Max Allocated Storage"
         unit: Go
@@ -110,10 +110,10 @@ use_cases:
         key: module.database.rds_mysql_max_allocated_storage
         widget: slider_range
         type: integer
-        default: 200
+        default: 100
         values:
             - 0
-            - 250
+            - 100
         required: true
       - name: "Multi-AZ"
         description: "Whether to enable RDS MySQL Multi-AZ mode or not."
@@ -140,10 +140,10 @@ use_cases:
         key: module.database.rds_postgres_allocated_storage
         widget: slider_range
         type: integer
-        default: 16
+        default: 20
         values:
-            - 5
-            - 250
+            - 10
+            - 100
         required: true
       - name: "Max Allocated Storage"
         unit: Go
@@ -151,10 +151,10 @@ use_cases:
         key: module.database.rds_postgres_max_allocated_storage
         widget: slider_range
         type: integer
-        default: 200
+        default: 100
         values:
             - 0
-            - 250
+            - 100
         required: true
       - name: "Multi-AZ"
         description: "Whether to enable RDS PostgreSQL Multi-AZ mode or not."

@@ -1,9 +1,10 @@
 data "aws_ami" "bitnami-es" {
   most_recent = true
+  public = true
 
   filter {
     name   = "name"
-    values = ["bitnami-elasticsearch-7.17.13-0-linux-*"]
+    values = ["bitnami-elasticsearch-7.17.13-*"]
   }
 
   filter {

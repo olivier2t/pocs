@@ -8,7 +8,7 @@ variable "rds_mysql_instance_class" {
 
 variable "rds_mysql_allocated_storage" {
   description = "Disk size for the RDS MySQL instance (Go)"
-  default     = 5
+  default     = 10
 }
 
 variable "rds_mysql_max_allocated_storage" {
@@ -108,7 +108,7 @@ resource "aws_security_group_rule" "ingress-mysql" {
 ###################
 
 resource "aws_db_parameter_group" "cycloid-mysql" {
-  name   = "${var.customer}-${var.project}-${var.env}-mysql-${var.rds_mysql_family}"
+  name   = "${var.project}-${var.env}-${var.rds_mysql_family}"
   family = var.rds_mysql_family
 
   parameter {

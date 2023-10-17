@@ -8,7 +8,7 @@ variable "rds_postgres_instance_class" {
 
 variable "rds_postgres_allocated_storage" {
   description = "Disk size for the RDS PostgreSQL instance (Go)"
-  default     = 5
+  default     = 10
 }
 
 variable "rds_postgres_max_allocated_storage" {
@@ -106,7 +106,7 @@ resource "aws_security_group_rule" "ingress-postgres" {
 ###################
 
 resource "aws_db_parameter_group" "cycloid-postgres" {
-  name   = "${var.customer}-${var.project}-${var.env}-postgres"
+  name   = "${var.project}-${var.env}-${var.rds_postgres_family}"
   family = var.rds_postgres_family
 
   parameter {

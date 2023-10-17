@@ -76,11 +76,6 @@ resource "aws_lb_target_group" "cycloid" {
   target_type = "ip"
   vpc_id      = var.vpc_id
 
-  stickiness {
-    type    = "source_ip"
-    enabled = true
-  }
-
   health_check {
     path = "/status"
   }
@@ -92,11 +87,6 @@ resource "aws_lb_target_group" "cycloid" {
 #   protocol    = "HTTP"
 #   target_type = "ip"
 #   vpc_id      = var.vpc_id
-#
-#   stickiness {
-#     enabled = true
-#     type    = "source_ip"
-#   }
 #
 #   health_check {
 #     path = "/status"
