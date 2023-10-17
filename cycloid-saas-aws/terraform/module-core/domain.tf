@@ -63,7 +63,7 @@ resource "aws_route53_record" "cycloid-core-console-validation" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = aws_route53_zone.hosted_zone.zone_id
+  zone_id         = data.aws_route53_zone.hosted_zone.zone_id
 }
 
 resource "aws_acm_certificate_validation" "cycloid-core-console-validation" {
@@ -99,7 +99,7 @@ resource "aws_route53_record" "cycloid-core-api-validation" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = aws_route53_zone.hosted_zone.zone_id
+  zone_id         = data.aws_route53_zone.hosted_zone.zone_id
 }
 
 resource "aws_acm_certificate_validation" "cycloid-core-api-validation" {
@@ -135,7 +135,7 @@ resource "aws_route53_record" "cycloid-core-concourse-validation" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = aws_route53_zone.hosted_zone.zone_id
+  zone_id         = data.aws_route53_zone.hosted_zone.zone_id
 }
 
 resource "aws_acm_certificate_validation" "cycloid-core-concourse-validation" {
