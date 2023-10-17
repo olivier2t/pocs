@@ -1,8 +1,8 @@
 ---
 # Configuration of the Cycloid stack
 version: '2'
-name: 'Cycloid Platform on AWS'
-canonical: 'stack-saas-aws'
+name: 'Cycloid Platform on AWS (PoC)'
+canonical: 'cycloid-saas-aws-pocs'
 description: Deploys Cycloid Sustainable Platform Engineering using AWS RDS and EC2 instances in high-availability mode.
 author: 'Cycloid'
 image: 'https://www.cycloid.io/themes/cycloid/images/owl_logo.png'
