@@ -1,10 +1,10 @@
 data "aws_ami" "bitnami-es" {
   most_recent = true
-  public = true
+  name_regex  = "^bitnami-elasticsearch-7\.17.*debian.*"
 
   filter {
     name   = "name"
-    values = ["bitnami-elasticsearch-7.17.13-*"]
+    values = ["bitnami-elasticsearch-7.17*"]
   }
 
   filter {
