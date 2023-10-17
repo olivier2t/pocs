@@ -11,12 +11,9 @@ module "vpc" {
   name = "${var.customer}-${var.project}-${var.env}"
   azs  = slice(data.aws_availability_zones.available.names, 0, 2)
 
-  # private_subnets  = [for k, v in slice(data.aws_availability_zones.available.names, 0, 2) : cidrsubnet(var.vpc_cidr, 8, k)]
-  # public_subnets   = [for k, v in slice(data.aws_availability_zones.available.names, 0, 2) : cidrsubnet(var.vpc_cidr, 8, k + 10)]
-  # database_subnets = [for k, v in slice(data.aws_availability_zones.available.names, 0, 2) : cidrsubnet(var.vpc_cidr, 8, k + 20)]
-  private_subnets  = ""
-  public_subnets   = ""
-  database_subnets = ""
+  private_subnets  = local.private_subnets
+  public_subnets   = local.public_subnets
+  database_subnets = local.database_subnets
 
   enable_dns_hostnames = true
   enable_dns_support   = true
