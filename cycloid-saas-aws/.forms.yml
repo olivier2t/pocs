@@ -1,7 +1,7 @@
 ---
 version: "2"
 use_cases:
-- name: 'aws'
+- name: aws
   sections:
   - name: Cycloid Platform
     groups:
