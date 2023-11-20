@@ -1,0 +1,31 @@
+---
+# Configuration of the Cycloid stack
+version: '2'
+name: 'Deploy on Azure with Pulumi'
+canonical: 'stack-pulumi-poc'
+description: This stack deploys resource on Azure using Pulumi.
+author: 'Cycloid'
+image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/pulumi.svg'
+status: 'private'
+keywords:
+- pulumi
+- provider:azure
+technologies:
+- technology: pulumi
+  version: "N/A"
+
+config:
+  default:
+    cloud_provider: azurerm
+    # Pipeline and variable configuration for the Azure CD pipeline use case
+    pipeline:
+      pipeline:
+        path: 'pipeline/pipeline.yml'
+      variables:
+        path: 'pipeline/variables.sample.yml'
+        destination: '($ project $)/pipeline/($ environment $)/variables.yml'
+    # Configuration of terraform
+    terraform:
+      main:
+        path: 'terraform/main.tf'
+        destination: '($ project $)/terraform/($ environment $)/main.tf'

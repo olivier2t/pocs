@@ -1,0 +1,44 @@
+resource_types:
+- name: pulumi
+  type: docker-image
+  source:
+    repository: mitodl/concourse-pulumi-resource
+    tag: latest
+
+resources:
+- name: pulumi
+  type: pulumi
+- name: pulumi_files
+  type: git
+  icon: git
+  source:
+    uri: ((git_pulumi_repository))
+    branch: ((git_pulumi_branch))
+    private_key: ((git_pulumi_private_key))
+    paths:
+      - ((git_pulumi_path))/*
+
+jobs:
+- name: pulumi
+  plan:
+  - get: pulumi_files
+  - put: pulumi
+    params:
+      action: update
+      stack_name: dev
+      project_name: first-project
+      source_dir: .
+      env_pulumi:
+        AZURE_TENANT_ID: ((azure_tenant_id))
+        AZURE_CLIENT_ID: ((azure_client_id))
+        AZURE_CLIENT_SECRET: ((azure_client_secret))
+        AZURE_SUBSCRIPTION_ID: ((azure_subscription_id))
+        SSH_KEYPAIR: ((ssh_keypair))
+      env_os:
+        AZURE_TENANT_ID: ((azure_tenant_id))
+        AZURE_CLIENT_ID: ((azure_client_id))
+        AZURE_CLIENT_SECRET: ((azure_client_secret))
+        AZURE_SUBSCRIPTION_ID: ((azure_subscription_id))
+        PATH: "${PATH}:/usr/local/bin"
+
+

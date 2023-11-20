@@ -1,0 +1,59 @@
+#
+# Cloud Provider
+#
+
+azure_subscription_id: ((azure.subscription_id))
+azure_tenant_id: ((azure.tenant_id))
+azure_client_id: ((azure.client_id))
+azure_client_secret: ((azure.client_secret))
+azure_location: "West Europe"
+
+#
+# SSH Keypair to use for newly created instances
+#
+
+#. ssh_keypair (required): ((keypair))
+#+ The  SSH keypair containing ssh_prv and ssh_pub to connect via SSH to execute the Ansible playbook.
+ssh_keypair: ((keypair))
+
+
+#
+# Default Stack Repository
+#
+
+#. git_pulumi_repository (required): ($ scs_url $)
+#+ Git repository URL containing the pulumi code.
+git_pulumi_repository: ($ scs_url $)
+
+#. git_pulumi_branch (required): ($ scs_branch $)
+#+ Branch to use on the pulumi Git repository.
+git_pulumi_branch: ($ scs_branch $)
+
+#. git_pulumi_private_key (required): ((($ scs_cred_path $).ssh_key))
+#+ SSH key pair to fetch the pulumi Git repository.
+git_pulumi_private_key: ((($ scs_cred_path $).ssh_key))
+
+#. git_pulumi_path (required): ($ stack_path $)/pulumi
+#+ Path of pulumi files in the git repository
+git_pulumi_path: ($ stack_path $)/pulumi
+
+
+#
+# Default variables that shouldn't be changed except if needed
+#
+
+#. env (required): ($ environment $)
+#+ Name of the project's environment.
+env: ($ environment $)
+
+#. project (required): ($ project $)
+#+ Name of the project.
+project: ($ project $)
+
+#. customer (required): ($ organization_canonical $)
+#+ Name of the Cycloid Organization, used as customer variable name.
+customer: ($ organization_canonical $)
+
+#. cycloid_api_url (required): https://http-api.cycloid.io
+#+ Cycloid API URL.
+cycloid_api_url: ($ api_url $)
