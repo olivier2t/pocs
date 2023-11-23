@@ -51,14 +51,6 @@ use_cases:
     - name: Azure Infrastructure
       technologies: [pipeline]
       vars:
-      - name: "Azure Location"
-        description: "Azure location for Terraform."
-        key: azure_location
-        widget: auto_complete
-        type: string
-        values_ref: https://cycloid-demo-stackforms-values.s3.eu-west-1.amazonaws.com/azure-locations.json
-        default: "West Europe"
-        required: true
       - name: "Resource Group Name"
         description: "The name of the resource group to create."
         key: rg_name
