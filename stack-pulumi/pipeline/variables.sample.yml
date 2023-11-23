@@ -2,19 +2,13 @@
 # Cloud Provider
 #
 
-azure_subscription_id: ((azure.subscription_id))
-azure_tenant_id: ((azure.tenant_id))
-azure_client_id: ((azure.client_id))
-azure_client_secret: ((azure.client_secret))
+#. azure_cred (required): ((azure))
+#+ The azure credential used to deploy the infrastructure. It contains subscription_id, tenant_id, client_id, and client_secret. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
+azure_cred: ((azure))
+
+#. azure_location (required): ((azure))
+#+ The azure location used to deploy the infrastructure.
 azure_location: "West Europe"
-
-#
-# SSH Keypair to use for newly created instances
-#
-
-#. ssh_keypair (required): ((keypair))
-#+ The  SSH keypair containing ssh_prv and ssh_pub to connect via SSH to execute the Ansible playbook.
-ssh_keypair: ((keypair))
 
 
 #
@@ -36,6 +30,23 @@ git_pulumi_private_key: ((($ scs_cred_path $).ssh_key))
 #. git_pulumi_path (required): ($ stack_path $)/pulumi
 #+ Path of pulumi files in the git repository
 git_pulumi_path: ($ stack_path $)/pulumi
+
+
+#
+# Pulumi config
+#
+
+#. pulumi_org (required): cycloid
+#+ The Pulumi organization containing our stack.
+pulumi_org: cycloid
+
+#. pulumi_project (required): storage-account
+#+ The Pulumi project.
+pulumi_project: storage-account
+
+#. pulumi_stack (required): dev
+#+ The Pulumi stack.
+pulumi_stack: dev
 
 
 #
