@@ -35,7 +35,15 @@ jobs:
           PULUMI_CODE_BUILD_CMD: npm ci
           PULUMI_CODE_PATH: pulumi-code/((git_pulumi_path))
           PULUMI_COMMAND: preview
-          PULUMI_CONFIG: '{"azure-native:location":"westeurope"}'
+          # If you put a yaml dict as value in a concourse param key
+          # concourse will output it as valid json string
+          PULUMI_CONFIG:
+            azure-native:location: ((azure_location))
+            rg-name: ((rg_name))
+            sa-name: ((sa_name))
+          # use the yaml | to add a multiline script
+          #PULUMI_EXTRA_CONFIG_SCRIPT: |
+          #  pulumi config set module1:toto titi
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))
@@ -66,7 +74,15 @@ jobs:
           PULUMI_CODE_BUILD_CMD: npm ci
           PULUMI_CODE_PATH: pulumi-code/((git_pulumi_path))
           PULUMI_COMMAND: up
-          PULUMI_CONFIG: '{"azure-native:location":"westeurope"}'
+          # If you put a yaml dict as value in a concourse param key
+          # concourse will output it as valid json string
+          PULUMI_CONFIG:
+            azure-native:location: ((azure_location))
+            rg-name: ((rg_name))
+            sa-name: ((sa_name))
+          # use the yaml | to add a multiline script
+          #PULUMI_EXTRA_CONFIG_SCRIPT: |
+          #  pulumi config set module1:toto titi
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))
@@ -97,7 +113,15 @@ jobs:
           PULUMI_CODE_BUILD_CMD: npm ci
           PULUMI_CODE_PATH: pulumi-code/((git_pulumi_path))
           PULUMI_COMMAND: destroy
-          PULUMI_CONFIG: '{"azure-native:location":"((azure_location))"}'
+          # If you put a yaml dict as value in a concourse param key
+          # concourse will output it as valid json string
+          PULUMI_CONFIG:
+            azure-native:location: ((azure_location))
+            rg-name: ((rg_name))
+            sa-name: ((sa_name))
+          # use the yaml | to add a multiline script
+          #PULUMI_EXTRA_CONFIG_SCRIPT: |
+          #  pulumi config set module1:toto titi
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))

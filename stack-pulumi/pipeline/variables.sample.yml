@@ -14,8 +14,12 @@ azure_client_secret: ((azure.client_secret))
 azure_location: "West Europe"
 
 #. rg_name (required): ''
-#+ The name of the existing resource group where the resources will be deployed.
+#+ The name of the resource group to create.
 rg_name: "West Europe"
+
+#. sa_name (required): ''
+#+ The name of the storage account to create.
+sa_name: "sa1"
 
 
 #
