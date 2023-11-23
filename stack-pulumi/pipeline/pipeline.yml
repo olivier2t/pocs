@@ -41,8 +41,8 @@ jobs:
             azure-native:location: ((azure_location))
           # use the yaml | to add a multiline script
           PULUMI_EXTRA_CONFIG_SCRIPT: |
-            pulumi config set (((pulumi_project))):rg-name ((rg_name))
-            pulumi config set (((pulumi_project))):sa-name ((sa_name))
+            pulumi config set ((pulumi_project)):rg-name ((rg_name))
+            pulumi config set ((pulumi_project)):sa-name ((sa_name))
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))
@@ -79,8 +79,8 @@ jobs:
             azure-native:location: ((azure_location))
           # use the yaml | to add a multiline script
           PULUMI_EXTRA_CONFIG_SCRIPT: |
-            pulumi config set (((pulumi_project))):rg-name ((rg_name))
-            pulumi config set (((pulumi_project))):sa-name ((sa_name))
+            pulumi config set ((pulumi_project)):rg-name ((rg_name))
+            pulumi config set ((pulumi_project)):sa-name ((sa_name))
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))
@@ -117,8 +117,8 @@ jobs:
             azure-native:location: ((azure_location))
           # use the yaml | to add a multiline script
           PULUMI_EXTRA_CONFIG_SCRIPT: |
-            pulumi config set (((pulumi_project))):rg-name ((rg_name))
-            pulumi config set (((pulumi_project))):sa-name ((sa_name))
+            pulumi config set ((pulumi_project)):rg-name ((rg_name))
+            pulumi config set ((pulumi_project)):sa-name ((sa_name))
           PULUMI_ORG: ((pulumi_org))
           PULUMI_PROJECT: ((pulumi_project))
           PULUMI_STACK: ((pulumi_stack))
