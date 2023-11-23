@@ -16,7 +16,6 @@ use_cases:
           cred_types:
             - azure
         type: string
-        default: "((azure.subscription_id))"
         required: true
       - name: "Azure Tenant ID"
         description: "The azure tenant id used to deploy the infrastructure."
@@ -26,7 +25,6 @@ use_cases:
           cred_types:
             - azure
         type: string
-        default: "((azure.tenant_id))"
         required: true
       - name: "Azure Client ID"
         description: "The azure client id used to deploy the infrastructure."
@@ -36,7 +34,6 @@ use_cases:
           cred_types:
             - azure
         type: string
-        default: "((azure.client_id))"
         required: true
       - name: "Azure Client Secret"
         description: "The azure client secret used to deploy the infrastructure."
@@ -46,7 +43,6 @@ use_cases:
           cred_types:
             - azure
         type: string
-        default: "((azure.client_secret))"
         required: true
     - name: Azure Infrastructure
       technologies: [pipeline]
