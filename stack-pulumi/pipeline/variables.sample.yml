@@ -6,9 +6,18 @@
 #+ The azure credential used to deploy the infrastructure. It contains subscription_id, tenant_id, client_id, and client_secret. See value format [here](https://docs.cycloid.io/advanced-guide/integrate-and-use-cycloid-credentials-manager.html#vault-in-the-pipeline)
 azure_cred: ((azure))
 
+azure_subscription_id: ((((azure_cred)).subscription_id))
+azure_tenant_id: ((((azure_cred)).tenant_id))
+azure_client_id: ((((azure_cred)).client_id))
+azure_client_secret: ((((azure_cred)).client_secret))
+
 #. azure_location (required): ((azure))
 #+ The azure location used to deploy the infrastructure.
 azure_location: "West Europe"
+
+#. rg_name (required): ''
+#+ The name of the existing resource group where the resources will be deployed.
+rg_name: "West Europe"
 
 
 #

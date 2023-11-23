@@ -20,7 +20,7 @@ use_cases:
         default: "((azure))"
         required: true
     - name: Azure Infrastructure
-      technologies: [terraform]
+      technologies: [pipeline]
       vars:
       - name: "Azure location"
         description: "Azure location for Terraform."

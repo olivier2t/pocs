@@ -1,9 +1,9 @@
 ---
 # Configuration of the Cycloid stack
 version: '2'
-name: 'Deploy on Azure with Pulumi'
+name: 'Azure Storage Account (Pulumi)'
 canonical: 'stack-pulumi-poc'
-description: This stack deploys resource on Azure using Pulumi.
+description: This stack deploys an Azure Storage Account using Pulumi.
 author: 'Cycloid'
 image: 'https://cycloid-demo-stacks-logo.s3.eu-west-1.amazonaws.com/pulumi.svg'
 status: 'private'
