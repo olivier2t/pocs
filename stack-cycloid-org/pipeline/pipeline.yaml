@@ -19,10 +19,10 @@ resource_types:
     repository: cycloid/terraform-resource
     tag: ((terraform_version))
 
-  - name: api-call
-    type: docker-image
-    source:
-      repository: jgriff/http-resource
+- name: api-call
+  type: docker-image
+  source:
+    repository: jgriff/http-resource
 
 
 resources:

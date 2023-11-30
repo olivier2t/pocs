@@ -19,7 +19,7 @@ aws_region: eu-west-1
 
 #. organization_name (required): ""
 #+ The name of the Cycloid organization to create.
-organization_name: ""
+organization_name: "Sample Organization"
 
 #. parent_organization_canonical (required): "cycloid-io"
 #+ The name of the parent organization.
