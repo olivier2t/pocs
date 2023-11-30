@@ -84,6 +84,7 @@ resources:
 groups:
 - name: overview
   jobs:
+    - cycloid-org
     - terraform-plan
     - terraform-apply
 
