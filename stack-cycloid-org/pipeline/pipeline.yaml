@@ -49,7 +49,7 @@ resources:
     headers:
       Accept: '*/*'
       Content-Type: 'application/vnd.cycloid.io.v1+json'
-      Authorization: 'Bearer ((api-key-admin.key))'
+      Authorization: 'Bearer ((cycloid_api_key))'
     version:
       jq: .data.canonical
       hash: body
