@@ -40,6 +40,7 @@ resources:
       env: ((env))
       project: ((project))
       customer: ((customer))
+      organization_name: ((organization_name))
 
 - name: cycloid-org
   type: api-call
