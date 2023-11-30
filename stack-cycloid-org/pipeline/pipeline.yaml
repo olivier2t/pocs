@@ -52,7 +52,6 @@ resources:
       Authorization: 'Bearer ((api-key-admin.key))'
     version:
       jq: .data.canonical
-      jq: .data.id
       hash: body
 
 # The Terraform stack (will be merged with the config)
