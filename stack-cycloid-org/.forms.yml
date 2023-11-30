@@ -16,6 +16,17 @@ use_cases:
         default: ""
         required: true
 
+    - name: Cycloid API
+      technologies: [pipeline]
+      vars:
+      - name: "Cycloid API key"
+        description: "API key to grant access to Cycloid API."
+        key: cycloid_api_key
+        widget: cy_cred
+        type: string
+        default: "((api-key-admin.key))"
+        required: true
+
     - name: AWS Cloud Provider
       technologies: [pipeline]
       vars:
